@@ -10,5 +10,6 @@ TODO
 1. automatic location detection + notification about location change
 2. about window with reference to openweathermap API
 3. icon
-4. automatic timer fire after wake up
-5. connection errors handling (fair timer reschedule algo?)
+4. automatic timer fire after wake up (no internet connection!)
+5. automatic timer fire after internet connection is established
+6. connection errors handling (fair timer reschedule algo?)

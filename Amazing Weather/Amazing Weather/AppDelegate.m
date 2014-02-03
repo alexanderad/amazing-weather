@@ -32,7 +32,13 @@
                                                  selector: @selector(onTick:)
                                                  userInfo: nil
                                                   repeats: YES];
+    // fire immediately
     [updateTimer fire];
+    
+    // subscribe to wake up event
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
+                                                           selector: @selector(receiveWakeNote:)
+                                                               name: NSWorkspaceDidWakeNotification object: NULL];
 }
 
 - (void)onTick:(NSTimer *) timer {
@@ -59,6 +65,13 @@
             [statusItem setTitle:[NSString stringWithFormat:@"%.1f°C", temp]];
         }
     }];
+}
+
+- (void) receiveWakeNote: (NSNotification*) note
+{
+    // wake up note -- changed state of sleep/wake
+    NSLog(@"receivedSleepNote: %@, requesting timer to fire", [note name]);
+    [updateTimer fire];
 }
 
 - (IBAction)quitAction:(id)sender {
