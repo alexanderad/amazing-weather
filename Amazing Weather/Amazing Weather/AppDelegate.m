@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #include <stdlib.h>
-
+#include <CoreLocation/CoreLocation.h>
 
 #define API_KEY @"d8b1d8fe5065f29a130a8da1fedc6d7f"
 #define API_URL @"http://api.openweathermap.org/data/2.5/weather"
@@ -39,6 +39,46 @@
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
                                                            selector: @selector(receiveWakeNote:)
                                                                name: NSWorkspaceDidWakeNotification object: NULL];
+    
+//    
+//    // Turn on CoreLocation
+//    locationManager = [[CLLocationManager alloc] init];
+//    locationManager.delegate = self;
+//    [locationManager startUpdatingLocation];
+
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
+    locationManager.distanceFilter = 1000;
+    [locationManager startMonitoringSignificantLocationChanges];
+    //[locationManager startUpdatingLocation];
+    
+}
+
+// subscribe to location change event and get city from CoreLocation
+- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+    NSLog(@"Location updated from %@ to %@", oldLocation, newLocation);
+    
+    CLGeocoder *reverseGeocoder = [[CLGeocoder alloc] init];
+    
+    [reverseGeocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error)
+     {
+         NSLog(@"reverseGeocodeLocation:completionHandler: Completion Handler called!");
+         if (error){
+             NSLog(@"Geocode failed with error: %@", error);
+             return;
+         }
+         
+         NSLog(@"Received placemarks: %@", placemarks);
+         
+         
+         CLPlacemark *myPlacemark = [placemarks objectAtIndex:0];
+         NSString *countryCode = myPlacemark.ISOcountryCode;
+         NSString *countryName = myPlacemark.country;
+         NSString *city1 = myPlacemark.subLocality;
+         NSString *city2 = myPlacemark.locality;
+         NSLog(@"My country code: %@, countryName: %@, city1: %@, city2: %@", countryCode, countryName, city1, city2);
+     }];
 }
 
 - (void)onTick:(NSTimer *) timer {

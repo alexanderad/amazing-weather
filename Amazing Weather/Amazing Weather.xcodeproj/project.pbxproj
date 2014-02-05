@@ -17,6 +17,7 @@
 		9E4C9B62189C217A00665BC3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B41189C217A00665BC3 /* Cocoa.framework */; };
 		9E4C9B6A189C217A00665BC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C9B68189C217A00665BC3 /* InfoPlist.strings */; };
 		9E4C9B6C189C217A00665BC3 /* Amazing_WeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B6B189C217A00665BC3 /* Amazing_WeatherTests.m */; };
+		9EED94E018A2D763002BDEC2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		9E4C9B67189C217A00665BC3 /* Amazing WeatherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Amazing WeatherTests-Info.plist"; sourceTree = "<group>"; };
 		9E4C9B69189C217A00665BC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E4C9B6B189C217A00665BC3 /* Amazing_WeatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Amazing_WeatherTests.m; sourceTree = "<group>"; };
+		9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E4C9B42189C217A00665BC3 /* Cocoa.framework in Frameworks */,
+				9EED94E018A2D763002BDEC2 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +96,7 @@
 		9E4C9B40189C217A00665BC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */,
 				9E4C9B41189C217A00665BC3 /* Cocoa.framework */,
 				9E4C9B60189C217A00665BC3 /* XCTest.framework */,
 				9E4C9B43189C217A00665BC3 /* Other Frameworks */,
