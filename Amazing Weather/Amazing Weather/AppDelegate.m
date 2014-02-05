@@ -57,12 +57,18 @@
     
             NSError *localError = nil;
             NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
-            NSArray *results = [parsedObject valueForKey:@"main"];
+            
+            
+            //NSArray *results = [parsedObject valueForKey:@"main"];
             
             // fetch current temperature and convert it from Kelvin to Celsius
-            double temp = [[results valueForKey:@"temp"] doubleValue];
-            temp = temp - 273.15;
-            [statusItem setTitle:[NSString stringWithFormat:@"%.1f°C", temp]];
+            double temperature = [[[parsedObject valueForKey:@"main"] valueForKey:@"temp"] doubleValue];
+            double temperatureCelsius = temperature - 273.15;
+            
+            NSLog(@"Temperature received: %f", temperatureCelsius);
+            
+            // we round it now, allowing user to change that behavior later
+            [statusItem setTitle:[NSString stringWithFormat:@"%.0f°C", temperatureCelsius]];
         }
     }];
 }

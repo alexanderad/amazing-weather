@@ -22,16 +22,7 @@
                 <menuItem title="Amazing Weather" enabled="NO" id="kiq-fE-qbd">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Item" id="AXa-Fr-HR5">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem title="Item" id="0u5-Gv-lGZ">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="setItem:" target="494" id="O0d-it-JY9"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Item" id="PcV-M1-VmM">
+                <menuItem title="Some random Item :-)" id="PcV-M1-VmM">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem title="Quit" keyEquivalent="q" id="Ikn-7T-H7o">

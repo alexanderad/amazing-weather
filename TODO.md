@@ -13,3 +13,4 @@ TODO
 4. automatic timer fire after wake up (no internet connection!)
 5. automatic timer fire after internet connection is established
 6. connection errors handling (fair timer reschedule algo?)
+7. allow to change precision of temp display in tray in settings
