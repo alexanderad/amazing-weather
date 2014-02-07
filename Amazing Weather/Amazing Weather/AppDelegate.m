@@ -20,6 +20,7 @@
 }
 
 -(void)updateStatusItem;
+-(void)updateNow;
 
 @end
 
@@ -54,7 +55,8 @@
     
     NSMenuItem *menuUpdatedAtItem = [[NSMenuItem alloc] init];
     [menuUpdatedAtItem setTag:tagUpdatedAt];
-    [menuUpdatedAtItem setEnabled:NO];
+    [menuUpdatedAtItem setAction:@selector(updateNow:)];
+    [menuUpdatedAtItem setEnabled:YES];
     
     NSMenuItem *menuLocationItem = [[NSMenuItem alloc] init];
     [menuLocationItem setTag:tagLocation];
@@ -164,6 +166,10 @@
          NSString *city2 = myPlacemark.locality;
          NSLog(@"My country code: %@, countryName: %@, city1: %@, city2: %@", countryCode, countryName, city1, city2);
      }];
+}
+
+- (void)updateNow:(id)sender {
+    [updateTimer fire];
 }
 
 - (void)onTick:(NSTimer *) timer {
