@@ -17,9 +17,8 @@
 @interface AppDelegate ()
 {
     NSTimer *updateTimer;
+    NSWindowController *aboutWindowController;
 }
-
--(void)updateNow;
 
 @end
 
@@ -46,6 +45,7 @@
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:menuWeatherDataItem];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
+    [statusBarMenu addItemWithTitle:@"About" action:@selector(about:) keyEquivalent:@""];
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
     // create status bar and assign menu
@@ -108,6 +108,11 @@
      }];
 }
 
+-(void)about:(id)sender {
+    aboutWindowController = [[NSWindowController alloc] initWithWindowNibName:@"About"];
+    [aboutWindowController showWindow:self];
+}
+
 - (void)updateNow:(id)sender {
     [updateTimer fire];
 }
@@ -122,15 +127,10 @@
         if (error) {
             NSLog(@"failed to fetch data: %@", error);
         } else {
-           //
-            
             NSLog(@"data sucessfully received");
     
             NSError *localError = nil;
             NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:&localError];
-            
-            
-            //NSArray *results = [parsedObject valueForKey:@"main"];
             
             // fetch current temperature and convert it from Kelvin to Celsius
             double temperatureKelvin = [[[parsedObject valueForKey:@"main"] valueForKey:@"temp"] doubleValue];
@@ -149,6 +149,7 @@
             [self.statusItem.menu itemWithTag:kTagUpdatedAt].title =
                 [NSString stringWithFormat:@"Updated at %@", dateString];
             
+            // collect all the data
             NSString *location = [NSString stringWithFormat:@"Location: %@ (%@)",
                                   [parsedObject valueForKey:@"name"],
                                   [[parsedObject valueForKey:@"sys"] valueForKey:@"country"]];

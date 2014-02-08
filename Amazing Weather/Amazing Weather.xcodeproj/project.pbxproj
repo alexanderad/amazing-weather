@@ -18,6 +18,7 @@
 		9E4C9B6A189C217A00665BC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C9B68189C217A00665BC3 /* InfoPlist.strings */; };
 		9E4C9B6C189C217A00665BC3 /* Amazing_WeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B6B189C217A00665BC3 /* Amazing_WeatherTests.m */; };
 		9EED94E018A2D763002BDEC2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		9EED94E218A6D477002BDEC2 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EED94E118A6D477002BDEC2 /* About.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,7 @@
 		9E4C9B69189C217A00665BC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E4C9B6B189C217A00665BC3 /* Amazing_WeatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Amazing_WeatherTests.m; sourceTree = "<group>"; };
 		9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9EED94E118A6D477002BDEC2 /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +124,7 @@
 				9E4C9B56189C217A00665BC3 /* MainMenu.xib */,
 				9E4C9B59189C217A00665BC3 /* Images.xcassets */,
 				9E4C9B48189C217A00665BC3 /* Supporting Files */,
+				9EED94E118A6D477002BDEC2 /* About.xib */,
 			);
 			path = "Amazing Weather";
 			sourceTree = "<group>";
@@ -231,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E4C9B4C189C217A00665BC3 /* InfoPlist.strings in Resources */,
+				9EED94E218A6D477002BDEC2 /* About.xib in Resources */,
 				9E4C9B5A189C217A00665BC3 /* Images.xcassets in Resources */,
 				9E4C9B58189C217A00665BC3 /* MainMenu.xib in Resources */,
 			);
