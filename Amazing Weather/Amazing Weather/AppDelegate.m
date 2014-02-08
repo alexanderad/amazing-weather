@@ -109,6 +109,7 @@
 }
 
 -(void)about:(id)sender {
+    [NSApp activateIgnoringOtherApps:YES];
     aboutWindowController = [[NSWindowController alloc] initWithWindowNibName:@"About"];
     [aboutWindowController showWindow:self];
 }
