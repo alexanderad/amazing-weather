@@ -11,7 +11,6 @@
 		9E4C9B4C189C217A00665BC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C9B4A189C217A00665BC3 /* InfoPlist.strings */; };
 		9E4C9B4E189C217A00665BC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B4D189C217A00665BC3 /* main.m */; };
 		9E4C9B55189C217A00665BC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B54189C217A00665BC3 /* AppDelegate.m */; };
-		9E4C9B58189C217A00665BC3 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C9B56189C217A00665BC3 /* MainMenu.xib */; };
 		9E4C9B5A189C217A00665BC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C9B59189C217A00665BC3 /* Images.xcassets */; };
 		9E4C9B61189C217A00665BC3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B60189C217A00665BC3 /* XCTest.framework */; };
 		9E4C9B62189C217A00665BC3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B41189C217A00665BC3 /* Cocoa.framework */; };
@@ -43,7 +42,6 @@
 		9E4C9B4F189C217A00665BC3 /* Amazing Weather-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Amazing Weather-Prefix.pch"; sourceTree = "<group>"; };
 		9E4C9B53189C217A00665BC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9E4C9B54189C217A00665BC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9E4C9B57189C217A00665BC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		9E4C9B59189C217A00665BC3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		9E4C9B5F189C217A00665BC3 /* Amazing WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Amazing WeatherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E4C9B60189C217A00665BC3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -121,7 +119,6 @@
 			children = (
 				9E4C9B53189C217A00665BC3 /* AppDelegate.h */,
 				9E4C9B54189C217A00665BC3 /* AppDelegate.m */,
-				9E4C9B56189C217A00665BC3 /* MainMenu.xib */,
 				9E4C9B59189C217A00665BC3 /* Images.xcassets */,
 				9E4C9B48189C217A00665BC3 /* Supporting Files */,
 				9EED94E118A6D477002BDEC2 /* About.xib */,
@@ -236,7 +233,6 @@
 				9E4C9B4C189C217A00665BC3 /* InfoPlist.strings in Resources */,
 				9EED94E218A6D477002BDEC2 /* About.xib in Resources */,
 				9E4C9B5A189C217A00665BC3 /* Images.xcassets in Resources */,
-				9E4C9B58189C217A00665BC3 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,14 +281,6 @@
 				9E4C9B4B189C217A00665BC3 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		9E4C9B56189C217A00665BC3 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9E4C9B57189C217A00665BC3 /* Base */,
-			);
-			name = MainMenu.xib;
 			sourceTree = "<group>";
 		};
 		9E4C9B68189C217A00665BC3 /* InfoPlist.strings */ = {
