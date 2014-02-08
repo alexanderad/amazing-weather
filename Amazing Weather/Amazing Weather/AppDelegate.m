@@ -19,7 +19,6 @@
     NSTimer *updateTimer;
 }
 
--(void)updateStatusItem;
 -(void)updateNow;
 
 @end
@@ -32,79 +31,20 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
     // create a menu, set initial values
-    /*
-     Updated at: {{ updated_at_timestamp }}
-     Location: {{ location }} ({{ country_code }})
-     ----------------------------------
-     Temperature: {{ temp }}
-     Temperature range: {{ temp_min }} .. {{ temp_max }}
-     ----------------------------------
-     Wind: {{ wind_speed }} {{ wind_direction }}
-     Humidity: {{ humidity }}
-     Pressure: {{ pressure }}
-     ----------------------------------
-     Sunrise: {{ sunrise }}
-     Sunset: {{ sunset }}
-     ----------------------------------
-     Settings ->
-        * be more precise (YES / NO)
-     ----------------------------------
-     About Amazing Weather
-     Quit
-    */
-    
-    NSMenuItem *menuUpdatedAtItem = [[NSMenuItem alloc] init];
-    [menuUpdatedAtItem setTag:tagUpdatedAt];
+    NSMenuItem *menuUpdatedAtItem = [[NSMenuItem alloc] initWithTitle:@"Updating right now..." action:nil keyEquivalent:@""];
+    [menuUpdatedAtItem setTag:kTagUpdatedAt];
     [menuUpdatedAtItem setAction:@selector(updateNow:)];
     [menuUpdatedAtItem setEnabled:YES];
     
-    NSMenuItem *menuLocationItem = [[NSMenuItem alloc] init];
-    [menuLocationItem setTag:tagLocation];
-    [menuLocationItem setEnabled:NO];
+    NSMenuItem *menuWeatherDataItem = [[NSMenuItem alloc] initWithTitle:@"Getting weather data..." action:nil keyEquivalent:@""];
+    [menuWeatherDataItem setTag:kTagWeatherData];
+    [menuWeatherDataItem setEnabled:NO];
     
-    NSMenuItem *menuCurrentTemperatureItem = [[NSMenuItem alloc] init];
-    [menuCurrentTemperatureItem setTag:tagCurrentTemperature];
-    [menuCurrentTemperatureItem setEnabled:NO];
-    
-    NSMenuItem *menuTemperatureRangeItem = [[NSMenuItem alloc] init];
-    [menuTemperatureRangeItem setTag:tagTemperatureRange];
-    [menuTemperatureRangeItem setEnabled:NO];
-    
-    NSMenuItem *menuWindSpeedItem = [[NSMenuItem alloc] init];
-    [menuWindSpeedItem setTag:tagWindSpeed];
-    [menuWindSpeedItem setEnabled:NO];
-    
-    NSMenuItem *menuHumidityItem = [[NSMenuItem alloc] init];
-    [menuHumidityItem setTag:tagHumidity];
-    [menuHumidityItem setEnabled:NO];
-    
-    NSMenuItem *menuPressureItem = [[NSMenuItem alloc] init];
-    [menuPressureItem setTag:tagPressure];
-    [menuPressureItem setEnabled:NO];
-    
-    NSMenuItem *menuSunriseItem = [[NSMenuItem alloc] init];
-    [menuSunriseItem setTag:tagSunrise];
-    [menuSunriseItem setEnabled:NO];
-    
-    NSMenuItem *menuSunsetItem = [[NSMenuItem alloc] init];
-    [menuSunsetItem setTag:tagSunset];
-    [menuSunsetItem setEnabled:NO];
-    
-    
-    NSMenu *statusBarMenu = [[NSMenu alloc] initWithTitle:@"Status Menu"];
+    NSMenu *statusBarMenu = [[NSMenu alloc] init];
     [statusBarMenu setDelegate:self];
     [statusBarMenu addItem:menuUpdatedAtItem];
-    [statusBarMenu addItem:menuLocationItem];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
-    [statusBarMenu addItem:menuCurrentTemperatureItem];
-    [statusBarMenu addItem:menuTemperatureRangeItem];
-    [statusBarMenu addItem:[NSMenuItem separatorItem]];
-    [statusBarMenu addItem:menuWindSpeedItem];
-    [statusBarMenu addItem:menuHumidityItem];
-    [statusBarMenu addItem:menuPressureItem];
-    [statusBarMenu addItem:[NSMenuItem separatorItem]];
-    [statusBarMenu addItem:menuSunriseItem];
-    [statusBarMenu addItem:menuSunsetItem];
+    [statusBarMenu addItem:menuWeatherDataItem];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
@@ -193,12 +133,8 @@
             //NSArray *results = [parsedObject valueForKey:@"main"];
             
             // fetch current temperature and convert it from Kelvin to Celsius
-            double temperature = [[[parsedObject valueForKey:@"main"] valueForKey:@"temp"] doubleValue];
-            double temperatureCelsius = temperature - 273.15;
-            double temperatureMin = [[[parsedObject valueForKey:@"main"] valueForKey:@"temp_min"] doubleValue];
-            double temperatureMinCelsius = temperatureMin - 273.15;
-            double temperatureMax = [[[parsedObject valueForKey:@"main"] valueForKey:@"temp_max"] doubleValue];
-            double temperatureMaxCelsius = temperatureMax - 273.15;
+            double temperatureKelvin = [[[parsedObject valueForKey:@"main"] valueForKey:@"temp"] doubleValue];
+            double temperatureCelsius = temperatureKelvin - 273.15;
             
             NSLog(@"Temperature received: %f", temperatureCelsius);
             
@@ -208,53 +144,54 @@
             // updated at
             NSDate *currDate = [NSDate date];
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-            [dateFormatter setDateFormat:@"dd.MM.YYYY HH:mm:ss"];
+            [dateFormatter setDateFormat:@"HH:mm"];
             NSString *dateString = [dateFormatter stringFromDate:currDate];
-            [self.statusItem.menu itemWithTag:tagUpdatedAt].title =
-                [NSString stringWithFormat:@"Updated at: %@", dateString];
+            [self.statusItem.menu itemWithTag:kTagUpdatedAt].title =
+                [NSString stringWithFormat:@"Updated at %@", dateString];
             
-            // location
-            [self.statusItem.menu itemWithTag:tagLocation].title =
-                [NSString stringWithFormat:@"Location: %@ (%@)",
-                 [parsedObject valueForKey:@"name"],
-                 [[parsedObject valueForKey:@"sys"] valueForKey:@"country"]];
+            NSString *location = [NSString stringWithFormat:@"Location: %@ (%@)",
+                                  [parsedObject valueForKey:@"name"],
+                                  [[parsedObject valueForKey:@"sys"] valueForKey:@"country"]];
             
-            // temperature
-            [self.statusItem.menu itemWithTag:tagCurrentTemperature].title =
-                [NSString stringWithFormat:@"Temperature: %.2f°C", temperatureCelsius];
+            NSString *temperature = [NSString stringWithFormat:@"Temperature: %.2f°C", temperatureCelsius];
+        
+            NSString *wind = [NSString stringWithFormat:@"Wind: %@ m/s",
+                              [[parsedObject valueForKey:@"wind"] valueForKey:@"speed"]];
             
-            // temperature range
-            [self.statusItem.menu itemWithTag:tagTemperatureRange].title =
-            [NSString stringWithFormat:@"Temperature range: %.2f .. %.2f°C",
-             temperatureMinCelsius,
-             temperatureMaxCelsius];
+            NSString *humidity = [NSString stringWithFormat:@"Humidity: %@%%",
+                                  [[parsedObject valueForKey:@"main"] valueForKey:@"humidity"]];
             
-            // wind
-            [self.statusItem.menu itemWithTag:tagWindSpeed].title =
-            [NSString stringWithFormat:@"Wind: %@ m/s",
-             [[parsedObject valueForKey:@"wind"] valueForKey:@"speed"]];
+            NSString *pressure = [NSString stringWithFormat:@"Pressure: %@ mm",
+                                  [[parsedObject valueForKey:@"main"] valueForKey:@"pressure"]];
             
-            // humidity
-            [self.statusItem.menu itemWithTag:tagHumidity].title =
-            [NSString stringWithFormat:@"Humidity: %@%%",
-             [[parsedObject valueForKey:@"main"] valueForKey:@"humidity"]];
-            
-            // Pressure
-            [self.statusItem.menu itemWithTag:tagPressure].title =
-            [NSString stringWithFormat:@"Pressure: %@ mm",
-             [[parsedObject valueForKey:@"main"] valueForKey:@"pressure"]];
-            
-            // Sunrise
             NSTimeInterval interval;
             interval = [[[parsedObject valueForKey:@"sys"] valueForKey:@"sunrise"] doubleValue];
-            [self.statusItem.menu itemWithTag:tagSunrise].title =
-            [NSString stringWithFormat:@"Sunrise: %@", [NSDate dateWithTimeIntervalSince1970:interval]];
-            
-            // Sunset
+            NSString *sunrise = [NSString stringWithFormat:@"Sunrise: %@",
+                                 [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:interval]]];
             interval = [[[parsedObject valueForKey:@"sys"] valueForKey:@"sunset"] doubleValue];
-            [self.statusItem.menu itemWithTag:tagSunset].title =
-            [NSString stringWithFormat:@"Sunset: %@", [NSDate dateWithTimeIntervalSince1970:interval]];
+            NSString *sunset = [NSString stringWithFormat:@"Sunset: %@",
+                                [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:interval]]];
             
+            
+            NSDictionary *attributes = [NSDictionary
+                                        dictionaryWithObjectsAndKeys:
+                                        [NSColor darkGrayColor], NSForegroundColorAttributeName,
+                                        [NSFont systemFontOfSize:14.0],
+                                        NSFontAttributeName, nil];
+            
+            NSArray *weatherDataArray = [NSArray arrayWithObjects:
+                                         location,
+                                         temperature,
+                                         wind,
+                                         humidity,
+                                         pressure,
+                                         sunrise,
+                                         sunset,
+                                         nil];
+            
+            NSAttributedString *weatherDataAttributedString = [[NSAttributedString alloc] initWithString:[weatherDataArray componentsJoinedByString:@"\n"] attributes:attributes];
+            
+            [self.statusItem.menu itemWithTag:kTagWeatherData].attributedTitle = weatherDataAttributedString;
         }
     }];
 }
@@ -265,14 +202,5 @@
     NSLog(@"receivedSleepNote: %@, requesting timer to fire", [note name]);
     [updateTimer fire];
 }
-
-- (void) updateStatusItem {
-    NSLog(@"Update status item called");
-}
-
-//- (IBAction)quitAction:(id)sender {
-//    // quit the application :-)
-//    [NSApp performSelector:@selector(terminate:) withObject:nil afterDelay:0.0];
-//}
 
 @end

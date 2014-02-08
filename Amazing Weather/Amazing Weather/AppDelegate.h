@@ -9,15 +9,8 @@
 #import <Cocoa/Cocoa.h>
 #include <CoreLocation/CoreLocation.h>
 
-#define tagUpdatedAt            10
-#define tagLocation             15
-#define tagCurrentTemperature   25
-#define tagTemperatureRange     30
-#define tagWindSpeed            35
-#define tagHumidity             40
-#define tagPressure             45
-#define tagSunrise              50
-#define tagSunset               55
+#define kTagUpdatedAt   10
+#define kTagWeatherData 20
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
