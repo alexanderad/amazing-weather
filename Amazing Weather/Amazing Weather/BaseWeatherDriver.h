@@ -13,24 +13,24 @@
     NSDictionary *rawData;
 }
 
-@property NSNumber *temperatureCelsius;
-@property NSNumber *temperatureKelvin;
-@property NSNumber *temperatureFarenheit;
+@property (readonly) NSNumber *temperatureCelsius;
+@property (readonly) NSNumber *temperatureKelvin;
+@property (readonly) NSNumber *temperatureFarenheit;
 
-@property NSNumber *humidity;
-@property NSNumber *pressure;
+@property (readonly) NSNumber *humidity;
+@property (readonly) NSNumber *pressure;
 
-@property NSNumber *windSpeed;
-@property NSString *windDirection;
+@property (readonly) NSNumber *windSpeed;
+@property (readonly) NSString *windDirection;
 
-@property NSDate *sunrise;
-@property NSDate *sunset;
+@property (readonly) NSDate *sunrise;
+@property (readonly) NSDate *sunset;
 
 -(void) getData;
 -(void) updateData;
 -(void) parseData;
 
--(void) getJSONFromServer: (NSString*) url;
+-(NSDictionary*) getJSONFromServer: (NSString*) urlString;
 -(double) convertDegrees: (double)temperature fromUnit:(NSString*)unitFrom toUnit:(NSString*)unitTo;
 
 @end

@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #include <stdlib.h>
 #include <CoreLocation/CoreLocation.h>
+#include "OpenWeatherDataDriver.h"
 
 #define API_KEY @"d8b1d8fe5065f29a130a8da1fedc6d7f"
 #define API_URL @"http://api.openweathermap.org/data/2.5/weather"
@@ -24,11 +25,13 @@
 
 @implementation AppDelegate
 
-// WTF?
 @synthesize statusItem, locationManager;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    OpenWeatherDataDriver *d = [[OpenWeatherDataDriver alloc] init];
+    [d getData];
+    
     // create a menu, set initial values
     NSMenuItem *menuUpdatedAtItem = [[NSMenuItem alloc] initWithTitle:@"Updating right now..." action:nil keyEquivalent:@""];
     [menuUpdatedAtItem setTag:kTagUpdatedAt];
@@ -61,7 +64,7 @@
                                                  userInfo: nil
                                                   repeats: YES];
     // fire immediately
-    [updateTimer fire];
+    //[updateTimer fire];
     
     // subscribe to wake up event
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
