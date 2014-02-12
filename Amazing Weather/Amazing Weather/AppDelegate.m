@@ -21,8 +21,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    OpenWeatherDataDriver *d = [[OpenWeatherDataDriver alloc] init];
-    [d getData];
+    //OpenWeatherDataDriver *d = [[OpenWeatherDataDriver alloc] init];
+    //[d getData];
     
     // create a menu, set initial values
     NSMenuItem *menuUpdatedAtItem = [[NSMenuItem alloc] initWithTitle:@"Updating right now..." action:nil keyEquivalent:@""];
@@ -55,7 +55,7 @@
                                                  userInfo: nil
                                                   repeats: YES];
     // fire immediately
-    //[updateTimer fire];
+    [updateTimer fire];
     
     // subscribe to wake up event
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
