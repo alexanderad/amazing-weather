@@ -15,14 +15,6 @@
 #define API_URL @"http://api.openweathermap.org/data/2.5/weather"
 #define CITY_ID 702550
 
-@interface AppDelegate ()
-{
-    NSTimer *updateTimer;
-    NSWindowController *aboutWindowController;
-}
-
-@end
-
 @implementation AppDelegate
 
 @synthesize statusItem, locationManager;
@@ -48,7 +40,6 @@
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:menuWeatherDataItem];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
-    [statusBarMenu addItemWithTitle:@"About" action:@selector(about:) keyEquivalent:@""];
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
     // create status bar and assign menu
@@ -72,7 +63,7 @@
                                                                name: NSWorkspaceDidWakeNotification object: NULL];
 
     locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
+    //locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     locationManager.distanceFilter = 1000;
     //[locationManager startUpdatingLocation];
@@ -109,12 +100,6 @@
          NSString *city2 = myPlacemark.locality;
          NSLog(@"My country code: %@, countryName: %@, city1: %@, city2: %@", countryCode, countryName, city1, city2);
      }];
-}
-
--(void)about:(id)sender {
-    [NSApp activateIgnoringOtherApps:YES];
-    aboutWindowController = [[NSWindowController alloc] initWithWindowNibName:@"About"];
-    [aboutWindowController showWindow:self];
 }
 
 - (void)updateNow:(id)sender {

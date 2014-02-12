@@ -12,7 +12,9 @@
 #define kTagUpdatedAt   10
 #define kTagWeatherData 20
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate> {
+     NSTimer *updateTimer;
+}
 
 @property (nonatomic,retain) CLLocationManager *locationManager;
 @property (strong) NSStatusItem *statusItem;
