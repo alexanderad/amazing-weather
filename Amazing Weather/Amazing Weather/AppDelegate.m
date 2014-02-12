@@ -2,7 +2,7 @@
 //  AppDelegate.m
 //  Amazing Weather
 //
-//  Created by Darednaxella on 1/31/14.
+//  Created by Alexander Shchapov on 31.01.14.
 //
 //
 

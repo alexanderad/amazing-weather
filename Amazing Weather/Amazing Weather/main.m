@@ -2,24 +2,24 @@
 //  main.m
 //  Amazing Weather
 //
-//  Created by Darednaxella on 1/31/14.
+//  Created by Alexander Shchapov on 31.01.14.
 //
 //
 
 #import <Cocoa/Cocoa.h>
 #import "AppDelegate.h"
 
-int main(int argc, const char * argv[])
-{
-    // create an autorelease pool
-    NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
-    
-    // make sure the application singleton has been instantiated
-    NSApplication * application = [NSApplication sharedApplication];
-    
-    // drain the autorelease pool
-    [pool drain];
-	
-    // execution never gets here ..
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        // initialize NSApp instance
+        [NSApplication sharedApplication];
+        
+        // allocate our delegate and run all that shi
+        AppDelegate *appDelegate = [[AppDelegate alloc] init];
+        [NSApp setDelegate:appDelegate];
+        
+        // run main loop
+        [NSApp run];
+    }
     return 0;
 }

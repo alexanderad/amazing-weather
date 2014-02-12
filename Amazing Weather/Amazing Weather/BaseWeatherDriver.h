@@ -2,7 +2,7 @@
 //  BaseWeatherDriver.h
 //  Amazing Weather
 //
-//  Created by Darednaxella on 2/10/14.
+//  Created by Alexander Shchapov on 10.02.14.
 //
 //
 
