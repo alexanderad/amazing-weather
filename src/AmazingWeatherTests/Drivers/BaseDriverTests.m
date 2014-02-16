@@ -7,11 +7,11 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "OpenWeatherDataDriver.h"
+#import "BaseWeatherDriver.h"
 
 @interface DriversTests : XCTestCase
 
-@property OpenWeatherDataDriver *driver;
+@property BaseWeatherDriver *driver;
 
 @end
 
@@ -22,7 +22,7 @@
 - (void)setUp
 {
     [super setUp];
-    driver = [[OpenWeatherDataDriver alloc] init];
+    driver = [[BaseWeatherDriver alloc] init];
 }
 
 - (void)tearDown

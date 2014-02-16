@@ -11,13 +11,15 @@
 		9E04A0D818B13D01000B28D3 /* OpenWeatherDataDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0D618B13D01000B28D3 /* OpenWeatherDataDriver.m */; };
 		9E04A0DF18B14720000B28D3 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0DE18B14720000B28D3 /* Preferences.m */; };
 		9E04A0E118B1585C000B28D3 /* HelpersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0E018B1585C000B28D3 /* HelpersTests.m */; };
+		9E04A0E418B15F0F000B28D3 /* BaseDriverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0E318B15F0F000B28D3 /* BaseDriverTests.m */; };
+		9E04A0E618B15F4E000B28D3 /* OpenWeatherDriverTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0E518B15F4E000B28D3 /* OpenWeatherDriverTest.m */; };
 		9E4C9B42189C217A00665BC3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B41189C217A00665BC3 /* Cocoa.framework */; };
 		9E4C9B4E189C217A00665BC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B4D189C217A00665BC3 /* main.m */; };
 		9E4C9B55189C217A00665BC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B54189C217A00665BC3 /* AppDelegate.m */; };
 		9E4C9B5A189C217A00665BC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C9B59189C217A00665BC3 /* Images.xcassets */; };
 		9E4C9B61189C217A00665BC3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B60189C217A00665BC3 /* XCTest.framework */; };
 		9E4C9B62189C217A00665BC3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B41189C217A00665BC3 /* Cocoa.framework */; };
-		9E4C9B6C189C217A00665BC3 /* DriversTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B6B189C217A00665BC3 /* DriversTests.m */; };
+		9ED9E18718B16B1E0034FA6A /* File.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 9ED9E18618B16B1E0034FA6A /* File.rtf */; };
 		9EED94E018A2D763002BDEC2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -39,21 +41,23 @@
 		9E04A0DD18B14720000B28D3 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
 		9E04A0DE18B14720000B28D3 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
 		9E04A0E018B1585C000B28D3 /* HelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpersTests.m; sourceTree = "<group>"; };
-		9E4C9B3E189C217A00665BC3 /* Amazing Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amazing Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E04A0E318B15F0F000B28D3 /* BaseDriverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDriverTests.m; sourceTree = "<group>"; };
+		9E04A0E518B15F4E000B28D3 /* OpenWeatherDriverTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenWeatherDriverTest.m; sourceTree = "<group>"; };
+		9E4C9B3E189C217A00665BC3 /* AmazingWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmazingWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E4C9B41189C217A00665BC3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9E4C9B44189C217A00665BC3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9E4C9B45189C217A00665BC3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9E4C9B46189C217A00665BC3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9E4C9B49189C217A00665BC3 /* Amazing Weather-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Amazing Weather-Info.plist"; sourceTree = "<group>"; };
+		9E4C9B49189C217A00665BC3 /* AmazingWeather-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AmazingWeather-Info.plist"; sourceTree = "<group>"; };
 		9E4C9B4D189C217A00665BC3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		9E4C9B4F189C217A00665BC3 /* Amazing Weather-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Amazing Weather-Prefix.pch"; sourceTree = "<group>"; };
+		9E4C9B4F189C217A00665BC3 /* AmazingWeather-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AmazingWeather-Prefix.pch"; sourceTree = "<group>"; };
 		9E4C9B53189C217A00665BC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9E4C9B54189C217A00665BC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		9E4C9B59189C217A00665BC3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		9E4C9B5F189C217A00665BC3 /* Amazing WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Amazing WeatherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9E4C9B5F189C217A00665BC3 /* AmazingWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AmazingWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E4C9B60189C217A00665BC3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		9E4C9B67189C217A00665BC3 /* Amazing WeatherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Amazing WeatherTests-Info.plist"; sourceTree = "<group>"; };
-		9E4C9B6B189C217A00665BC3 /* DriversTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DriversTests.m; sourceTree = "<group>"; };
+		9E4C9B67189C217A00665BC3 /* AmazingWeatherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AmazingWeatherTests-Info.plist"; sourceTree = "<group>"; };
+		9ED9E18618B16B1E0034FA6A /* File.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = File.rtf; sourceTree = "<group>"; };
 		9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9EED94E318A96867002BDEC2 /* Amazing Weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Amazing Weather.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,11 +104,20 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		9E04A0E218B15F0F000B28D3 /* Drivers */ = {
+			isa = PBXGroup;
+			children = (
+				9E04A0E518B15F4E000B28D3 /* OpenWeatherDriverTest.m */,
+				9E04A0E318B15F0F000B28D3 /* BaseDriverTests.m */,
+			);
+			path = Drivers;
+			sourceTree = "<group>";
+		};
 		9E4C9B35189C217A00665BC3 = {
 			isa = PBXGroup;
 			children = (
-				9E4C9B47189C217A00665BC3 /* Amazing Weather */,
-				9E4C9B65189C217A00665BC3 /* Amazing WeatherTests */,
+				9E4C9B47189C217A00665BC3 /* AmazingWeather */,
+				9E4C9B65189C217A00665BC3 /* AmazingWeatherTests */,
 				9E4C9B40189C217A00665BC3 /* Frameworks */,
 				9E4C9B3F189C217A00665BC3 /* Products */,
 			);
@@ -113,8 +126,8 @@
 		9E4C9B3F189C217A00665BC3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				9E4C9B3E189C217A00665BC3 /* Amazing Weather.app */,
-				9E4C9B5F189C217A00665BC3 /* Amazing WeatherTests.xctest */,
+				9E4C9B3E189C217A00665BC3 /* AmazingWeather.app */,
+				9E4C9B5F189C217A00665BC3 /* AmazingWeatherTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -140,7 +153,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		9E4C9B47189C217A00665BC3 /* Amazing Weather */ = {
+		9E4C9B47189C217A00665BC3 /* AmazingWeather */ = {
 			isa = PBXGroup;
 			children = (
 				9E04A0DC18B14720000B28D3 /* Helpers */,
@@ -151,33 +164,34 @@
 				9E4C9B54189C217A00665BC3 /* AppDelegate.m */,
 				9E4C9B59189C217A00665BC3 /* Images.xcassets */,
 				9E4C9B48189C217A00665BC3 /* Supporting Files */,
+				9ED9E18618B16B1E0034FA6A /* File.rtf */,
 			);
-			path = "Amazing Weather";
+			path = AmazingWeather;
 			sourceTree = "<group>";
 		};
 		9E4C9B48189C217A00665BC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9E4C9B49189C217A00665BC3 /* Amazing Weather-Info.plist */,
-				9E4C9B4F189C217A00665BC3 /* Amazing Weather-Prefix.pch */,
+				9E4C9B49189C217A00665BC3 /* AmazingWeather-Info.plist */,
+				9E4C9B4F189C217A00665BC3 /* AmazingWeather-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9E4C9B65189C217A00665BC3 /* Amazing WeatherTests */ = {
+		9E4C9B65189C217A00665BC3 /* AmazingWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
+				9E04A0E218B15F0F000B28D3 /* Drivers */,
 				9E04A0E018B1585C000B28D3 /* HelpersTests.m */,
-				9E4C9B6B189C217A00665BC3 /* DriversTests.m */,
 				9E4C9B66189C217A00665BC3 /* Supporting Files */,
 			);
-			path = "Amazing WeatherTests";
+			path = AmazingWeatherTests;
 			sourceTree = "<group>";
 		};
 		9E4C9B66189C217A00665BC3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9E4C9B67189C217A00665BC3 /* Amazing WeatherTests-Info.plist */,
+				9E4C9B67189C217A00665BC3 /* AmazingWeatherTests-Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -185,9 +199,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9E4C9B3D189C217A00665BC3 /* Amazing Weather */ = {
+		9E4C9B3D189C217A00665BC3 /* AmazingWeather */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9E4C9B6F189C217A00665BC3 /* Build configuration list for PBXNativeTarget "Amazing Weather" */;
+			buildConfigurationList = 9E4C9B6F189C217A00665BC3 /* Build configuration list for PBXNativeTarget "AmazingWeather" */;
 			buildPhases = (
 				9E4C9B3A189C217A00665BC3 /* Sources */,
 				9E4C9B3B189C217A00665BC3 /* Frameworks */,
@@ -197,14 +211,14 @@
 			);
 			dependencies = (
 			);
-			name = "Amazing Weather";
+			name = AmazingWeather;
 			productName = "Amazing Weather";
-			productReference = 9E4C9B3E189C217A00665BC3 /* Amazing Weather.app */;
+			productReference = 9E4C9B3E189C217A00665BC3 /* AmazingWeather.app */;
 			productType = "com.apple.product-type.application";
 		};
-		9E4C9B5E189C217A00665BC3 /* Amazing WeatherTests */ = {
+		9E4C9B5E189C217A00665BC3 /* AmazingWeatherTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 9E4C9B72189C217A00665BC3 /* Build configuration list for PBXNativeTarget "Amazing WeatherTests" */;
+			buildConfigurationList = 9E4C9B72189C217A00665BC3 /* Build configuration list for PBXNativeTarget "AmazingWeatherTests" */;
 			buildPhases = (
 				9E4C9B5B189C217A00665BC3 /* Sources */,
 				9E4C9B5C189C217A00665BC3 /* Frameworks */,
@@ -215,9 +229,9 @@
 			dependencies = (
 				9E4C9B64189C217A00665BC3 /* PBXTargetDependency */,
 			);
-			name = "Amazing WeatherTests";
+			name = AmazingWeatherTests;
 			productName = "Amazing WeatherTests";
-			productReference = 9E4C9B5F189C217A00665BC3 /* Amazing WeatherTests.xctest */;
+			productReference = 9E4C9B5F189C217A00665BC3 /* AmazingWeatherTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -240,7 +254,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 9E4C9B39189C217A00665BC3 /* Build configuration list for PBXProject "Amazing Weather" */;
+			buildConfigurationList = 9E4C9B39189C217A00665BC3 /* Build configuration list for PBXProject "AmazingWeather" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -253,8 +267,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				9E4C9B3D189C217A00665BC3 /* Amazing Weather */,
-				9E4C9B5E189C217A00665BC3 /* Amazing WeatherTests */,
+				9E4C9B3D189C217A00665BC3 /* AmazingWeather */,
+				9E4C9B5E189C217A00665BC3 /* AmazingWeatherTests */,
 			);
 		};
 /* End PBXProject section */
@@ -264,6 +278,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ED9E18718B16B1E0034FA6A /* File.rtf in Resources */,
 				9E4C9B5A189C217A00665BC3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,8 +309,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E4C9B6C189C217A00665BC3 /* DriversTests.m in Sources */,
+				9E04A0E618B15F4E000B28D3 /* OpenWeatherDriverTest.m in Sources */,
 				9E04A0E118B1585C000B28D3 /* HelpersTests.m in Sources */,
+				9E04A0E418B15F0F000B28D3 /* BaseDriverTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +320,7 @@
 /* Begin PBXTargetDependency section */
 		9E4C9B64189C217A00665BC3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 9E4C9B3D189C217A00665BC3 /* Amazing Weather */;
+			target = 9E4C9B3D189C217A00665BC3 /* AmazingWeather */;
 			targetProxy = 9E4C9B63189C217A00665BC3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -341,7 +357,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -373,7 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -386,10 +402,11 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Amazing Weather/Amazing Weather-Prefix.pch";
-				INFOPLIST_FILE = "Amazing Weather/Amazing Weather-Info.plist";
+				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
+				INFOPLIST_FILE = "AmazingWeather/AmazingWeather-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AmazingWeather;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -402,10 +419,11 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Amazing Weather/Amazing Weather-Prefix.pch";
-				INFOPLIST_FILE = "Amazing Weather/Amazing Weather-Info.plist";
+				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
+				INFOPLIST_FILE = "AmazingWeather/AmazingWeather-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = AmazingWeather;
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -413,20 +431,21 @@
 		9E4C9B73189C217A00665BC3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Amazing Weather.app/Contents/MacOS/Amazing Weather";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AmazingWeather.app/Contents/MacOS/AmazingWeather";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Amazing Weather/Amazing Weather-Prefix.pch";
+				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "Amazing WeatherTests/Amazing WeatherTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "AmazingWeatherTests/AmazingWeatherTests-Info.plist";
+				PRODUCT_NAME = AmazingWeatherTests;
+				SDKROOT = macosx;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -435,16 +454,17 @@
 		9E4C9B74189C217A00665BC3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Amazing Weather.app/Contents/MacOS/Amazing Weather";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AmazingWeather.app/Contents/MacOS/AmazingWeather";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Amazing Weather/Amazing Weather-Prefix.pch";
-				INFOPLIST_FILE = "Amazing WeatherTests/Amazing WeatherTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
+				INFOPLIST_FILE = "AmazingWeatherTests/AmazingWeatherTests-Info.plist";
+				PRODUCT_NAME = AmazingWeatherTests;
+				SDKROOT = macosx;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -453,7 +473,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		9E4C9B39189C217A00665BC3 /* Build configuration list for PBXProject "Amazing Weather" */ = {
+		9E4C9B39189C217A00665BC3 /* Build configuration list for PBXProject "AmazingWeather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E4C9B6D189C217A00665BC3 /* Debug */,
@@ -462,7 +482,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9E4C9B6F189C217A00665BC3 /* Build configuration list for PBXNativeTarget "Amazing Weather" */ = {
+		9E4C9B6F189C217A00665BC3 /* Build configuration list for PBXNativeTarget "AmazingWeather" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E4C9B70189C217A00665BC3 /* Debug */,
@@ -471,7 +491,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		9E4C9B72189C217A00665BC3 /* Build configuration list for PBXNativeTarget "Amazing WeatherTests" */ = {
+		9E4C9B72189C217A00665BC3 /* Build configuration list for PBXNativeTarget "AmazingWeatherTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				9E4C9B73189C217A00665BC3 /* Debug */,

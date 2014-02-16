@@ -1,0 +1,8 @@
+language: objective-c
+
+script:
+- xctool -version
+- brew update
+- brew upgrade xctool
+- xctool -version
+- xctool -project src/AmazingWeather.xcodeproj -scheme AmazingWeatherSharedScheme -sdk macosx10.9 clean build test
