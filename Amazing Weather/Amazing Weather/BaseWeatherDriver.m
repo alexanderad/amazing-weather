@@ -39,21 +39,52 @@
 
 -(double) convertDegrees: (double)temperature fromUnit:(NSString*)unitFrom toUnit:(NSString*)unitTo
 {
-    // this should support Celsius, Kelvin and Farenheit
+    // this should support Celsius, Kelvin (for geeks) and Farenheit
+    double result = 0.0;
     
-    /*
-     ºF =ºC * 1.8000 + 32.00
-     ºC =(ºF - 32) / 1.8000
-     
-     ºK =ºC + 273.15
-     ºC =ºK - 273.15
-     */
+    double (^Kelvin2Celsius)(double) = ^ double (double K) {
+        return K - 273.15;
+    };
+    
+    double (^Celsius2Kelvin)(double) = ^ double (double C) {
+        return C + 273.15;
+    };
+    
+    double (^Farenheit2Celsius)(double) = ^ double (double F) {
+        return (F - 32.0) / 1.8;
+    };
+    
+    double (^Celsius2Farenheit)(double) = ^ double (double C) {
+        return C * 1.8 + 32.0;
+    };
+    
+    double (^Farenheit2Kelvin)(double) = ^ double (double F) {
+        return Celsius2Kelvin(Farenheit2Celsius(F));
+    };
+    
+    double (^Kelvin2Ferenheit)(double) = ^ double (double K) {
+        return Celsius2Farenheit(Kelvin2Celsius(K));
+    };
+    
+    NSDictionary *name2Function = @{@"Kelvin2Celsius": Kelvin2Celsius,
+                                    @"Celsius2Kelvin": Celsius2Kelvin,
+                                    @"Farenheit2Celsius": Farenheit2Celsius,
+                                    @"Celsius2Farenheit": Celsius2Farenheit,
+                                    @"Farenheit2Kelvin": Farenheit2Kelvin,
+                                    @"Kelvin2Ferenheit": Kelvin2Ferenheit};
+    
+    
+    NSString *targetFunctionName = [NSString stringWithFormat:@"%@2%@", unitFrom, unitTo];
+    if([name2Function objectForKey:targetFunctionName]) {
+        double (^targetFunction)(double) = [name2Function objectForKey:targetFunctionName];
+        result = targetFunction(temperature);
+    }
     
     NSLog(@"convert form %@ to %@ of %f", unitFrom, unitTo, temperature);
-    return temperature;
+    return result;
 }
 
--(void) updateData
+-(void) updateDisplay
 {
     methodNotImplemented();
 }

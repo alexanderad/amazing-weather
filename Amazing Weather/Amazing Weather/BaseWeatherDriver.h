@@ -27,7 +27,7 @@
 @property (readonly) NSDate *sunset;
 
 -(void) getData;
--(void) updateData;
+-(void) updateDisplay;
 -(void) parseData;
 
 -(NSDictionary*) getJSONFromServer: (NSString*) urlString;

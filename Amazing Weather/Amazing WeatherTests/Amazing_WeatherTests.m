@@ -10,6 +10,8 @@
 
 @interface Amazing_WeatherTests : XCTestCase
 
+- (void) testExample;
+
 @end
 
 @implementation Amazing_WeatherTests
@@ -18,6 +20,7 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    NSLog(@"test setUp");
 }
 
 - (void)tearDown
@@ -28,7 +31,12 @@
 
 - (void)testExample
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertFalse(true);
+}
+
+- (void)testHello
+{
+    XCTAssertNotEqual(1, 1);
 }
 
 @end

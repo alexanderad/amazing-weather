@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #include <CoreLocation/CoreLocation.h>
 
+// these are menu tags constants in order to allow programmatic access
 #define kTagUpdatedAt   10
 #define kTagWeatherData 20
 
@@ -16,7 +17,7 @@
      NSTimer *updateTimer;
 }
 
-@property (nonatomic,retain) CLLocationManager *locationManager;
+@property (nonatomic, retain) CLLocationManager *locationManager;
 @property (strong) NSStatusItem *statusItem;
 
 @end
