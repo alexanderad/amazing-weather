@@ -71,16 +71,17 @@
                                     @"Farenheit2Celsius": Farenheit2Celsius,
                                     @"Celsius2Farenheit": Celsius2Farenheit,
                                     @"Farenheit2Kelvin": Farenheit2Kelvin,
-                                    @"Kelvin2Ferenheit": Kelvin2Ferenheit};
+                                    @"Kelvin2Farenheit": Kelvin2Ferenheit};
     
     
     NSString *targetFunctionName = [NSString stringWithFormat:@"%@2%@", unitFrom, unitTo];
     if([name2Function objectForKey:targetFunctionName]) {
         double (^targetFunction)(double) = [name2Function objectForKey:targetFunctionName];
         result = targetFunction(temperature);
+    } else {
+        [NSException raise:@"No suitable converter" format:@"unit %@ to %@", unitFrom, unitTo];
     }
     
-    NSLog(@"convert form %@ to %@ of %f", unitFrom, unitTo, temperature);
     return result;
 }
 
