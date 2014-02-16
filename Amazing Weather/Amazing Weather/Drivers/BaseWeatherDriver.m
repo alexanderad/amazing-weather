@@ -12,7 +12,7 @@
 
 @implementation BaseWeatherDriver
 
--(NSDictionary*) getJSONFromServer: (NSString*) urlString
+-(NSDictionary*) getJSONFromServer: (NSString*)urlString
 {
     // this method is not weather-related, it it just fetches the data from an URL and parses it into JSON
     NSURL *url = [[NSURL alloc] initWithString:urlString];

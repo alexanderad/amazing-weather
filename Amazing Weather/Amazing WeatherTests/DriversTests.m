@@ -9,13 +9,13 @@
 #import <XCTest/XCTest.h>
 #import "OpenWeatherDataDriver.h"
 
-@interface Amazing_WeatherTests : XCTestCase
+@interface DriversTests : XCTestCase
 
 @property OpenWeatherDataDriver *driver;
 
 @end
 
-@implementation Amazing_WeatherTests
+@implementation DriversTests
 
 @synthesize driver;
 
@@ -27,9 +27,7 @@
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
-    
 }
 
 - (void)testConverter

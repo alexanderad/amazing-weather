@@ -30,7 +30,7 @@
 -(void) updateDisplay;
 -(void) parseData;
 
--(NSDictionary*) getJSONFromServer: (NSString*) urlString;
+-(NSDictionary*) getJSONFromServer: (NSString*)urlString;
 -(double) convertDegrees: (double)temperature fromUnit:(NSString*)unitFrom toUnit:(NSString*)unitTo;
 
 @end
