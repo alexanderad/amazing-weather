@@ -62,7 +62,7 @@
     locationManager = [[CLLocationManager alloc] init];
     //locationManager.delegate = self;
     locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    locationManager.distanceFilter = 1000;
+    locationManager.    distanceFilter = 1000;
     //[locationManager startUpdatingLocation];
 }
 

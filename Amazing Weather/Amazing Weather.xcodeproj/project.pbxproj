@@ -7,18 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E04A0D718B13D01000B28D3 /* BaseWeatherDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0D418B13D01000B28D3 /* BaseWeatherDriver.m */; };
+		9E04A0D818B13D01000B28D3 /* OpenWeatherDataDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0D618B13D01000B28D3 /* OpenWeatherDataDriver.m */; };
 		9E4C9B42189C217A00665BC3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B41189C217A00665BC3 /* Cocoa.framework */; };
-		9E4C9B4C189C217A00665BC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C9B4A189C217A00665BC3 /* InfoPlist.strings */; };
 		9E4C9B4E189C217A00665BC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B4D189C217A00665BC3 /* main.m */; };
 		9E4C9B55189C217A00665BC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B54189C217A00665BC3 /* AppDelegate.m */; };
 		9E4C9B5A189C217A00665BC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C9B59189C217A00665BC3 /* Images.xcassets */; };
 		9E4C9B61189C217A00665BC3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B60189C217A00665BC3 /* XCTest.framework */; };
 		9E4C9B62189C217A00665BC3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B41189C217A00665BC3 /* Cocoa.framework */; };
-		9E4C9B6A189C217A00665BC3 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C9B68189C217A00665BC3 /* InfoPlist.strings */; };
 		9E4C9B6C189C217A00665BC3 /* Amazing_WeatherTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B6B189C217A00665BC3 /* Amazing_WeatherTests.m */; };
 		9EED94E018A2D763002BDEC2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		9EED94EE18A96A69002BDEC2 /* BaseWeatherDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EED94ED18A96A69002BDEC2 /* BaseWeatherDriver.m */; };
-		9EED94F218AAB3A2002BDEC2 /* OpenWeatherDataDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9EED94F118AAB3A2002BDEC2 /* OpenWeatherDataDriver.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,13 +30,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9E04A0D318B13D01000B28D3 /* BaseWeatherDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWeatherDriver.h; sourceTree = "<group>"; };
+		9E04A0D418B13D01000B28D3 /* BaseWeatherDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWeatherDriver.m; sourceTree = "<group>"; };
+		9E04A0D518B13D01000B28D3 /* OpenWeatherDataDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenWeatherDataDriver.h; sourceTree = "<group>"; };
+		9E04A0D618B13D01000B28D3 /* OpenWeatherDataDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenWeatherDataDriver.m; sourceTree = "<group>"; };
 		9E4C9B3E189C217A00665BC3 /* Amazing Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Amazing Weather.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E4C9B41189C217A00665BC3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9E4C9B44189C217A00665BC3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		9E4C9B45189C217A00665BC3 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		9E4C9B46189C217A00665BC3 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9E4C9B49189C217A00665BC3 /* Amazing Weather-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Amazing Weather-Info.plist"; sourceTree = "<group>"; };
-		9E4C9B4B189C217A00665BC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E4C9B4D189C217A00665BC3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9E4C9B4F189C217A00665BC3 /* Amazing Weather-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Amazing Weather-Prefix.pch"; sourceTree = "<group>"; };
 		9E4C9B53189C217A00665BC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -47,14 +48,9 @@
 		9E4C9B5F189C217A00665BC3 /* Amazing WeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Amazing WeatherTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E4C9B60189C217A00665BC3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9E4C9B67189C217A00665BC3 /* Amazing WeatherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Amazing WeatherTests-Info.plist"; sourceTree = "<group>"; };
-		9E4C9B69189C217A00665BC3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E4C9B6B189C217A00665BC3 /* Amazing_WeatherTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Amazing_WeatherTests.m; sourceTree = "<group>"; };
 		9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9EED94E318A96867002BDEC2 /* Amazing Weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Amazing Weather.entitlements"; sourceTree = "<group>"; };
-		9EED94EC18A96A69002BDEC2 /* BaseWeatherDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWeatherDriver.h; sourceTree = "<group>"; };
-		9EED94ED18A96A69002BDEC2 /* BaseWeatherDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWeatherDriver.m; sourceTree = "<group>"; };
-		9EED94F018AAB3A2002BDEC2 /* OpenWeatherDataDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenWeatherDataDriver.h; sourceTree = "<group>"; };
-		9EED94F118AAB3A2002BDEC2 /* OpenWeatherDataDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenWeatherDataDriver.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +75,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E04A0D218B13D01000B28D3 /* Drivers */ = {
+			isa = PBXGroup;
+			children = (
+				9E04A0D318B13D01000B28D3 /* BaseWeatherDriver.h */,
+				9E04A0D418B13D01000B28D3 /* BaseWeatherDriver.m */,
+				9E04A0D518B13D01000B28D3 /* OpenWeatherDataDriver.h */,
+				9E04A0D618B13D01000B28D3 /* OpenWeatherDataDriver.m */,
+			);
+			path = Drivers;
+			sourceTree = "<group>";
+		};
 		9E4C9B35189C217A00665BC3 = {
 			isa = PBXGroup;
 			children = (
@@ -122,13 +129,13 @@
 		9E4C9B47189C217A00665BC3 /* Amazing Weather */ = {
 			isa = PBXGroup;
 			children = (
+				9E04A0D218B13D01000B28D3 /* Drivers */,
 				9EED94E318A96867002BDEC2 /* Amazing Weather.entitlements */,
 				9E4C9B4D189C217A00665BC3 /* main.m */,
 				9E4C9B53189C217A00665BC3 /* AppDelegate.h */,
 				9E4C9B54189C217A00665BC3 /* AppDelegate.m */,
 				9E4C9B59189C217A00665BC3 /* Images.xcassets */,
 				9E4C9B48189C217A00665BC3 /* Supporting Files */,
-				9EED94EA18A96A31002BDEC2 /* Drivers */,
 			);
 			path = "Amazing Weather";
 			sourceTree = "<group>";
@@ -137,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				9E4C9B49189C217A00665BC3 /* Amazing Weather-Info.plist */,
-				9E4C9B4A189C217A00665BC3 /* InfoPlist.strings */,
 				9E4C9B4F189C217A00665BC3 /* Amazing Weather-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -156,20 +162,8 @@
 			isa = PBXGroup;
 			children = (
 				9E4C9B67189C217A00665BC3 /* Amazing WeatherTests-Info.plist */,
-				9E4C9B68189C217A00665BC3 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9EED94EA18A96A31002BDEC2 /* Drivers */ = {
-			isa = PBXGroup;
-			children = (
-				9EED94EC18A96A69002BDEC2 /* BaseWeatherDriver.h */,
-				9EED94ED18A96A69002BDEC2 /* BaseWeatherDriver.m */,
-				9EED94F018AAB3A2002BDEC2 /* OpenWeatherDataDriver.h */,
-				9EED94F118AAB3A2002BDEC2 /* OpenWeatherDataDriver.m */,
-			);
-			name = Drivers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,7 +248,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E4C9B4C189C217A00665BC3 /* InfoPlist.strings in Resources */,
 				9E4C9B5A189C217A00665BC3 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,7 +256,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E4C9B6A189C217A00665BC3 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,8 +268,8 @@
 			files = (
 				9E4C9B55189C217A00665BC3 /* AppDelegate.m in Sources */,
 				9E4C9B4E189C217A00665BC3 /* main.m in Sources */,
-				9EED94F218AAB3A2002BDEC2 /* OpenWeatherDataDriver.m in Sources */,
-				9EED94EE18A96A69002BDEC2 /* BaseWeatherDriver.m in Sources */,
+				9E04A0D818B13D01000B28D3 /* OpenWeatherDataDriver.m in Sources */,
+				9E04A0D718B13D01000B28D3 /* BaseWeatherDriver.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,25 +290,6 @@
 			targetProxy = 9E4C9B63189C217A00665BC3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		9E4C9B4A189C217A00665BC3 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9E4C9B4B189C217A00665BC3 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		9E4C9B68189C217A00665BC3 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9E4C9B69189C217A00665BC3 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		9E4C9B6D189C217A00665BC3 /* Debug */ = {
