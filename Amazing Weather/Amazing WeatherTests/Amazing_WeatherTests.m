@@ -2,7 +2,7 @@
 //  Amazing_WeatherTests.m
 //  Amazing WeatherTests
 //
-//  Created by Darednaxella on 1/31/14.
+//  Created by Alexander Shchapov on 31.01.14.
 //
 //
 
@@ -36,7 +36,7 @@
 
 - (void)testHello
 {
-    XCTAssertNotEqual(1, 1);
+    XCTAssertNotEqual(1, 222);
 }
 
 @end
