@@ -64,6 +64,10 @@
     locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     locationManager.distanceFilter = 1000;
     //[locationManager startUpdatingLocation];
+    
+    
+    OpenWeatherDataDriver *driver = [[OpenWeatherDataDriver alloc] init];
+    [driver getData];
 }
 
 // subscribe to location change event and get city from CoreLocation

@@ -11,11 +11,14 @@
 @interface BaseWeatherDriver : NSObject
 {
     NSDictionary *rawData;
+    BOOL dataReceived;
 }
 
-@property (readonly) NSNumber *temperatureCelsius;
-@property (readonly) NSNumber *temperatureKelvin;
-@property (readonly) NSNumber *temperatureFarenheit;
+@property (readonly) NSString *location;
+
+@property (readonly) double temperatureCelsius;
+@property (readonly) double temperatureKelvin;
+@property (readonly) double temperatureFarenheit;
 
 @property (readonly) NSNumber *humidity;
 @property (readonly) NSNumber *pressure;
@@ -28,9 +31,10 @@
 
 -(void) getData;
 -(void) updateDisplay;
+-(void) completeAsyncronousRequest;
 -(void) parseData;
 
--(NSDictionary*) getJSONFromServer: (NSString*)urlString;
+-(void) getJSONFromServer: (NSString*)urlString;
 -(double) convertDegrees: (double)temperature fromUnit:(NSString*)unitFrom toUnit:(NSString*)unitTo;
 
 @end
