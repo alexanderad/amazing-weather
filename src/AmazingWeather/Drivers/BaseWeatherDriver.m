@@ -7,6 +7,7 @@
 //
 
 #import "BaseWeatherDriver.h"
+
 #define methodNotImplemented() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
 
 
@@ -14,6 +15,7 @@
 
 -(void)getJSONFromServer: (NSString*)urlString
 {
+    // FIXME: this should reside somewhere in helpers
     NSURL *url = [[NSURL alloc] initWithString:urlString];
     [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url]
                                        queue:[[NSOperationQueue alloc] init]
