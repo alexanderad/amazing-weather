@@ -11,7 +11,6 @@
 @interface BaseWeatherDriver : NSObject
 {
     NSDictionary *rawData;
-    BOOL dataReceived;
 }
 
 @property (readonly) NSString *location;
@@ -31,7 +30,6 @@
 
 -(void) getData;
 -(void) updateDisplay;
--(void) completeAsyncronousRequest;
 -(void) parseData;
 
 -(void) getJSONFromServer: (NSString*)urlString;

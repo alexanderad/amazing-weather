@@ -20,14 +20,9 @@
 @synthesize humidity, pressure;
 @synthesize sunrise, sunset;
 
--(void) updateDisplay
-{
-    [super updateDisplay];
-}
-
 -(void) parseData
 {
-    NSLog(@"In parse data");
+    NSLog(@"driver: parse data started");
     // temperatures
     temperatureKelvin = [[[rawData valueForKey:@"main"] valueForKey:@"temp"] doubleValue];
     temperatureCelsius = [self convertDegrees:temperatureKelvin fromUnit:@"Kelvin" toUnit:@"Celsius"];
@@ -52,13 +47,13 @@
     sunrise = [NSDate dateWithTimeIntervalSince1970:interval];
     interval = [[[rawData valueForKey:@"sys"] valueForKey:@"sunset"] doubleValue];
     sunset = [NSDate dateWithTimeIntervalSince1970:interval];
+    NSLog(@"driver: data parsed successfully");
 }
 
 -(void) getData
 {
     NSString *url = [NSString stringWithFormat:@"%@?id=%d&lang=en&APPID=%@", API_URL, CITY_ID, API_KEY];
-    rawData = [self getJSONFromServer:url];
-    [self parseData];
+    [self getJSONFromServer:url];
 }
 
 @end

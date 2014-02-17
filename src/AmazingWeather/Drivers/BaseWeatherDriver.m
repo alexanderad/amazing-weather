@@ -12,26 +12,29 @@
 
 @implementation BaseWeatherDriver
 
-void (^completeAsyncronousRequest)(NSURLResponse*, NSData*, NSError*) = ^void (NSURLResponse *response, NSData *data, NSError *error) {
-    if (error) {
-        NSLog(@"getJSONFromServer: failed to fetch data: %@", error);
-    } else {
-        NSLog(@"getJSONFromServer: data sucessfully received");
-        NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:data
-                                                       options:0
-                                                         error:&localError];
-    }
-}
-
 -(void)getJSONFromServer: (NSString*)urlString
 {
-    // this method is not weather-related, it it just fetches the data from an URL and parses it into JSON
     NSURL *url = [[NSURL alloc] initWithString:urlString];
-    __block NSDictionary *parsedObject;
-    
     [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url]
                                        queue:[[NSOperationQueue alloc] init]
-                           completionHandler:[self completeAsyncronousRequest]]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                               if(error) {
+                                   NSLog(@"driver: async request ended with error: %@", error);
+                               } else {
+                                   NSLog(@"driver: async request successfull");
+                                   NSError *parserError = nil;
+                                   rawData = [NSJSONSerialization JSONObjectWithData:data
+                                                                             options:0
+                                                                               error:&parserError];
+                                   if(parserError) {
+                                       NSLog(@"driver: JSON parser error: %@", parserError);
+                                   } else {
+                                       NSLog(@"driver: JSON parsed successfully");
+                                       [self parseData];
+                                   }
+                               }
+                           }
+     ];
 }
 
 -(double) convertDegrees: (double)temperature fromUnit:(NSString*)unitFrom toUnit:(NSString*)unitTo
