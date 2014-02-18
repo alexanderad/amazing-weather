@@ -27,7 +27,7 @@
     [self subscribeToEvents];
     
     // start update timer to tick
-    updateTimer = [NSTimer scheduledTimerWithTimeInterval: (60 * 15) + arc4random_uniform(25) // once in ~15 minutes
+    updateTimer = [NSTimer scheduledTimerWithTimeInterval: (60 * 15) + arc4random_uniform(25)
                                                    target: self
                                                  selector: @selector(onTick:)
                                                  userInfo: nil
@@ -52,9 +52,10 @@
     // we're interested in lid opened/closed to keep the data updated
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
                                                            selector: @selector(receiveWakeNote:)
-                                                               name: NSWorkspaceDidWakeNotification object: NULL];
+                                                               name: NSWorkspaceDidWakeNotification
+                                                             object: NULL];
 
-    // we're also interested in when the new weather data is obtained and parser by the weather driver
+    // we're also want to know the new weather data is received and parsed by the weather driver
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(weatherDataReady:)
                                                  name:@"weatherDataReady" object:nil];
@@ -62,12 +63,16 @@
 
 - (void) initDisplay {
     // create a menu, set initial values
-    NSMenuItem *menuUpdatedAtItem = [[NSMenuItem alloc] initWithTitle:@"Updating right now..." action:nil keyEquivalent:@""];
+    NSMenuItem *menuUpdatedAtItem = [[NSMenuItem alloc] initWithTitle:@"Updating right now..."
+                                                               action:nil
+                                                        keyEquivalent:@""];
     [menuUpdatedAtItem setTag:kTagUpdatedAt];
     [menuUpdatedAtItem setAction:@selector(updateNow:)];
     [menuUpdatedAtItem setEnabled:YES];
     
-    NSMenuItem *menuWeatherDataItem = [[NSMenuItem alloc] initWithTitle:@"Getting weather data..." action:nil keyEquivalent:@""];
+    NSMenuItem *menuWeatherDataItem = [[NSMenuItem alloc] initWithTitle:@"Getting weather data..."
+                                                                 action:nil
+                                                          keyEquivalent:@""];
     [menuWeatherDataItem setTag:kTagWeatherData];
     [menuWeatherDataItem setEnabled:NO];
     
@@ -88,24 +93,29 @@
 
 - (void) updateDisplay {
     {
-        NSLog(@"update display: iteration");
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"HH:mm"];
+        
         // we round it now, allowing user to change that behavior later
         [statusItem setTitle:[NSString stringWithFormat:@"%.0f°C", [driver temperatureCelsius]]];
         
         // format all the data to strings
-        NSString *location = [NSString stringWithFormat:@"Location: %@", [driver location]];
-        NSString *temperature = [NSString stringWithFormat:@"Temperature: %.2f°C", [driver temperatureCelsius]];
+        NSString *location = [NSString stringWithFormat:@"Location: %@",
+                              [driver location]];
+        NSString *temperature = [NSString stringWithFormat:@"Temperature: %.2f°C",
+                                 [driver temperatureCelsius]];
         
-        NSString *wind = [NSString stringWithFormat:@"Wind: %@ %@ m/s",
-                          [driver windDirection],
-                          [driver windSpeed]];
+        NSString *wind = [NSString stringWithFormat:@"Wind: %@ m/s (%@)",
+                          [driver windSpeed],
+                          [driver windDirection]];
         
         NSString *humidity = [NSString stringWithFormat:@"Humidity: %@%%", [driver humidity]];
         NSString *pressure = [NSString stringWithFormat:@"Pressure: %@ mm", [driver pressure]];
         
-        NSString *sunrise = [NSString stringWithFormat:@"Sunrise: %@", [driver sunrise]];
-        NSString *sunset = [NSString stringWithFormat:@"Sunset: %@", [driver sunset]];
-        
+        NSString *sunrise = [NSString stringWithFormat:@"Sunrise: %@",
+                             [dateFormatter stringFromDate:[driver sunrise]]];
+        NSString *sunset = [NSString stringWithFormat:@"Sunset: %@",
+                            [dateFormatter stringFromDate:[driver sunset]]];
         
         // ugly way to change colours
         NSDictionary *attributes = [NSDictionary
@@ -115,35 +125,33 @@
                                     NSFontAttributeName, nil];
         
         NSArray *weatherDataArray = [NSArray arrayWithObjects:
-                                     location,
-                                     temperature,
-                                     wind,
-                                     humidity,
-                                     pressure,
-                                     sunrise,
-                                     sunset,
+                                     location, temperature, wind,
+                                     humidity, pressure,
+                                     sunrise, sunset,
                                      nil];
         
-        NSAttributedString *weatherDataAttributedString = [[NSAttributedString alloc] initWithString:[weatherDataArray componentsJoinedByString:@"\n"] attributes:attributes];
-        
-        [self.statusItem.menu itemWithTag:kTagWeatherData].attributedTitle = weatherDataAttributedString;
+        NSString *joined = [weatherDataArray componentsJoinedByString:@"\n"];
+        NSAttributedString *weatherDataAString = [[NSAttributedString alloc]
+                                                           initWithString:joined
+                                                           attributes:attributes];
+        [self.statusItem.menu itemWithTag:kTagWeatherData].attributedTitle = weatherDataAString;
         
         // updated at
-        NSDate *currDate = [NSDate date];
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"HH:mm"];
-        NSString *dateString = [dateFormatter stringFromDate:currDate];
-        [self.statusItem.menu itemWithTag:kTagUpdatedAt].title =
-        [NSString stringWithFormat:@"Updated at %@", dateString];
+        NSString *dateString = [NSString stringWithFormat:@"Updated at %@",
+                                [dateFormatter stringFromDate:[NSDate date]]];
+        [self.statusItem.menu itemWithTag:kTagUpdatedAt].title = dateString;
     }
 }
 
 // subscribe to location change event and get city from CoreLocation
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
+- (void)locationManager:(CLLocationManager *)manager
+    didUpdateToLocation:(CLLocation *)newLocation
+           fromLocation:(CLLocation *)oldLocation {
     NSLog(@"location: location updated from %@ to %@", oldLocation, newLocation);
     CLGeocoder *reverseGeocoder = [[CLGeocoder alloc] init];
     
-    [reverseGeocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error)
+    [reverseGeocoder reverseGeocodeLocation:newLocation
+                          completionHandler:^(NSArray *placemarks, NSError *error)
      {
          if (error){
              NSLog(@"location: geocode failed with error: %@", error);
@@ -155,7 +163,9 @@
          NSString *countryName = myPlacemark.country;
          NSString *city1 = myPlacemark.subLocality;
          NSString *city2 = myPlacemark.locality;
-         NSLog(@"location: country code: %@, country name: %@, city1: %@, city2: %@", countryCode, countryName, city1, city2);
+         NSLog(@"location: country code: %@, country name: %@, city1: %@, city2: %@",
+               countryCode, countryName,
+               city1, city2);
      }];
 }
 
@@ -164,7 +174,7 @@
 }
 
 - (void)onTick:(NSTimer *) timer {
-    NSLog(@"timer: fired, requsting data update");
+    NSLog(@"timer fired, requsting data update");
     [driver fetchData];
 }
 

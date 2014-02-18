@@ -21,11 +21,14 @@
 
 -(void) parseData
 {
-    NSLog(@"driver: parse data started");
     // temperatures
     temperatureKelvin = [[[rawData valueForKey:@"main"] valueForKey:@"temp"] doubleValue];
-    temperatureCelsius = [self convertDegrees:temperatureKelvin fromUnit:@"Kelvin" toUnit:@"Celsius"];
-    temperatureFarenheit = [self convertDegrees:temperatureKelvin fromUnit:@"Kelvin" toUnit:@"Farenheit"];
+    temperatureCelsius = [self convertDegrees:temperatureKelvin
+                                     fromUnit:@"Kelvin"
+                                       toUnit:@"Celsius"];
+    temperatureFarenheit = [self convertDegrees:temperatureKelvin
+                                       fromUnit:@"Kelvin"
+                                         toUnit:@"Farenheit"];
     
     // location reported
     location = [NSString stringWithFormat:@"%@ (%@)",
@@ -34,9 +37,8 @@
     
     // wind
     windSpeed = [[rawData valueForKey:@"wind"] valueForKey:@"speed"];
-    windDirection = [self getWindDirectionDisplay:[[[rawData valueForKey:@"wind"] valueForKey:@"deg"] doubleValue]];
-    
-    [[rawData valueForKey:@"wind"] valueForKey:@"deg"];
+    double windDirectionDegrees = [[[rawData valueForKey:@"wind"] valueForKey:@"deg"] doubleValue];
+    windDirection = [self getWindDirectionDisplay:windDirectionDegrees];
     
     // humidity & pressure
     humidity = [[rawData valueForKey:@"main"] valueForKey:@"humidity"];
@@ -48,13 +50,13 @@
     sunrise = [NSDate dateWithTimeIntervalSince1970:interval];
     interval = [[[rawData valueForKey:@"sys"] valueForKey:@"sunset"] doubleValue];
     sunset = [NSDate dateWithTimeIntervalSince1970:interval];
-    NSLog(@"driver: data parsed successfully");
     [super parseData];
 }
 
 -(void) fetchData
 {
-    NSString *url = [NSString stringWithFormat:@"%@?id=%d&lang=en&APPID=%@", API_URL, CITY_ID, API_KEY];
+    NSString *url = [NSString stringWithFormat:@"%@?id=%d&lang=en&APPID=%@",
+                     API_URL, CITY_ID, API_KEY];
     [self getJSONFromServer:url];
 }
 

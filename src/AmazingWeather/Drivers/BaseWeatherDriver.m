@@ -8,9 +8,6 @@
 
 #import "BaseWeatherDriver.h"
 
-#define methodNotImplemented() @throw [NSException exceptionWithName:NSInvalidArgumentException reason:[NSString stringWithFormat:@"%s must be overridden in a subclass/category", __PRETTY_FUNCTION__] userInfo:nil]
-
-
 @implementation BaseWeatherDriver
 
 -(void)getJSONFromServer: (NSString*)urlString
@@ -29,9 +26,9 @@
                                                                              options:0
                                                                                error:&parserError];
                                    if(parserError) {
-                                       NSLog(@"driver: JSON parser error: %@", parserError);
+                                       NSLog(@"driver: json parser error: %@", parserError);
                                    } else {
-                                       NSLog(@"driver: JSON parsed successfully");
+                                       NSLog(@"driver: json parsed successfully");
                                        [self parseData];
                                    }
                                }
@@ -88,25 +85,33 @@
 }
 
 -(NSString*) getWindDirectionDisplay: (double)degrees {
-    /*
-    N 348.75 - 11.25
-    NNE 11.25 - 33.75
-    NE 33.75 - 56.25
-    ENE 56.25 - 78.75
-    E 78.75 - 101.25
-    ESE 101.25 - 123.75
-    SE 123.75 - 146.25
-    SSE 146.25 - 168.75
-    S 168.75 - 191.25
-    SSW 191.25 - 213.75
-    SW 213.75 - 236.25
-    WSW 236.25 - 258.75
-    W 258.75 - 281.25
-    WNW 281.25 - 303.75
-    NW 303.75 - 326.25
-    NNW 326.25 - 348.75
-    */
-    return @"ХЗ";
+    NSArray *lookup = [NSArray arrayWithObjects:
+                       [NSArray arrayWithObjects:@348.75, @360.0, @"N", nil],
+                       [NSArray arrayWithObjects:@0.0, @11.25, @"N", nil],
+                       [NSArray arrayWithObjects:@11.25, @33.75, @"NNE", nil],
+                       [NSArray arrayWithObjects:@33.75, @56.25, @"NE", nil],
+                       [NSArray arrayWithObjects:@56.25, @78.75, @"ENE", nil],
+                       [NSArray arrayWithObjects:@78.75, @101.25, @"E", nil],
+                       [NSArray arrayWithObjects:@101.25, @123.75, @"ESE", nil],
+                       [NSArray arrayWithObjects:@123.75, @146.25, @"SE", nil],
+                       [NSArray arrayWithObjects:@146.25, @168.75, @"SSE", nil],
+                       [NSArray arrayWithObjects:@168.75, @191.25, @"S", nil],
+                       [NSArray arrayWithObjects:@191.25, @213.75 ,@"SSW", nil],
+                       [NSArray arrayWithObjects:@213.75, @236.25, @"SW", nil],
+                       [NSArray arrayWithObjects:@236.25, @258.75, @"WSW", nil],
+                       [NSArray arrayWithObjects:@258.75, @281.25, @"W", nil],
+                       [NSArray arrayWithObjects:@281.25, @303.75, @"WNW", nil],
+                       [NSArray arrayWithObjects:@303.75, @326.25, @"NW", nil],
+                       [NSArray arrayWithObjects:@326.25, @348.75, @"NNW", nil], nil];
+    for(id range in lookup) {
+        double range_start = [[range objectAtIndex:0] doubleValue];
+        double range_end = [[range objectAtIndex:1] doubleValue];
+        NSString *direction = [range objectAtIndex:2];
+        if(degrees >= range_start && degrees < range_end) {
+            return direction;
+        }
+    }
+    return @"";
 }
 
 -(void) parseData
@@ -117,7 +122,7 @@
 
 -(void) fetchData
 {
-    methodNotImplemented();
+    [NSException raise:@"Not implemented" format:@"method not implemented."];
 }
 
 @end

@@ -60,4 +60,15 @@
     XCTAssertEqualWithAccuracy(result, expectedResult, 0.01);
 }
 
+-(void)testWindDirectionDisplay {
+    XCTAssertTrue([@"N" isEqualToString:[driver getWindDirectionDisplay:[@350.5 doubleValue]]]);
+    XCTAssertTrue([@"N" isEqualToString:[driver getWindDirectionDisplay:[@0.0 doubleValue]]]);
+    XCTAssertTrue([@"NNE" isEqualToString:[driver getWindDirectionDisplay:[@12 doubleValue]]]);
+    XCTAssertTrue([@"S" isEqualToString:[driver getWindDirectionDisplay:[@170.0 doubleValue]]]);
+    XCTAssertTrue([@"W" isEqualToString:[driver getWindDirectionDisplay:[@260.5 doubleValue]]]);
+    XCTAssertTrue([@"NW" isEqualToString:[driver getWindDirectionDisplay:[@320.0 doubleValue]]]);
+    XCTAssertTrue([@"ENE" isEqualToString:[driver getWindDirectionDisplay:[@57.0 doubleValue]]]);
+    XCTAssertTrue([@"NE" isEqualToString:[driver getWindDirectionDisplay:[@34.0 doubleValue]]]);
+}
+
 @end
