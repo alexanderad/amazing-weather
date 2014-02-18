@@ -14,10 +14,16 @@
 
 @implementation OpenWeatherDataDriver
 
+@synthesize driverName;
 @synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
 @synthesize location, windSpeed, windDirection;
 @synthesize humidity, pressure;
 @synthesize sunrise, sunset;
+
+-(id) init {
+    driverName = @"OpenWeatherData";
+    return [super init];
+}
 
 -(void) parseData
 {

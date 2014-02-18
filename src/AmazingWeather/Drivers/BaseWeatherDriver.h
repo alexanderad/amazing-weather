@@ -13,6 +13,8 @@
     NSDictionary *rawData;
 }
 
+@property (readonly) NSString *driverName;
+
 @property (readonly) NSString *location;
 
 @property (readonly) double temperatureCelsius;
