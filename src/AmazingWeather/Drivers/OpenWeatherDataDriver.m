@@ -49,6 +49,7 @@
     interval = [[[rawData valueForKey:@"sys"] valueForKey:@"sunset"] doubleValue];
     sunset = [NSDate dateWithTimeIntervalSince1970:interval];
     NSLog(@"driver: data parsed successfully");
+    [super parseData];
 }
 
 -(void) fetchData

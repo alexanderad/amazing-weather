@@ -111,7 +111,8 @@
 
 -(void) parseData
 {
-    methodNotImplemented();
+    // this should be only used in a super call, after actual data parsing is done
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"weatherDataReady" object:nil];
 }
 
 -(void) fetchData

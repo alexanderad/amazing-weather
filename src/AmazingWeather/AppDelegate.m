@@ -49,10 +49,15 @@
 }
 
 - (void) subscribeToEvents {
-    // we're interested in lid opened/closed to keep data updated
+    // we're interested in lid opened/closed to keep the data updated
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
                                                            selector: @selector(receiveWakeNote:)
                                                                name: NSWorkspaceDidWakeNotification object: NULL];
+
+    // we're also interested in when the new weather data is obtained and parser by the weather driver
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(weatherDataReady:)
+                                                 name:@"weatherDataReady" object:nil];
 }
 
 - (void) initDisplay {
@@ -83,7 +88,7 @@
 
 - (void) updateDisplay {
     {
-        NSLog(@"update display: interation");
+        NSLog(@"update display: iteration");
         // we round it now, allowing user to change that behavior later
         [statusItem setTitle:[NSString stringWithFormat:@"%.0f°C", [driver temperatureCelsius]]];
         
@@ -161,6 +166,12 @@
 - (void)onTick:(NSTimer *) timer {
     NSLog(@"timer: fired, requsting data update");
     [driver fetchData];
+}
+
+- (void) weatherDataReady: (NSNotification*) notification
+{
+    NSLog(@"received weatherDataReady");
+    [self updateDisplay];
 }
 
 - (void) receiveWakeNote: (NSNotification*) note
