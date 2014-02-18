@@ -9,10 +9,10 @@ So here is a list of features that _Amazing Weather_ requires to become even mor
 [ ] about window with reference to datasource API (credit according to usage rules)  
 [ ] icon (ask Olesya to draw one)  
 [x] automatic timer fire after wake up (lid close / lid open)  
-[ ] automatic timer fire after internet connection is established  
+[x] automatic timer fire after internet connection is established  
 [ ] proper connection errors handling (fair timer reschedule algo?)  
 [ ] allow to change precision of temp display in tray in settings  
 [ ] ability to select between different datasources  
-[ ] user preferences storage  
+[x] user preferences storage  
 
 [ ] also: post to app store :ship:
