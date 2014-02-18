@@ -87,76 +87,26 @@
     return result;
 }
 
--(void) updateDisplay
-{
-    NSLog(@"update display here");
+-(NSString*) getWindDirectionDisplay: (double)degrees {
     /*
-     // fetch current temperature and convert it from Kelvin to Celsius
-     double temperatureKelvin = [[[parsedObject valueForKey:@"main"] valueForKey:@"temp"] doubleValue];
-     double temperatureCelsius = temperatureKelvin - 273.15;
-     
-     NSLog(@"Temperature received: %f", temperatureCelsius);
-     
-     // we round it now, allowing user to change that behavior later
-     [statusItem setTitle:[NSString stringWithFormat:@"%.0f°C", temperatureCelsius]];
-     
-     // updated at
-     NSDate *currDate = [NSDate date];
-     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-     [dateFormatter setDateFormat:@"HH:mm"];
-     NSString *dateString = [dateFormatter stringFromDate:currDate];
-     [self.statusItem.menu itemWithTag:kTagUpdatedAt].title =
-     [NSString stringWithFormat:@"Updated at %@", dateString];
-     
-     // collect all the data
-     NSString *location = [NSString stringWithFormat:@"Location: %@ (%@)",
-     [parsedObject valueForKey:@"name"],
-     [[parsedObject valueForKey:@"sys"] valueForKey:@"country"]];
-     
-     NSString *temperature = [NSString stringWithFormat:@"Temperature: %.2f°C", temperatureCelsius];
-     
-     NSString *wind = [NSString stringWithFormat:@"Wind: %@ m/s",
-     [[parsedObject valueForKey:@"wind"] valueForKey:@"speed"]];
-     
-     NSString *humidity = [NSString stringWithFormat:@"Humidity: %@%%",
-     [[parsedObject valueForKey:@"main"] valueForKey:@"humidity"]];
-     
-     NSString *pressure = [NSString stringWithFormat:@"Pressure: %@ mm",
-     [[parsedObject valueForKey:@"main"] valueForKey:@"pressure"]];
-     
-     NSTimeInterval interval;
-     interval = [[[parsedObject valueForKey:@"sys"] valueForKey:@"sunrise"] doubleValue];
-     NSString *sunrise = [NSString stringWithFormat:@"Sunrise: %@",
-     [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:interval]]];
-     interval = [[[parsedObject valueForKey:@"sys"] valueForKey:@"sunset"] doubleValue];
-     NSString *sunset = [NSString stringWithFormat:@"Sunset: %@",
-     [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:interval]]];
-     
-     
-     NSDictionary *attributes = [NSDictionary
-     dictionaryWithObjectsAndKeys:
-     [NSColor darkGrayColor], NSForegroundColorAttributeName,
-     [NSFont systemFontOfSize:14.0],
-     NSFontAttributeName, nil];
-     
-     NSArray *weatherDataArray = [NSArray arrayWithObjects:
-     location,
-     temperature,
-     wind,
-     humidity,
-     pressure,
-     sunrise,
-     sunset,
-     nil];
-     
-     NSAttributedString *weatherDataAttributedString = [[NSAttributedString alloc] initWithString:[weatherDataArray componentsJoinedByString:@"\n"] attributes:attributes];
-     
-     [self.statusItem.menu itemWithTag:kTagWeatherData].attributedTitle = weatherDataAttributedString;
-     }
-     }];
-     
-     
-     */
+    N 348.75 - 11.25
+    NNE 11.25 - 33.75
+    NE 33.75 - 56.25
+    ENE 56.25 - 78.75
+    E 78.75 - 101.25
+    ESE 101.25 - 123.75
+    SE 123.75 - 146.25
+    SSE 146.25 - 168.75
+    S 168.75 - 191.25
+    SSW 191.25 - 213.75
+    SW 213.75 - 236.25
+    WSW 236.25 - 258.75
+    W 258.75 - 281.25
+    WNW 281.25 - 303.75
+    NW 303.75 - 326.25
+    NNW 326.25 - 348.75
+    */
+    return @"ХЗ";
 }
 
 -(void) parseData
@@ -164,7 +114,7 @@
     methodNotImplemented();
 }
 
--(void) getData
+-(void) fetchData
 {
     methodNotImplemented();
 }

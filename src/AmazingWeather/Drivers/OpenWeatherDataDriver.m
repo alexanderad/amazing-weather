@@ -12,7 +12,6 @@
 
 #import "OpenWeatherDataDriver.h"
 
-
 @implementation OpenWeatherDataDriver
 
 @synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
@@ -35,7 +34,9 @@
     
     // wind
     windSpeed = [[rawData valueForKey:@"wind"] valueForKey:@"speed"];
-    windDirection = [[rawData valueForKey:@"wind"] valueForKey:@"deg"];
+    windDirection = [self getWindDirectionDisplay:[[[rawData valueForKey:@"wind"] valueForKey:@"deg"] doubleValue]];
+    
+    [[rawData valueForKey:@"wind"] valueForKey:@"deg"];
     
     // humidity & pressure
     humidity = [[rawData valueForKey:@"main"] valueForKey:@"humidity"];
@@ -50,7 +51,7 @@
     NSLog(@"driver: data parsed successfully");
 }
 
--(void) getData
+-(void) fetchData
 {
     NSString *url = [NSString stringWithFormat:@"%@?id=%d&lang=en&APPID=%@", API_URL, CITY_ID, API_KEY];
     [self getJSONFromServer:url];
