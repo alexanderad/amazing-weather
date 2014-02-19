@@ -11,6 +11,7 @@
 #include <CoreLocation/CoreLocation.h>
 #include "OpenWeatherDataDriver.h"
 
+#define UPDATE_INTERVAL (60 * 5) + arc4random_uniform(25)
 
 @implementation AppDelegate {
     OpenWeatherDataDriver *driver;
@@ -27,7 +28,7 @@
     [self subscribeToEvents];
     
     // start update timer to tick
-    updateTimer = [NSTimer scheduledTimerWithTimeInterval: (60 * 15) + arc4random_uniform(25)
+    updateTimer = [NSTimer scheduledTimerWithTimeInterval: UPDATE_INTERVAL
                                                    target: self
                                                  selector: @selector(onTick:)
                                                  userInfo: nil
