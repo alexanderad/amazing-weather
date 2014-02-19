@@ -10,11 +10,12 @@
 #include <stdlib.h>
 #include <CoreLocation/CoreLocation.h>
 #include "OpenWeatherDataDriver.h"
+#include "WorldWeatherDriver.h"
 
 #define UPDATE_INTERVAL (60 * 5) + arc4random_uniform(25)
 
 @implementation AppDelegate {
-    OpenWeatherDataDriver *driver;
+    WorldWeatherDriver *driver;
 }
 
 @synthesize statusItem, locationManager, updateTimer;
@@ -46,7 +47,7 @@
 }
 
 - (void) initDriver {
-    driver = [[OpenWeatherDataDriver alloc] init];
+    driver = [[WorldWeatherDriver alloc] init];
 }
 
 - (void) subscribeToEvents {
@@ -106,8 +107,8 @@
         NSString *temperature = [NSString stringWithFormat:@"Temperature: %.2f°C",
                                  [driver temperatureCelsius]];
         
-        NSString *wind = [NSString stringWithFormat:@"Wind: %@ m/s (%@)",
-                          [driver windSpeed],
+        NSString *wind = [NSString stringWithFormat:@"Wind: %.0f m/s (%@)",
+                          [[driver windSpeed] floatValue],
                           [driver windDirection]];
         
         NSString *humidity = [NSString stringWithFormat:@"Humidity: %@%%", [driver humidity]];

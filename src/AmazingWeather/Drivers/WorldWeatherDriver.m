@@ -26,7 +26,36 @@
 }
 
 -(void) parseData {
+    NSDictionary *data = [rawData valueForKey:@"data"];
+    NSDictionary *request = [data valueForKey:@"request"];
+    NSDictionary *current = [data valueForKey:@"current_condition"];
     
+    // temperatures
+    temperatureCelsius = [[[current valueForKey:@"temp_C"] objectAtIndex:0] doubleValue];
+    temperatureKelvin = [self convertDegrees:temperatureCelsius
+                                     fromUnit:@"Celsius"
+                                       toUnit:@"Kelvin"];
+    temperatureFarenheit = [self convertDegrees:temperatureKelvin
+                                       fromUnit:@"Kelvin"
+                                         toUnit:@"Farenheit"];
+
+    // location reported
+    location = [[request valueForKey:@"query"] objectAtIndex:0];
+
+    // wind
+    double windKmph = [[[current valueForKey:@"windspeedKmph"] objectAtIndex:0] doubleValue];
+    double windMps = windKmph * 0.277777778;
+    windSpeed = [NSNumber numberWithDouble:windMps];
+    windDirection = [[current valueForKey:@"winddir16Point"] objectAtIndex:0];
+
+    // humidity & pressure
+    humidity = [[current valueForKey:@"humidity"] objectAtIndex:0];
+    pressure = [[current valueForKey:@"pressure"] objectAtIndex:0];
+
+    // sunrise & sunset
+    // no data from WorldWeather
+
+    [super parseData];
 }
 
 -(void) fetchData {

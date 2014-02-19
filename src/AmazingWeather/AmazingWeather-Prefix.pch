@@ -8,6 +8,6 @@
     #import <Cocoa/Cocoa.h>
 #endif
 
-#ifdef DEBUG
+#ifndef DEBUG
 #define NSLog(...)
 #endif
