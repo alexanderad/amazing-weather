@@ -11,8 +11,9 @@ So here is a list of features that _Amazing Weather_ requires to become even mor
 [x] automatic timer fire after wake up (lid close / lid open)  
 [x] automatic timer fire after internet connection is established  
 [ ] proper connection errors handling (fair timer reschedule algo?)  
-[ ] allow to change precision of temp display in tray in settings  
+[x] <del>allow to change precision of temp display in tray in settings</del> we don't need that, space in tray is more important  
 [ ] ability to select between different datasources  
 [x] user preferences storage  
+[ ] failover algorithm for datasource  
 
 [ ] also: post to app store :ship:
