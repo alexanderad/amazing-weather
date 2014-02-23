@@ -17,5 +17,5 @@ So here is a list of features that _Amazing Weather_ requires to become even mor
 [ ] failover algorithm for datasource  
 [ ] refactor getJSON method into  
 
-[ ] apply to Apple Developer Program
+[ ] apply to Apple Developer Program  
 [ ] post to app store :ship:
