@@ -14,15 +14,19 @@
 
 @implementation OpenWeatherDataDriver
 
-@synthesize driverName;
+static NSString *driverName = @"OpenWeatherData";
+
 @synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
 @synthesize location, windSpeed, windDirection;
 @synthesize humidity, pressure;
 @synthesize sunrise, sunset;
 
 -(id) init {
-    driverName = @"OpenWeatherData";
     return [super init];
+}
+
++(void)load {
+    [BaseWeatherDriver registerDriver:[self class] name:driverName];
 }
 
 -(void) parseData

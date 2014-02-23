@@ -6,17 +6,25 @@
 //
 //
 
+#include <objc/runtime.h>
 #import "BaseWeatherDriver.h"
+
 
 @implementation BaseWeatherDriver
 
--(void)getJSONFromServer: (NSString*)urlString
+static NSMutableDictionary *registeredDrivers;
+static NSMutableArray *arr;
+static NSString *driverName = @"BaseDriver";
+
+-(void)getJSONFromServer: (NSString *)urlString
 {
     // FIXME: this should reside somewhere in helpers
     NSURL *url = [[NSURL alloc] initWithString:urlString];
     [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url]
                                        queue:[[NSOperationQueue alloc] init]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+                           completionHandler:^(NSURLResponse *response,
+                                               NSData *data,
+                                               NSError *error) {
                                if(error) {
                                    NSLog(@"driver: async request ended with error: %@", error);
                                } else {
@@ -36,7 +44,9 @@
      ];
 }
 
--(double) convertDegrees: (double)temperature fromUnit:(NSString*)unitFrom toUnit:(NSString*)unitTo
+-(double) convertDegrees: (double)temperature
+                fromUnit:(NSString *)unitFrom
+                  toUnit:(NSString *)unitTo
 {
     // this should support Celsius, Kelvin (for geeks) and Farenheit
     double result = 0.0;
@@ -84,7 +94,7 @@
     return result;
 }
 
--(NSString*) getWindDirectionDisplay: (double)degrees {
+-(NSString *) getWindDirectionDisplay: (double)degrees {
     NSArray *lookup = [NSArray arrayWithObjects:
                        [NSArray arrayWithObjects:@348.75, @360.0, @"N", nil],
                        [NSArray arrayWithObjects:@0.0, @11.25, @"N", nil],
@@ -112,6 +122,17 @@
         }
     }
     return @"";
+}
+
++(void)registerDriver:(Class)driver name:(NSString *)driverName {
+    if(registeredDrivers == nil) {
+        registeredDrivers = [[NSMutableDictionary alloc] init];
+    }   
+    [registeredDrivers setObject:driver forKey:driverName];
+}
+
++(NSMutableDictionary *)getDriverList {
+    return registeredDrivers;
 }
 
 -(void) parseData

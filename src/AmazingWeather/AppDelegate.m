@@ -47,7 +47,7 @@
 }
 
 - (void) initDriver {
-    driver = [[WorldWeatherDriver alloc] init];
+    driver = [[WorldWeatherDriver alloc] init];    
 }
 
 - (void) subscribeToEvents {
@@ -78,11 +78,30 @@
     [menuWeatherDataItem setTag:kTagWeatherData];
     [menuWeatherDataItem setEnabled:NO];
     
+    
+    NSMenu *datasourceSubmenu = [[NSMenu alloc] init];
+    NSMutableDictionary *driversDict = [BaseWeatherDriver getDriverList];
+    for (id key in driversDict) {
+        NSMenuItem *driverMenuItem = [[NSMenuItem alloc] initWithTitle:key
+                                                                action:@selector(toggleDatasource:)
+                                                         keyEquivalent:@""];
+        //driverMenuItem.state = NSOnState;
+        [datasourceSubmenu addItem:driverMenuItem];
+    }
+    NSMenuItem *datasourceMenu = [[NSMenuItem alloc] initWithTitle:@"Datasource"
+                                                            action:nil
+                                                     keyEquivalent:@""];
+    [datasourceMenu setTag:kTagDatasource];
+    [datasourceMenu setSubmenu:datasourceSubmenu];
+    
+    
     NSMenu *statusBarMenu = [[NSMenu alloc] init];
     [statusBarMenu setDelegate:self];
     [statusBarMenu addItem:menuUpdatedAtItem];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:menuWeatherDataItem];
+    [statusBarMenu addItem:[NSMenuItem separatorItem]];
+    [statusBarMenu addItem:datasourceMenu];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
@@ -169,6 +188,11 @@
                countryCode, countryName,
                city1, city2);
      }];
+}
+
+-(void)toggleDatasource:(id)sender {
+    NSMenuItem *item = (NSMenuItem*)sender;
+    NSLog(@"datasource toggled by %ld", (long)item.tag);
 }
 
 - (void)updateNow:(id)sender {

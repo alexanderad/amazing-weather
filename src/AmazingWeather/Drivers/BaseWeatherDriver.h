@@ -30,11 +30,16 @@
 @property (readonly) NSDate *sunrise;
 @property (readonly) NSDate *sunset;
 
++(void)registerDriver:(Class)driver name:(NSString *)driverName;
++(NSMutableDictionary *)getDriverList;
+
 -(void) fetchData;
 -(void) parseData;
 
--(void) getJSONFromServer: (NSString*)urlString;
--(double) convertDegrees: (double)temperature fromUnit:(NSString*)unitFrom toUnit:(NSString*)unitTo;
--(NSString*) getWindDirectionDisplay: (double)degrees;
+-(void) getJSONFromServer: (NSString *)urlString;
+-(double) convertDegrees: (double)temperature
+                fromUnit:(NSString *)unitFrom
+                  toUnit:(NSString *)unitTo;
+-(NSString *) getWindDirectionDisplay: (double)degrees;
 
 @end

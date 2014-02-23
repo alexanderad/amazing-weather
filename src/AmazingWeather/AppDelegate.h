@@ -12,6 +12,7 @@
 // these are menu tags constants in order to allow programmatic access
 #define kTagUpdatedAt   10
 #define kTagWeatherData 20
+#define kTagDatasource  30
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, CLLocationManagerDelegate>
 
