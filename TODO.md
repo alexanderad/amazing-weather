@@ -15,5 +15,7 @@ So here is a list of features that _Amazing Weather_ requires to become even mor
 [ ] ability to select between different datasources  
 [x] user preferences storage  
 [ ] failover algorithm for datasource  
+[ ] refactor getJSON method into  
 
-[ ] also: post to app store :ship:
+[ ] apply to Apple Developer Program
+[ ] post to app store :ship:
