@@ -10,9 +10,9 @@
 #define API_URL @"http://api.worldweatheronline.com/free/v1/weather.ashx"
 #define CITY_ID @"Lviv"
 
-#import "WorldWeatherDriver.h"
+#import "WorldWeatherOnlineDriver.h"
 
-@implementation WorldWeatherDriver
+@implementation WorldWeatherOnlineDriver
 
 static NSString *driverName = @"WorldWeatherOnline";
 

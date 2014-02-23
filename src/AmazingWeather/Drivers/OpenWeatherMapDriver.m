@@ -10,11 +10,11 @@
 #define API_URL @"http://api.openweathermap.org/data/2.5/weather"
 #define CITY_ID 702550 // Lviv
 
-#import "OpenWeatherDataDriver.h"
+#import "OpenWeatherMapDriver.h"
 
-@implementation OpenWeatherDataDriver
+@implementation OpenWeatherMapDriver
 
-static NSString *driverName = @"OpenWeatherData";
+static NSString *driverName = @"OpenWeatherMap";
 
 @synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
 @synthesize location, windSpeed, windDirection;

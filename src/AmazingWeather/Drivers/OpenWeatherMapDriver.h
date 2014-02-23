@@ -8,6 +8,6 @@
 
 #import "BaseWeatherDriver.h"
 
-@interface OpenWeatherDataDriver : BaseWeatherDriver
+@interface OpenWeatherMapDriver : BaseWeatherDriver
 
 @end

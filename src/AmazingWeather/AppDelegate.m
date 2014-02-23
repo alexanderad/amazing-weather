@@ -9,13 +9,13 @@
 #import "AppDelegate.h"
 #include <stdlib.h>
 #include <CoreLocation/CoreLocation.h>
-#include "OpenWeatherDataDriver.h"
-#include "WorldWeatherDriver.h"
+#include "OpenWeatherMapDriver.h"
+#include "WorldWeatherOnlineDriver.h"
 
 #define UPDATE_INTERVAL (60 * 5) + arc4random_uniform(25)
 
 @implementation AppDelegate {
-    WorldWeatherDriver *driver;
+    WorldWeatherOnlineDriver *driver;
 }
 
 @synthesize statusItem, locationManager, updateTimer;
@@ -47,7 +47,7 @@
 }
 
 - (void) initDriver {
-    driver = [[WorldWeatherDriver alloc] init];    
+    driver = [[WorldWeatherOnlineDriver alloc] init];    
 }
 
 - (void) subscribeToEvents {
