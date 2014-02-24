@@ -14,7 +14,7 @@
 
 @implementation WorldWeatherOnlineDriver
 
-static NSString *driverName = @"WorldWeatherOnline";
+static NSString *driverName = @"WorldWeatherOnline.com";
 
 @synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
 @synthesize location, windSpeed, windDirection;

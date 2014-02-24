@@ -13,7 +13,7 @@
 #include "WorldWeatherOnlineDriver.h"
 #include "Preferences.h"
 
-#define DEFAULT_DRIVER @"OpenWeatherMap"
+#define DEFAULT_DRIVER @"OpenWeatherMap.org"
 #define UPDATE_INTERVAL (60 * 5) + arc4random_uniform(25)
 
 @implementation AppDelegate {

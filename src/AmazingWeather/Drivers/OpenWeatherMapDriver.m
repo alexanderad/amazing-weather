@@ -14,7 +14,7 @@
 
 @implementation OpenWeatherMapDriver
 
-static NSString *driverName = @"OpenWeatherMap";
+static NSString *driverName = @"OpenWeatherMap.org";
 
 @synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
 @synthesize location, windSpeed, windDirection;
