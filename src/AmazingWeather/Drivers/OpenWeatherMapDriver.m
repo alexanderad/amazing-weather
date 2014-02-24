@@ -29,6 +29,10 @@ static NSString *driverName = @"OpenWeatherMap";
     [BaseWeatherDriver registerDriver:[self class] name:driverName];
 }
 
+-(NSString *)getDriverName {
+    return driverName;
+}
+
 -(void) parseData
 {
     // temperatures

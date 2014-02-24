@@ -11,19 +11,29 @@
 #include <CoreLocation/CoreLocation.h>
 #include "OpenWeatherMapDriver.h"
 #include "WorldWeatherOnlineDriver.h"
+#include "Preferences.h"
 
+#define DEFAULT_DRIVER @"OpenWeatherMap"
 #define UPDATE_INTERVAL (60 * 5) + arc4random_uniform(25)
 
 @implementation AppDelegate {
-    WorldWeatherOnlineDriver *driver;
+    BaseWeatherDriver *driver;
 }
 
 @synthesize statusItem, locationManager, updateTimer;
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    NSString *driverName = [Preferences getStringForKey:kOptionUserSelectedDriver];
+
+    if(!driverName) {
+        driverName = [Preferences setString:DEFAULT_DRIVER forKey:kOptionUserSelectedDriver];
+    }
+
+    [self initDriver:driverName];
+
     [self initDisplay];
-    [self initDriver];
+
     
     //[self initLocationManager];
     [self subscribeToEvents];
@@ -46,8 +56,10 @@
     [locationManager startUpdatingLocation];
 }
 
-- (void) initDriver {
-    driver = [[WorldWeatherOnlineDriver alloc] init];    
+- (void) initDriver:(NSString *)driverName {
+    NSLog(@"init driver request %@", driverName);
+    Class driverClass = [[BaseWeatherDriver getDriverList] objectForKey:driverName];
+    driver = [[driverClass alloc] init];
 }
 
 - (void) subscribeToEvents {
@@ -81,11 +93,15 @@
     
     NSMenu *datasourceSubmenu = [[NSMenu alloc] init];
     NSMutableDictionary *driversDict = [BaseWeatherDriver getDriverList];
-    for (id key in driversDict) {
-        NSMenuItem *driverMenuItem = [[NSMenuItem alloc] initWithTitle:key
+    for (id driverNameLabel in driversDict) {
+        NSMenuItem *driverMenuItem = [[NSMenuItem alloc] initWithTitle:driverNameLabel
                                                                 action:@selector(toggleDatasource:)
                                                          keyEquivalent:@""];
-        //driverMenuItem.state = NSOnState;
+
+        if([[driver getDriverName] isEqualToString:driverNameLabel]) {
+            driverMenuItem.state = NSOnState;
+        }
+
         [datasourceSubmenu addItem:driverMenuItem];
     }
     NSMenuItem *datasourceMenu = [[NSMenuItem alloc] initWithTitle:@"Datasource"
@@ -191,11 +207,20 @@
 }
 
 -(void)toggleDatasource:(id)sender {
-    NSMenuItem *item = (NSMenuItem*)sender;
-    NSLog(@"datasource toggled by %ld", (long)item.tag);
-}
+    // toggle all off
+    for (NSMenuItem *datasource in [[sender menu] itemArray]) {
+        datasource.state = NSOffState;
+    }
 
-- (void)updateNow:(id)sender {
+    // get new selection, set it, reinitialize driver
+    NSMenuItem *item = (NSMenuItem*)sender;
+    item.state = NSOnState;
+    [self initDriver:[item title]];
+
+    // save in user prefs
+    [Preferences setString:[item title] forKey:kOptionUserSelectedDriver];
+
+    // request an update
     [updateTimer fire];
 }
 
@@ -214,6 +239,10 @@
 {
     // wake up note -- changed state of sleep/wake
     NSLog(@"received wake note: %@, requesting timer to fire", [note name]);
+    [updateTimer fire];
+}
+
+- (void)updateNow:(id)sender {
     [updateTimer fire];
 }
 

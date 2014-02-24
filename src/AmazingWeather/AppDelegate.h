@@ -20,7 +20,7 @@
 @property (strong) NSStatusItem *statusItem;
 @property NSTimer *updateTimer;
 
-- (void) initDriver;
+- (void) initDriver:(NSString *)driverName;
 - (void) initDisplay;
 - (void) updateDisplay;
 - (void) subscribeToEvents;

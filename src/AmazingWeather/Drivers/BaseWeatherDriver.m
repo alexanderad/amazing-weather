@@ -44,6 +44,10 @@ static NSString *driverName = @"BaseDriver";
      ];
 }
 
+-(NSString *)getDriverName {
+    return driverName;
+}
+
 -(double) convertDegrees: (double)temperature
                 fromUnit:(NSString *)unitFrom
                   toUnit:(NSString *)unitTo

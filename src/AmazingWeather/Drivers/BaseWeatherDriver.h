@@ -13,8 +13,6 @@
     NSDictionary *rawData;
 }
 
-@property (readonly) NSString *driverName;
-
 @property (readonly) NSString *location;
 
 @property (readonly) double temperatureCelsius;
@@ -36,6 +34,7 @@
 -(void) fetchData;
 -(void) parseData;
 
+-(NSString*) getDriverName;
 -(void) getJSONFromServer: (NSString *)urlString;
 -(double) convertDegrees: (double)temperature
                 fromUnit:(NSString *)unitFrom

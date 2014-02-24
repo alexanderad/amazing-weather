@@ -6,6 +6,8 @@
 //
 //
 
+#define kOptionUserSelectedDriver @"userSelectedDriver"
+
 #import <Foundation/Foundation.h>
 
 @interface Preferences : NSObject
@@ -14,13 +16,13 @@
 +(void)initialize;
 
 // "+" refers class method, ha-ha :-)
-+(void)setString: (NSString*)value forKey:(NSString*)key;
++(NSString*)setString: (NSString*)value forKey:(NSString*)key;
 +(NSString*)getStringForKey: (NSString*)key;
 
-+(void)setInt: (NSInteger)value forKey:(NSString*)key;
++(NSInteger)setInt: (NSInteger)value forKey:(NSString*)key;
 +(NSInteger)getIntForKey: (NSString*)key;
 
-+(void)setBool: (BOOL)value forKey:(NSString*)key;
++(BOOL)setBool: (BOOL)value forKey:(NSString*)key;
 +(BOOL)getBoolForKey: (NSString*)key;
 
 @end

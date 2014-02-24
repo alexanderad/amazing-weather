@@ -29,6 +29,10 @@ static NSString *driverName = @"WorldWeatherOnline";
     [BaseWeatherDriver registerDriver:[self class] name:driverName];
 }
 
+-(NSString *)getDriverName {
+    return driverName;
+}
+
 -(void) parseData {
     NSDictionary *data = [rawData valueForKey:@"data"];
     NSDictionary *request = [data valueForKey:@"request"];
