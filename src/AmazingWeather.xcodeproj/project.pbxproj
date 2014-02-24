@@ -248,6 +248,7 @@
 				LastUpgradeCheck = 0500;
 				TargetAttributes = {
 					9E4C9B3D189C217A00665BC3 = {
+						DevelopmentTeam = C9F79K4Z52;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 0;
@@ -405,7 +406,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
@@ -422,7 +423,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
