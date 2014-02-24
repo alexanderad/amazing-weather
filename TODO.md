@@ -12,7 +12,7 @@ So here is a list of features that _Amazing Weather_ requires to become even mor
 [x] automatic timer fire after internet connection is established  
 [ ] proper connection errors handling (fair timer reschedule algo?)  
 [x] <del>allow to change precision of temp display in tray in settings</del> we don't need that, space in tray is more important  
-[ ] ability to select between different datasources  
+[x] ability to select between different datasources  
 [x] user preferences storage  
 [ ] failover algorithm for datasource  
 [ ] refactor getJSON method into  
