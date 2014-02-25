@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 @interface BaseWeatherDriver : NSObject
 {
     NSDictionary *rawData;
+    CLLocationCoordinate2D currentCoordinates;
 }
 
 @property (readonly) NSString *location;
@@ -35,10 +37,11 @@
 -(void) parseData;
 
 -(NSString*) getDriverName;
--(void) getJSONFromServer: (NSString *)urlString;
--(double) convertDegrees: (double)temperature
+-(void) getJSONFromServer:(NSString *)urlString;
+-(double) convertDegrees:(double)temperature
                 fromUnit:(NSString *)unitFrom
                   toUnit:(NSString *)unitTo;
 -(NSString *) getWindDirectionDisplay: (double)degrees;
+-(void) setCurrentLocation:(CLLocationCoordinate2D)coordinates;
 
 @end

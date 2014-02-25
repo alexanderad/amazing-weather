@@ -25,18 +25,10 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    NSString *driverName = [Preferences getStringForKey:kOptionUserSelectedDriver];
-
-    if(!driverName) {
-        driverName = [Preferences setString:DEFAULT_DRIVER forKey:kOptionUserSelectedDriver];
-    }
-
-    [self initDriver:driverName];
-
+    [self initDriver:[self getUserDriverName]];
     [self initDisplay];
 
-    
-    //[self initLocationManager];
+    [self initLocationManager];
     [self subscribeToEvents];
     
     // start update timer to tick
@@ -50,10 +42,11 @@
 }
 
 - (void) initLocationManager {
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
+    if (nil == locationManager) {
+        locationManager = [[CLLocationManager alloc] init];
+    }
     locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
-    locationManager.distanceFilter = 1000;
+    locationManager.delegate = self;
     [locationManager startUpdatingLocation];
 }
 
@@ -183,32 +176,13 @@
 }
 
 // subscribe to location change event and get city from CoreLocation
-- (void)locationManager:(CLLocationManager *)manager
-    didUpdateToLocation:(CLLocation *)newLocation
-           fromLocation:(CLLocation *)oldLocation {
-    NSLog(@"location: location updated from %@ to %@", oldLocation, newLocation);
-    CLGeocoder *reverseGeocoder = [[CLGeocoder alloc] init];
-    
-    [reverseGeocoder reverseGeocodeLocation:newLocation
-                          completionHandler:^(NSArray *placemarks, NSError *error)
-     {
-         if (error){
-             NSLog(@"location: geocode failed with error: %@", error);
-             return;
-         }
-         
-         CLPlacemark *myPlacemark = [placemarks objectAtIndex:0];
-         NSString *countryCode = myPlacemark.ISOcountryCode;
-         NSString *countryName = myPlacemark.country;
-         NSString *city1 = myPlacemark.subLocality;
-         NSString *city2 = myPlacemark.locality;
-         NSLog(@"location: country code: %@, country name: %@, city1: %@, city2: %@",
-               countryCode, countryName,
-               city1, city2);
-     }];
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    CLLocation *location = [locations lastObject];
+    [driver setCurrentLocation:location.coordinate];
+    [locationManager stopUpdatingLocation];
 }
 
--(void)toggleDatasource:(id)sender {
+- (void)toggleDatasource:(id)sender {
     // toggle all off
     for (NSMenuItem *datasource in [[sender menu] itemArray]) {
         datasource.state = NSOffState;
@@ -241,17 +215,36 @@
 {
     // wake up note -- changed state of sleep/wake
     NSLog(@"received wake note: %@, requesting timer to fire", [note name]);
-    [updateTimer fire];
+    [self performSelector:@selector(updateNowAndCheckLocation:) withObject:self afterDelay:5];
 }
 
--(void)about:(id)sender {
+
+
+- (void)about:(id)sender {
     [NSApp activateIgnoringOtherApps:YES];
     aboutWindowController = [[NSWindowController alloc] initWithWindowNibName:@"About"];
     [aboutWindowController showWindow:self];
 }
 
+- (void)updateNowAndCheckLocation:(id)sender {
+    NSLog(@"Checking location and updating...");
+    [locationManager startUpdatingLocation];
+    [updateTimer fire];
+}
+
 - (void)updateNow:(id)sender {
     [updateTimer fire];
+}
+
+- (NSString *)getUserDriverName
+{
+    NSString *driverName = [Preferences getStringForKey:kOptionUserSelectedDriver];
+
+    if(!driverName) {
+        driverName = [Preferences setString:DEFAULT_DRIVER forKey:kOptionUserSelectedDriver];
+    }
+
+    return driverName;
 }
 
 @end

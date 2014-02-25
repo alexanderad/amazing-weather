@@ -139,6 +139,11 @@ static NSString *driverName = @"BaseDriver";
     return registeredDrivers;
 }
 
+-(void) setCurrentLocation:(CLLocationCoordinate2D)coordinates {
+    currentCoordinates = coordinates;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"weatherGotNewLocation" object:nil];
+}
+
 -(void) parseData
 {
     // this should be only used in a super call, after actual data parsing is done
