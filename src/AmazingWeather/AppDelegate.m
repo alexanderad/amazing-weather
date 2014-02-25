@@ -18,6 +18,7 @@
 
 @implementation AppDelegate {
     BaseWeatherDriver *driver;
+    NSWindowController *aboutWindowController;
 }
 
 @synthesize statusItem, locationManager, updateTimer;
@@ -119,6 +120,7 @@
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:datasourceMenu];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
+    [statusBarMenu addItemWithTitle:@"About" action:@selector(about:) keyEquivalent:@""];
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
     // create status bar and assign menu
@@ -240,6 +242,12 @@
     // wake up note -- changed state of sleep/wake
     NSLog(@"received wake note: %@, requesting timer to fire", [note name]);
     [updateTimer fire];
+}
+
+-(void)about:(id)sender {
+    [NSApp activateIgnoringOtherApps:YES];
+    aboutWindowController = [[NSWindowController alloc] initWithWindowNibName:@"About"];
+    [aboutWindowController showWindow:self];
 }
 
 - (void)updateNow:(id)sender {
