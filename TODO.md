@@ -1,7 +1,8 @@
 ## TODO
 
-So here is a list of features that _Amazing Weather_ requires to become even more awesome!
+So here is a list of features that **Amazing Weather** requires to become even more awesome!
 
+#### Features
 [x] last updated at timestamp (click on last updated triggers instant update)  
 [x] related weather info: humidity, wind, temp range, etc  
 [x] info about current location selected  
@@ -15,7 +16,12 @@ So here is a list of features that _Amazing Weather_ requires to become even mor
 [x] ability to select between different datasources  
 [x] user preferences storage  
 [ ] failover algorithm for datasource  
-[ ] refactor getJSON method into  
+[ ] allow to select locations manually  
 
-[ ] apply to Apple Developer Program  
+#### Refactoring
+[ ] Extract getJSON method into `Protocol` out of `BaseWeatherDriver`  
+[ ] Make `BaseWeatherDriver` properties `@protected`, remove `@sythisize` from inheritors
+
+#### App store
+[x] apply to Apple Developer Program  
 [ ] post to app store :ship:
