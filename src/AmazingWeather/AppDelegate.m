@@ -37,8 +37,6 @@
                                                  selector: @selector(onTick:)
                                                  userInfo: nil
                                                   repeats: YES];
-    // fire immediately
-    [updateTimer fire];
 }
 
 - (void) initLocationManager {
@@ -67,6 +65,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(weatherDataReady:)
                                                  name:@"weatherDataReady" object:nil];
+
+    // we're also want to know when location changes
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(weatherGotNewLocation:)
+                                                 name:@"weatherGotNewLocation" object:nil];
 }
 
 - (void) initDisplay {
@@ -178,7 +181,7 @@
 // subscribe to location change event and get city from CoreLocation
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     CLLocation *location = [locations lastObject];
-    [driver setCurrentLocation:location.coordinate];
+    [driver setCurrentCoordinates:location.coordinate];
     [locationManager stopUpdatingLocation];
 }
 
@@ -191,13 +194,16 @@
     // get new selection, set it, reinitialize driver
     NSMenuItem *item = (NSMenuItem*)sender;
     item.state = NSOnState;
+
+    CLLocationCoordinate2D coordinates = [driver getCurrentCoordinates];
     [self initDriver:[item title]];
+    [driver setCurrentCoordinates:coordinates];
 
     // save in user prefs
     [Preferences setString:[item title] forKey:kOptionUserSelectedDriver];
 
     // request an update
-    [updateTimer fire];
+    //[updateTimer fire];
 }
 
 - (void)onTick:(NSTimer *) timer {
@@ -209,6 +215,12 @@
 {
     NSLog(@"received weatherDataReady");
     [self updateDisplay];
+}
+
+- (void) weatherGotNewLocation: (NSNotification*) notification
+{
+    NSLog(@"received weatherGotNewLocation");
+    [updateTimer fire];
 }
 
 - (void) receiveWakeNote: (NSNotification*) note
@@ -227,7 +239,6 @@
 }
 
 - (void)updateNowAndCheckLocation:(id)sender {
-    NSLog(@"Checking location and updating...");
     [locationManager startUpdatingLocation];
     [updateTimer fire];
 }

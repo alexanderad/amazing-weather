@@ -17,7 +17,7 @@
 static NSString *driverName = @"OpenWeatherMap.org";
 
 @synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
-@synthesize location, windSpeed, windDirection;
+@synthesize location, windSpeed, windDirection, currentCoordinates;
 @synthesize humidity, pressure;
 @synthesize sunrise, sunset;
 
@@ -69,8 +69,10 @@ static NSString *driverName = @"OpenWeatherMap.org";
 
 -(void) fetchData
 {
-    NSString *url = [NSString stringWithFormat:@"%@?id=%d&lang=en&APPID=%@",
-                     API_URL, CITY_ID, API_KEY];
+    NSLog(@"fetchData: %f lat, %f lon", currentCoordinates.latitude, currentCoordinates.longitude);
+    NSString *url = [NSString stringWithFormat:@"%@?lat=%f&lon=%f&lang=en&APPID=%@",
+                     API_URL, currentCoordinates.latitude, currentCoordinates.longitude, API_KEY];
+    NSLog(url);
     [self getJSONFromServer:url];
 }
 

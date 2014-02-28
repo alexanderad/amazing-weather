@@ -17,7 +17,7 @@
 static NSString *driverName = @"WorldWeatherOnline.com";
 
 @synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
-@synthesize location, windSpeed, windDirection;
+@synthesize location, windSpeed, windDirection, currentCoordinates;
 @synthesize humidity, pressure;
 @synthesize sunrise, sunset;
 
@@ -67,8 +67,10 @@ static NSString *driverName = @"WorldWeatherOnline.com";
 }
 
 -(void) fetchData {
-    NSString *url = [NSString stringWithFormat:@"%@?q=%@&format=json&fx=no&key=%@",
-                     API_URL, CITY_ID, API_KEY];
+    NSLog(@"fetchData: %f lat, %f lon", currentCoordinates.latitude, currentCoordinates.longitude);
+    NSString *url = [NSString stringWithFormat:@"%@?q=%f,%f&format=json&fx=no&includelocation=yes&key=%@",
+                     API_URL, currentCoordinates.latitude, currentCoordinates.longitude, API_KEY];
+    //NSLog(url);
     [self getJSONFromServer:url];
 }
 

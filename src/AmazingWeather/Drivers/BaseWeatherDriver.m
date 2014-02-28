@@ -16,6 +16,8 @@ static NSMutableDictionary *registeredDrivers;
 static NSMutableArray *arr;
 static NSString *driverName = @"BaseDriver";
 
+@synthesize currentCoordinates;
+
 -(void)getJSONFromServer: (NSString *)urlString
 {
     // FIXME: this should reside somewhere in helpers
@@ -142,6 +144,10 @@ static NSString *driverName = @"BaseDriver";
 -(void) setCurrentLocation:(CLLocationCoordinate2D)coordinates {
     currentCoordinates = coordinates;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"weatherGotNewLocation" object:nil];
+}
+
+-(CLLocationCoordinate2D)getCurrentCoordinates {
+    return currentCoordinates;
 }
 
 -(void) parseData

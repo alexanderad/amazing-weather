@@ -12,10 +12,10 @@
 @interface BaseWeatherDriver : NSObject
 {
     NSDictionary *rawData;
-    CLLocationCoordinate2D currentCoordinates;
 }
 
 @property (readonly) NSString *location;
+@property CLLocationCoordinate2D currentCoordinates;
 
 @property (readonly) double temperatureCelsius;
 @property (readonly) double temperatureKelvin;
@@ -42,6 +42,8 @@
                 fromUnit:(NSString *)unitFrom
                   toUnit:(NSString *)unitTo;
 -(NSString *) getWindDirectionDisplay: (double)degrees;
--(void) setCurrentLocation:(CLLocationCoordinate2D)coordinates;
+
+-(void)setCurrentCoordinates:(CLLocationCoordinate2D)currentCoordinates;
+-(CLLocationCoordinate2D)getCurrentCoordinates;
 
 @end
