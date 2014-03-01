@@ -12,10 +12,10 @@
 @interface BaseWeatherDriver : NSObject
 {
     NSDictionary *rawData;
+    CLLocationCoordinate2D currentCoordinates;
 }
 
 @property (readonly) NSString *location;
-@property CLLocationCoordinate2D currentCoordinates;
 
 @property (readonly) double temperatureCelsius;
 @property (readonly) double temperatureKelvin;

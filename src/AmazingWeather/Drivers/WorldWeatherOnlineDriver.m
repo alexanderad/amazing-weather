@@ -17,7 +17,7 @@
 static NSString *driverName = @"WorldWeatherOnline.com";
 
 @synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
-@synthesize location, windSpeed, windDirection, currentCoordinates;
+@synthesize location, windSpeed, windDirection;
 @synthesize humidity, pressure;
 @synthesize sunrise, sunset;
 
@@ -48,7 +48,7 @@ static NSString *driverName = @"WorldWeatherOnline.com";
                                          toUnit:@"Farenheit"];
 
     // location reported
-    location = [[request valueForKey:@"query"] objectAtIndex:0];
+    location = [[[[data valueForKey:@"nearest_area"] objectAtIndex:0] objectForKey:@"areaName"] objectAtIndex:0];
 
     // wind
     double windKmph = [[[current valueForKey:@"windspeedKmph"] objectAtIndex:0] doubleValue];
@@ -70,7 +70,7 @@ static NSString *driverName = @"WorldWeatherOnline.com";
     NSLog(@"fetchData: %f lat, %f lon", currentCoordinates.latitude, currentCoordinates.longitude);
     NSString *url = [NSString stringWithFormat:@"%@?q=%f,%f&format=json&fx=no&includelocation=yes&key=%@",
                      API_URL, currentCoordinates.latitude, currentCoordinates.longitude, API_KEY];
-    //NSLog(url);
+    NSLog(url);
     [self getJSONFromServer:url];
 }
 

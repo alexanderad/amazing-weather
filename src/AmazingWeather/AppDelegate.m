@@ -164,6 +164,10 @@
                                      humidity, pressure,
                                      sunrise, sunset,
                                      nil];
+
+        // dumb filtering of null values in rendered strings...
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT(SELF contains[c] '(null)')"];
+        weatherDataArray = [weatherDataArray filteredArrayUsingPredicate:predicate];
         
         NSString *joined = [weatherDataArray componentsJoinedByString:@"\n"];
         NSAttributedString *weatherDataAString = [[NSAttributedString alloc]
@@ -180,6 +184,7 @@
 
 // subscribe to location change event and get city from CoreLocation
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
+    NSLog(@"got location update");
     CLLocation *location = [locations lastObject];
     [driver setCurrentCoordinates:location.coordinate];
     [locationManager stopUpdatingLocation];
@@ -256,6 +261,7 @@
     }
 
     return driverName;
+
 }
 
 @end
