@@ -35,7 +35,6 @@ static NSString *driverName = @"WorldWeatherOnline.com";
 
 -(void) parseData {
     NSDictionary *data = [rawData valueForKey:@"data"];
-    NSDictionary *request = [data valueForKey:@"request"];
     NSDictionary *current = [data valueForKey:@"current_condition"];
     
     // temperatures
@@ -48,7 +47,9 @@ static NSString *driverName = @"WorldWeatherOnline.com";
                                          toUnit:@"Farenheit"];
 
     // location reported
-    location = [[[[data valueForKey:@"nearest_area"] objectAtIndex:0] objectForKey:@"areaName"] objectAtIndex:0];
+    location = [[[[[data valueForKey:@"nearest_area"]
+                        valueForKey:@"areaName"]
+                        valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
 
     // wind
     double windKmph = [[[current valueForKey:@"windspeedKmph"] objectAtIndex:0] doubleValue];
