@@ -6,7 +6,7 @@ So here is a list of features that **Amazing Weather** requires to become even m
 [x] last updated at timestamp (click on last updated triggers instant update)  
 [x] related weather info: humidity, wind, temp range, etc  
 [x] info about current location selected  
-[ ] automatic location detection + notification about location change  
+[x] automatic location detection + <del>notification about location change</del>  
 [ ] about window with reference to datasource API (credit according to usage rules)  
 [ ] icon (ask Olesya to draw one)  
 [x] automatic timer fire after wake up (lid close / lid open)  
@@ -17,6 +17,7 @@ So here is a list of features that **Amazing Weather** requires to become even m
 [x] user preferences storage  
 [ ] failover algorithm for datasource  
 [ ] allow to select locations manually  
+[ ] do not request location data too often (keep last_updated ts)  
 
 #### Refactoring
 [ ] Extract getJSON method into `Protocol` out of `BaseWeatherDriver`  
