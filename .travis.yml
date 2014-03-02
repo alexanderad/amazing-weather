@@ -1,7 +1,7 @@
 language: objective-c
 
 xcode_project: "src/AmazingWeather.xcodeproj"
-xcode_scheme: "AmazingWeatherSharedScheme"
+xcode_scheme: "Amazing Weather"
 
 before_script:
 - brew update
