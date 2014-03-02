@@ -74,20 +74,25 @@
 
 - (void) initDisplay {
     // create a menu, set initial values
-    NSMenuItem *menuUpdatedAtItem = [[NSMenuItem alloc] initWithTitle:@"Updating right now..."
+    NSMenuItem *menuUpdatedAtItem = [[NSMenuItem alloc] initWithTitle:@"Updating data..."
                                                                action:nil
                                                         keyEquivalent:@""];
     [menuUpdatedAtItem setTag:kTagUpdatedAt];
     [menuUpdatedAtItem setAction:@selector(updateNow:)];
     [menuUpdatedAtItem setEnabled:YES];
     
-    NSMenuItem *menuWeatherDataItem = [[NSMenuItem alloc] initWithTitle:@"Getting weather data..."
+    NSMenuItem *menuWeatherDataItem = [[NSMenuItem alloc] initWithTitle:@"Weather data her"
                                                                  action:nil
                                                           keyEquivalent:@""];
     [menuWeatherDataItem setTag:kTagWeatherData];
     [menuWeatherDataItem setEnabled:NO];
-    
-    
+
+    NSMenuItem *menuLocationDataItem = [[NSMenuItem alloc] initWithTitle:@"Determining your location..."
+                                                                  action:nil
+                                                           keyEquivalent:@""];
+    [menuLocationDataItem setTag:kTagLocation];
+    [menuLocationDataItem setEnabled:NO];
+
     NSMenu *datasourceSubmenu = [[NSMenu alloc] init];
     NSMutableDictionary *driversDict = [BaseWeatherDriver getDriverList];
     for (id driverNameLabel in driversDict) {
@@ -112,6 +117,8 @@
     [statusBarMenu setDelegate:self];
     [statusBarMenu addItem:menuUpdatedAtItem];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
+    [statusBarMenu addItem:menuLocationDataItem];
+    [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:menuWeatherDataItem];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:datasourceMenu];
@@ -135,8 +142,6 @@
         [statusItem setTitle:[NSString stringWithFormat:@"%.0f°C", [driver temperatureCelsius]]];
         
         // format all the data to strings
-        NSString *location = [NSString stringWithFormat:@"Location: %@",
-                              [driver location]];
         NSString *temperature = [NSString stringWithFormat:@"Temperature: %.2f°C",
                                  [driver temperatureCelsius]];
         
@@ -153,14 +158,14 @@
                             [dateFormatter stringFromDate:[driver sunset]]];
         
         // ugly way to change colours
-        NSDictionary *attributes = [NSDictionary
-                                    dictionaryWithObjectsAndKeys:
-                                    [NSColor darkGrayColor], NSForegroundColorAttributeName,
-                                    [NSFont systemFontOfSize:14.0],
-                                    NSFontAttributeName, nil];
+        NSDictionary *weatherAttributes = [NSDictionary
+                                           dictionaryWithObjectsAndKeys:
+                                           [NSColor darkGrayColor], NSForegroundColorAttributeName,
+                                           [NSFont systemFontOfSize:14.0],
+                                           NSFontAttributeName, nil];
         
         NSArray *weatherDataArray = [NSArray arrayWithObjects:
-                                     location, temperature, wind,
+                                     temperature, wind,
                                      humidity, pressure,
                                      sunrise, sunset,
                                      nil];
@@ -172,9 +177,15 @@
         NSString *joined = [weatherDataArray componentsJoinedByString:@"\n"];
         NSAttributedString *weatherDataAString = [[NSAttributedString alloc]
                                                            initWithString:joined
-                                                           attributes:attributes];
+                                                           attributes:weatherAttributes];
         [self.statusItem.menu itemWithTag:kTagWeatherData].attributedTitle = weatherDataAString;
-        
+
+        // location
+        NSAttributedString *location = [[NSAttributedString alloc]
+                                        initWithString:[driver location]
+                                        attributes:weatherAttributes];
+        [self.statusItem.menu itemWithTag:kTagLocation].attributedTitle = location;
+
         // updated at
         NSString *dateString = [NSString stringWithFormat:@"Updated at %@",
                                 [dateFormatter stringFromDate:[NSDate date]]];
@@ -249,7 +260,8 @@
 }
 
 - (void)updateNow:(id)sender {
-    [updateTimer fire];
+    [locationManager startUpdatingLocation];
+    //[updateTimer fire];
 }
 
 - (NSString *)getUserDriverName

@@ -72,7 +72,7 @@ static NSString *driverName = @"OpenWeatherMap.org";
     NSLog(@"fetchData: %f lat, %f lon", currentCoordinates.latitude, currentCoordinates.longitude);
     NSString *url = [NSString stringWithFormat:@"%@?lat=%f&lon=%f&lang=en&APPID=%@",
                      API_URL, currentCoordinates.latitude, currentCoordinates.longitude, API_KEY];
-    NSLog(url);
+    NSLog(@"%@", url);
     [self getJSONFromServer:url];
 }
 
