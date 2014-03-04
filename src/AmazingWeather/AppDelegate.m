@@ -12,7 +12,7 @@
 #import "WeatherDriver.h"
 #import "Preferences.h"
 
-#define UPDATE_INTERVAL (60 * 5) + arc4random_uniform(25)
+#define UPDATE_INTERVAL (60 * 10) + arc4random_uniform(25)
 
 @implementation AppDelegate {
     WeatherDriver *driver;
@@ -77,7 +77,7 @@
     [menuUpdatedAtItem setAction:@selector(updateNow:)];
     [menuUpdatedAtItem setEnabled:YES];
     
-    NSMenuItem *menuWeatherDataItem = [[NSMenuItem alloc] initWithTitle:@"Weather data her"
+    NSMenuItem *menuWeatherDataItem = [[NSMenuItem alloc] initWithTitle:@"..."
                                                                  action:nil
                                                           keyEquivalent:@""];
     [menuWeatherDataItem setTag:kTagWeatherData];
