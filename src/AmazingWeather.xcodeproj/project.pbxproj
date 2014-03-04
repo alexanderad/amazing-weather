@@ -7,12 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E04A0D718B13D01000B28D3 /* BaseWeatherDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0D418B13D01000B28D3 /* BaseWeatherDriver.m */; };
-		9E04A0D818B13D01000B28D3 /* OpenWeatherMapDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0D618B13D01000B28D3 /* OpenWeatherMapDriver.m */; };
 		9E04A0DF18B14720000B28D3 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0DE18B14720000B28D3 /* Preferences.m */; };
 		9E04A0E118B1585C000B28D3 /* HelpersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0E018B1585C000B28D3 /* HelpersTests.m */; };
-		9E04A0E418B15F0F000B28D3 /* BaseDriverTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0E318B15F0F000B28D3 /* BaseDriverTests.m */; };
-		9E04A0E618B15F4E000B28D3 /* OpenWeatherDriverTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E04A0E518B15F4E000B28D3 /* OpenWeatherDriverTest.m */; };
 		9E4C9B42189C217A00665BC3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B41189C217A00665BC3 /* Cocoa.framework */; };
 		9E4C9B4E189C217A00665BC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B4D189C217A00665BC3 /* main.m */; };
 		9E4C9B55189C217A00665BC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E4C9B54189C217A00665BC3 /* AppDelegate.m */; };
@@ -21,7 +17,8 @@
 		9E4C9B62189C217A00665BC3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B41189C217A00665BC3 /* Cocoa.framework */; };
 		9E921CA818BBF15400B38901 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E921CA718BBF15400B38901 /* About.xib */; };
 		9E97746518B377F1005EC2BD /* StringsFile.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E97746418B377F1005EC2BD /* StringsFile.strings */; };
-		9E97746818B40C72005EC2BD /* WorldWeatherOnlineDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E97746718B40C72005EC2BD /* WorldWeatherOnlineDriver.m */; };
+		9E9F5AA118C6588B00C77D5B /* WeatherDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9F5A9E18C6588B00C77D5B /* WeatherDriver.m */; };
+		9E9F5AA918C65BB000C77D5B /* WeatherDriverTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9F5AA818C65BB000C77D5B /* WeatherDriverTest.m */; };
 		9EED94E018A2D763002BDEC2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -36,15 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		9E04A0D318B13D01000B28D3 /* BaseWeatherDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWeatherDriver.h; sourceTree = "<group>"; };
-		9E04A0D418B13D01000B28D3 /* BaseWeatherDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWeatherDriver.m; sourceTree = "<group>"; };
-		9E04A0D518B13D01000B28D3 /* OpenWeatherMapDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenWeatherMapDriver.h; sourceTree = "<group>"; };
-		9E04A0D618B13D01000B28D3 /* OpenWeatherMapDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenWeatherMapDriver.m; sourceTree = "<group>"; };
 		9E04A0DD18B14720000B28D3 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
 		9E04A0DE18B14720000B28D3 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
 		9E04A0E018B1585C000B28D3 /* HelpersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpersTests.m; sourceTree = "<group>"; };
-		9E04A0E318B15F0F000B28D3 /* BaseDriverTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseDriverTests.m; sourceTree = "<group>"; };
-		9E04A0E518B15F4E000B28D3 /* OpenWeatherDriverTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenWeatherDriverTest.m; sourceTree = "<group>"; };
 		9E4C9B3E189C217A00665BC3 /* AmazingWeather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmazingWeather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E4C9B41189C217A00665BC3 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		9E4C9B44189C217A00665BC3 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -62,8 +53,9 @@
 		9E4F7A4C18C3D1670038D097 /* AmazingWeather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AmazingWeather.entitlements; sourceTree = "<group>"; };
 		9E921CA718BBF15400B38901 /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 		9E97746418B377F1005EC2BD /* StringsFile.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = StringsFile.strings; sourceTree = "<group>"; };
-		9E97746618B40C72005EC2BD /* WorldWeatherOnlineDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WorldWeatherOnlineDriver.h; sourceTree = "<group>"; };
-		9E97746718B40C72005EC2BD /* WorldWeatherOnlineDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WorldWeatherOnlineDriver.m; sourceTree = "<group>"; };
+		9E9F5A9D18C6588B00C77D5B /* WeatherDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDriver.h; sourceTree = "<group>"; };
+		9E9F5A9E18C6588B00C77D5B /* WeatherDriver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDriver.m; sourceTree = "<group>"; };
+		9E9F5AA818C65BB000C77D5B /* WeatherDriverTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDriverTest.m; sourceTree = "<group>"; };
 		9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9EED94E318A96867002BDEC2 /* Amazing Weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Amazing Weather.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,19 +82,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		9E04A0D218B13D01000B28D3 /* Drivers */ = {
-			isa = PBXGroup;
-			children = (
-				9E04A0D318B13D01000B28D3 /* BaseWeatherDriver.h */,
-				9E04A0D418B13D01000B28D3 /* BaseWeatherDriver.m */,
-				9E04A0D518B13D01000B28D3 /* OpenWeatherMapDriver.h */,
-				9E04A0D618B13D01000B28D3 /* OpenWeatherMapDriver.m */,
-				9E97746618B40C72005EC2BD /* WorldWeatherOnlineDriver.h */,
-				9E97746718B40C72005EC2BD /* WorldWeatherOnlineDriver.m */,
-			);
-			path = Drivers;
-			sourceTree = "<group>";
-		};
 		9E04A0DC18B14720000B28D3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -110,15 +89,6 @@
 				9E04A0DE18B14720000B28D3 /* Preferences.m */,
 			);
 			path = Helpers;
-			sourceTree = "<group>";
-		};
-		9E04A0E218B15F0F000B28D3 /* Drivers */ = {
-			isa = PBXGroup;
-			children = (
-				9E04A0E518B15F4E000B28D3 /* OpenWeatherDriverTest.m */,
-				9E04A0E318B15F0F000B28D3 /* BaseDriverTests.m */,
-			);
-			path = Drivers;
 			sourceTree = "<group>";
 		};
 		9E4C9B35189C217A00665BC3 = {
@@ -164,10 +134,10 @@
 		9E4C9B47189C217A00665BC3 /* AmazingWeather */ = {
 			isa = PBXGroup;
 			children = (
+				9E9F5A9C18C6588B00C77D5B /* Drivers */,
 				9E4F7A4C18C3D1670038D097 /* AmazingWeather.entitlements */,
 				9E921CA618BBF15400B38901 /* Windows */,
 				9E04A0DC18B14720000B28D3 /* Helpers */,
-				9E04A0D218B13D01000B28D3 /* Drivers */,
 				9EED94E318A96867002BDEC2 /* Amazing Weather.entitlements */,
 				9E4C9B4D189C217A00665BC3 /* main.m */,
 				9E4C9B53189C217A00665BC3 /* AppDelegate.h */,
@@ -191,7 +161,7 @@
 		9E4C9B65189C217A00665BC3 /* AmazingWeatherTests */ = {
 			isa = PBXGroup;
 			children = (
-				9E04A0E218B15F0F000B28D3 /* Drivers */,
+				9E9F5AA818C65BB000C77D5B /* WeatherDriverTest.m */,
 				9E04A0E018B1585C000B28D3 /* HelpersTests.m */,
 				9E4C9B66189C217A00665BC3 /* Supporting Files */,
 			);
@@ -212,6 +182,15 @@
 				9E921CA718BBF15400B38901 /* About.xib */,
 			);
 			path = Windows;
+			sourceTree = "<group>";
+		};
+		9E9F5A9C18C6588B00C77D5B /* Drivers */ = {
+			isa = PBXGroup;
+			children = (
+				9E9F5A9D18C6588B00C77D5B /* WeatherDriver.h */,
+				9E9F5A9E18C6588B00C77D5B /* WeatherDriver.m */,
+			);
+			path = Drivers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,10 +297,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E4C9B55189C217A00665BC3 /* AppDelegate.m in Sources */,
+				9E9F5AA118C6588B00C77D5B /* WeatherDriver.m in Sources */,
 				9E4C9B4E189C217A00665BC3 /* main.m in Sources */,
-				9E04A0D818B13D01000B28D3 /* OpenWeatherMapDriver.m in Sources */,
-				9E97746818B40C72005EC2BD /* WorldWeatherOnlineDriver.m in Sources */,
-				9E04A0D718B13D01000B28D3 /* BaseWeatherDriver.m in Sources */,
 				9E04A0DF18B14720000B28D3 /* Preferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,9 +307,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E04A0E618B15F4E000B28D3 /* OpenWeatherDriverTest.m in Sources */,
+				9E9F5AA918C65BB000C77D5B /* WeatherDriverTest.m in Sources */,
 				9E04A0E118B1585C000B28D3 /* HelpersTests.m in Sources */,
-				9E04A0E418B15F0F000B28D3 /* BaseDriverTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

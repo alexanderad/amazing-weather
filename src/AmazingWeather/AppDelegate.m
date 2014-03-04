@@ -7,17 +7,15 @@
 //
 
 #import "AppDelegate.h"
-#include <stdlib.h>
-#include <CoreLocation/CoreLocation.h>
-#include "OpenWeatherMapDriver.h"
-#include "WorldWeatherOnlineDriver.h"
-#include "Preferences.h"
+#import <stdlib.h>
+#import <CoreLocation/CoreLocation.h>
+#import "WeatherDriver.h"
+#import "Preferences.h"
 
-#define DEFAULT_DRIVER @"OpenWeatherMap.org"
 #define UPDATE_INTERVAL (60 * 5) + arc4random_uniform(25)
 
 @implementation AppDelegate {
-    BaseWeatherDriver *driver;
+    WeatherDriver *driver;
     NSWindowController *aboutWindowController;
 }
 
@@ -25,7 +23,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    [self initDriver:[self getUserDriverName]];
+    [self initDriver];
     [self initDisplay];
 
     [self initLocationManager];
@@ -48,12 +46,6 @@
     [locationManager startUpdatingLocation];
 }
 
-- (void) initDriver:(NSString *)driverName {
-    NSLog(@"init driver request %@", driverName);
-    Class driverClass = [[BaseWeatherDriver getDriverList] objectForKey:driverName];
-    driver = [[driverClass alloc] init];
-}
-
 - (void) subscribeToEvents {
     // we're interested in lid opened/closed to keep the data updated
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
@@ -70,6 +62,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(weatherGotNewLocation:)
                                                  name:@"weatherGotNewLocation" object:nil];
+}
+
+- (void) initDriver {
+    driver = [[WeatherDriver alloc] init];
 }
 
 - (void) initDisplay {
@@ -93,26 +89,6 @@
     [menuLocationDataItem setTag:kTagLocation];
     [menuLocationDataItem setEnabled:NO];
 
-    NSMenu *datasourceSubmenu = [[NSMenu alloc] init];
-    NSMutableDictionary *driversDict = [BaseWeatherDriver getDriverList];
-    for (id driverNameLabel in driversDict) {
-        NSMenuItem *driverMenuItem = [[NSMenuItem alloc] initWithTitle:driverNameLabel
-                                                                action:@selector(toggleDatasource:)
-                                                         keyEquivalent:@""];
-
-        if([[driver getDriverName] isEqualToString:driverNameLabel]) {
-            driverMenuItem.state = NSOnState;
-        }
-
-        [datasourceSubmenu addItem:driverMenuItem];
-    }
-    NSMenuItem *datasourceMenu = [[NSMenuItem alloc] initWithTitle:@"Datasource"
-                                                            action:nil
-                                                     keyEquivalent:@""];
-    [datasourceMenu setTag:kTagDatasource];
-    [datasourceMenu setSubmenu:datasourceSubmenu];
-    
-    
     NSMenu *statusBarMenu = [[NSMenu alloc] init];
     [statusBarMenu setDelegate:self];
     [statusBarMenu addItem:menuUpdatedAtItem];
@@ -120,8 +96,6 @@
     [statusBarMenu addItem:menuLocationDataItem];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:menuWeatherDataItem];
-    [statusBarMenu addItem:[NSMenuItem separatorItem]];
-    [statusBarMenu addItem:datasourceMenu];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItemWithTitle:@"About" action:@selector(about:) keyEquivalent:@""];
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
@@ -201,27 +175,6 @@
     [locationManager stopUpdatingLocation];
 }
 
-- (void)toggleDatasource:(id)sender {
-    // toggle all off
-    for (NSMenuItem *datasource in [[sender menu] itemArray]) {
-        datasource.state = NSOffState;
-    }
-
-    // get new selection, set it, reinitialize driver
-    NSMenuItem *item = (NSMenuItem*)sender;
-    item.state = NSOnState;
-
-    CLLocationCoordinate2D coordinates = [driver getCurrentCoordinates];
-    [self initDriver:[item title]];
-    [driver setCurrentCoordinates:coordinates];
-
-    // save in user prefs
-    [Preferences setString:[item title] forKey:kOptionUserSelectedDriver];
-
-    // request an update
-    //[updateTimer fire];
-}
-
 - (void)onTick:(NSTimer *) timer {
     NSLog(@"timer fired, requsting data update");
     [driver fetchData];
@@ -246,8 +199,6 @@
     [self performSelector:@selector(updateNowAndCheckLocation:) withObject:self afterDelay:5];
 }
 
-
-
 - (void)about:(id)sender {
     [NSApp activateIgnoringOtherApps:YES];
     aboutWindowController = [[NSWindowController alloc] initWithWindowNibName:@"About"];
@@ -262,18 +213,6 @@
 - (void)updateNow:(id)sender {
     [locationManager startUpdatingLocation];
     //[updateTimer fire];
-}
-
-- (NSString *)getUserDriverName
-{
-    NSString *driverName = [Preferences getStringForKey:kOptionUserSelectedDriver];
-
-    if(!driverName) {
-        driverName = [Preferences setString:DEFAULT_DRIVER forKey:kOptionUserSelectedDriver];
-    }
-
-    return driverName;
-
 }
 
 @end

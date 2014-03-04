@@ -7,13 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#include <CoreLocation/CoreLocation.h>
+#import <CoreLocation/CoreLocation.h>
 
 // these are menu tags constants in order to allow programmatic access
 #define kTagUpdatedAt   10
 #define kTagWeatherData 20
-#define kTagDatasource  30
-#define kTagLocation    40
+#define kTagLocation    30
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, CLLocationManagerDelegate>
 
@@ -21,7 +20,7 @@
 @property (strong) NSStatusItem *statusItem;
 @property NSTimer *updateTimer;
 
-- (void) initDriver:(NSString *)driverName;
+- (void) initDriver;
 - (void) initDisplay;
 - (void) updateDisplay;
 - (void) subscribeToEvents;

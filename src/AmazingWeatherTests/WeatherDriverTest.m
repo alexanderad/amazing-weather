@@ -7,22 +7,22 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "BaseWeatherDriver.h"
+#import "WeatherDriver.h"
 
-@interface DriversTests : XCTestCase
+@interface WeatherDriverTest : XCTestCase
 
-@property BaseWeatherDriver *driver;
+@property WeatherDriver *driver;
 
 @end
 
-@implementation DriversTests
+@implementation WeatherDriverTest
 
 @synthesize driver;
 
 - (void)setUp
 {
     [super setUp];
-    driver = [[BaseWeatherDriver alloc] init];
+    driver = [[WeatherDriver alloc] init];
 }
 
 - (void)tearDown

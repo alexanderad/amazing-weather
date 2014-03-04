@@ -6,16 +6,16 @@
 //
 //
 
-#include <objc/runtime.h>
-#import "BaseWeatherDriver.h"
+#import "WeatherDriver.h"
 
+#define API_KEY @"fcuxufej65rppfg299cnhy4q"
+#define API_URL @"http://api.worldweatheronline.com/free/v1/weather.ashx"
 
-@implementation BaseWeatherDriver
+@implementation WeatherDriver
 
-static NSMutableDictionary *registeredDrivers;
-static NSMutableArray *arr;
-static NSString *driverName = @"BaseDriver";
-
+@synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
+@synthesize location, windSpeed, windDirection;
+@synthesize humidity, pressure;
 
 -(void)getJSONFromServer: (NSString *)urlString
 {
@@ -43,10 +43,6 @@ static NSString *driverName = @"BaseDriver";
                                }
                            }
      ];
-}
-
--(NSString *)getDriverName {
-    return driverName;
 }
 
 -(double) convertDegrees: (double)temperature
@@ -129,17 +125,6 @@ static NSString *driverName = @"BaseDriver";
     return @"";
 }
 
-+(void)registerDriver:(Class)driver name:(NSString *)driverName {
-    if(registeredDrivers == nil) {
-        registeredDrivers = [[NSMutableDictionary alloc] init];
-    }   
-    [registeredDrivers setObject:driver forKey:driverName];
-}
-
-+(NSMutableDictionary *)getDriverList {
-    return registeredDrivers;
-}
-
 -(void) setCurrentCoordinates:(CLLocationCoordinate2D)coordinates {
     currentCoordinates = coordinates;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"weatherGotNewLocation" object:nil];
@@ -149,15 +134,50 @@ static NSString *driverName = @"BaseDriver";
     return currentCoordinates;
 }
 
--(void) parseData
-{
-    // this should be only used in a super call, after actual data parsing is done
+-(void) parseData {
+    NSDictionary *data = [rawData valueForKey:@"data"];
+    NSDictionary *current = [data valueForKey:@"current_condition"];
+
+    // temperatures
+    temperatureCelsius = [[[current valueForKey:@"temp_C"] objectAtIndex:0] doubleValue];
+    temperatureKelvin = [self convertDegrees:temperatureCelsius
+                                    fromUnit:@"Celsius"
+                                      toUnit:@"Kelvin"];
+    temperatureFarenheit = [self convertDegrees:temperatureKelvin
+                                       fromUnit:@"Kelvin"
+                                         toUnit:@"Farenheit"];
+
+    // location reported
+    NSString *areaName = [[[[[data valueForKey:@"nearest_area"]
+                             valueForKey:@"areaName"]
+                            valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
+    NSString *region = [[[[[data valueForKey:@"nearest_area"]
+                           valueForKey:@"region"]
+                          valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
+    NSString *country = [[[[[data valueForKey:@"nearest_area"]
+                            valueForKey:@"country"]
+                           valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
+    location = [NSString stringWithFormat:@"%@\n%@\n%@", areaName, region, country];
+
+    // wind
+    double windKmph = [[[current valueForKey:@"windspeedKmph"] objectAtIndex:0] doubleValue];
+    double windMps = windKmph * 0.277777778;
+    windSpeed = [NSNumber numberWithDouble:windMps];
+    windDirection = [[current valueForKey:@"winddir16Point"] objectAtIndex:0];
+
+    // humidity & pressure
+    humidity = [[current valueForKey:@"humidity"] objectAtIndex:0];
+    pressure = [[current valueForKey:@"pressure"] objectAtIndex:0];
+
     [[NSNotificationCenter defaultCenter] postNotificationName:@"weatherDataReady" object:nil];
 }
 
--(void) fetchData
-{
-    [NSException raise:@"Not implemented" format:@"method not implemented."];
+-(void) fetchData {
+    NSLog(@"fetchData: %f lat, %f lon", currentCoordinates.latitude, currentCoordinates.longitude);
+    NSString *url = [NSString stringWithFormat:@"%@?q=%f,%f&format=json&fx=no&includelocation=yes&key=%@",
+                     API_URL, currentCoordinates.latitude, currentCoordinates.longitude, API_KEY];
+    NSLog(@"%@", url);
+    [self getJSONFromServer:url];
 }
 
 @end
