@@ -20,7 +20,7 @@ So here is a list of features that **Amazing Weather** requires to become even m
 [ ] do not request location data too often (keep last_updated ts)  
 
 #### Refactoring
-[ ] Extract getJSON method into `Protocol` out of `BaseWeatherDriver`  
+[x] Extract getJSON method into <del>Protocol</del>`Category` out of `BaseWeatherDriver`  
 [ ] <del>Make `BaseWeatherDriver` properties `@protected`, remove `@sythisize` from inheritors</del>  
 
 #### App store
