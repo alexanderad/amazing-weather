@@ -125,12 +125,7 @@
         
         NSString *humidity = [NSString stringWithFormat:@"Humidity: %@%%", [driver humidity]];
         NSString *pressure = [NSString stringWithFormat:@"Pressure: %@ mm", [driver pressure]];
-        
-        NSString *sunrise = [NSString stringWithFormat:@"Sunrise: %@",
-                             [dateFormatter stringFromDate:[driver sunrise]]];
-        NSString *sunset = [NSString stringWithFormat:@"Sunset: %@",
-                            [dateFormatter stringFromDate:[driver sunset]]];
-        
+
         // ugly way to change colours
         NSDictionary *weatherAttributes = [NSDictionary
                                            dictionaryWithObjectsAndKeys:
@@ -141,7 +136,6 @@
         NSArray *weatherDataArray = [NSArray arrayWithObjects:
                                      temperature, wind,
                                      humidity, pressure,
-                                     sunrise, sunset,
                                      nil];
 
         // dumb filtering of null values in rendered strings...
