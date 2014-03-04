@@ -30,12 +30,6 @@
 -(void) fetchData;
 -(void) parseData;
 
--(void) getJSONFromServer:(NSString *)urlString;
--(double) convertDegrees:(double)temperature
-                fromUnit:(NSString *)unitFrom
-                  toUnit:(NSString *)unitTo;
--(NSString *) getWindDirectionDisplay: (double)degrees;
-
 -(void)setCurrentCoordinates:(CLLocationCoordinate2D)currentCoordinates;
 -(CLLocationCoordinate2D)getCurrentCoordinates;
 

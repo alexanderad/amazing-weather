@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "WeatherDriver.h"
+#import "WeatherDriver+Helper.h"
 
 @interface WeatherDriverTest : XCTestCase
 
