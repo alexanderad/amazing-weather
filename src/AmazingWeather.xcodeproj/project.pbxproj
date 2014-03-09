@@ -20,6 +20,7 @@
 		9E9F5AA118C6588B00C77D5B /* WeatherDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9F5A9E18C6588B00C77D5B /* WeatherDriver.m */; };
 		9E9F5AA918C65BB000C77D5B /* WeatherDriverTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9F5AA818C65BB000C77D5B /* WeatherDriverTest.m */; };
 		9E9F5AAC18C6692200C77D5B /* WeatherDriver+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9F5AAB18C6692200C77D5B /* WeatherDriver+Helper.m */; };
+		9E9F5AB018CB9AC000C77D5B /* CitySearch.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E9F5AAF18CB9AC000C77D5B /* CitySearch.xib */; };
 		9EED94E018A2D763002BDEC2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,7 @@
 		9E9F5AA818C65BB000C77D5B /* WeatherDriverTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDriverTest.m; sourceTree = "<group>"; };
 		9E9F5AAA18C6692200C77D5B /* WeatherDriver+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WeatherDriver+Helper.h"; sourceTree = "<group>"; };
 		9E9F5AAB18C6692200C77D5B /* WeatherDriver+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WeatherDriver+Helper.m"; sourceTree = "<group>"; };
+		9E9F5AAF18CB9AC000C77D5B /* CitySearch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CitySearch.xib; sourceTree = "<group>"; };
 		9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9EED94E318A96867002BDEC2 /* Amazing Weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Amazing Weather.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				9E921CA718BBF15400B38901 /* About.xib */,
+				9E9F5AAF18CB9AC000C77D5B /* CitySearch.xib */,
 			);
 			path = Windows;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			files = (
 				9E921CA818BBF15400B38901 /* About.xib in Resources */,
 				9E4C9B5A189C217A00665BC3 /* Images.xcassets in Resources */,
+				9E9F5AB018CB9AC000C77D5B /* CitySearch.xib in Resources */,
 				9E97746518B377F1005EC2BD /* StringsFile.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

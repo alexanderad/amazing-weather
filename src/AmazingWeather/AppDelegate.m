@@ -123,8 +123,10 @@
                           [[driver windSpeed] floatValue],
                           [driver windDirection]];
         
-        NSString *humidity = [NSString stringWithFormat:@"Humidity: %@%%", [driver humidity]];
-        NSString *pressure = [NSString stringWithFormat:@"Pressure: %@ mm", [driver pressure]];
+        NSString *humidity = [NSString stringWithFormat:@"Humidity: %@%%",
+                              [driver humidity]];
+        NSString *pressure = [NSString stringWithFormat:@"Pressure: %.0f mm",
+                              [[driver pressure] floatValue]];
 
         // ugly way to change colours
         NSDictionary *weatherAttributes = [NSDictionary

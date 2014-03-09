@@ -60,7 +60,9 @@
 
     // humidity & pressure
     humidity = [[current valueForKey:@"humidity"] objectAtIndex:0];
-    pressure = [[current valueForKey:@"pressure"] objectAtIndex:0];
+    double pressureMb = [[[current valueForKey:@"pressure"] objectAtIndex:0] doubleValue];
+    double pressureMm = pressureMb * 0.75218;
+    pressure = [NSNumber numberWithDouble:pressureMm];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"weatherDataReady" object:nil];
 }
