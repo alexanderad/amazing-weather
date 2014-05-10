@@ -10,6 +10,11 @@
 
 @implementation WeatherDriver (Helper)
 
+-(id)fetchDictKey:(NSString*)key fromDictionary:(NSDictionary*)sourceDict {
+    NSArray *parts = [key componentsSeparatedByString:@"."];
+    return parts;
+}
+
 -(void)getJSONFromServer: (NSString *)urlString
 {
     // FIXME: this should reside somewhere in helpers

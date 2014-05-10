@@ -42,11 +42,12 @@
 
     // location reported
     NSString *areaName = [[[[[data valueForKey:@"nearest_area"]
-                             valueForKey:@"areaName"]
-                            valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
+                              valueForKey:@"areaName"]
+                              valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
     NSString *region = [[[[[data valueForKey:@"nearest_area"]
-                           valueForKey:@"region"]
-                          valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
+                            valueForKey:@"region"]
+                            valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
+    //NSString *region = @"";
     NSString *country = [[[[[data valueForKey:@"nearest_area"]
                             valueForKey:@"country"]
                            valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
@@ -69,8 +70,9 @@
 
 -(void) fetchData {
     NSLog(@"fetchData: %f lat, %f lon", currentCoordinates.latitude, currentCoordinates.longitude);
-    NSString *url = [NSString stringWithFormat:@"%@?q=%f,%f&format=json&fx=no&includelocation=yes&key=%@",
-                     API_URL, currentCoordinates.latitude, currentCoordinates.longitude, API_KEY];
+    NSString *url =
+        [NSString stringWithFormat:@"%@?q=%f,%f&format=json&fx=no&includelocation=yes&key=%@",
+         API_URL, currentCoordinates.latitude, currentCoordinates.longitude, API_KEY];
     NSLog(@"%@", url);
     [self getJSONFromServer:url];
 }

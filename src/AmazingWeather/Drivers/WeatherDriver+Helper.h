@@ -10,6 +10,7 @@
 
 @interface WeatherDriver (Helper)
 
+-(id)fetchDictKey:(NSString*)key fromDictionary:(NSDictionary*)sourceDict;
 -(void) getJSONFromServer:(NSString *)urlString;
 -(double) convertDegrees:(double)temperature
                 fromUnit:(NSString *)unitFrom

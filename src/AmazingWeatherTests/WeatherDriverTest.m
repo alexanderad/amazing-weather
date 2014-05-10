@@ -31,6 +31,12 @@
     [super tearDown];
 }
 
+- (void)testFetchDict {
+    NSDictionary *dict = [NSDictionary dictionaryWithObject:@10 forKey:@"test"];
+    NSNumber *n = [[dict valueForKey:@"test"] objectAtIndex:0];
+
+}
+
 - (void)testConverter
 {
     double result, expectedResult;
