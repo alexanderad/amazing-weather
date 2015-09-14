@@ -13,6 +13,7 @@
 #define kTagUpdatedAt   10
 #define kTagWeatherData 20
 #define kTagLocation    30
+#define kStartAtLogin   40
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate, CLLocationManagerDelegate>
 

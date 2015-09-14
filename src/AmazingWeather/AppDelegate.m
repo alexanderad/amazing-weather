@@ -11,6 +11,7 @@
 #import <CoreLocation/CoreLocation.h>
 #import "WeatherDriver.h"
 #import "Preferences.h"
+#import "LLManager.h"
 
 #define UPDATE_INTERVAL (60 * 10) + arc4random_uniform(25)
 
@@ -83,11 +84,26 @@
     [menuWeatherDataItem setTag:kTagWeatherData];
     [menuWeatherDataItem setEnabled:NO];
 
-    NSMenuItem *menuLocationDataItem = [[NSMenuItem alloc] initWithTitle:@"Determining your location..."
+    NSMenuItem *menuLocationDataItem = [[NSMenuItem alloc] initWithTitle:@"Locating you..."
                                                                   action:nil
                                                            keyEquivalent:@""];
     [menuLocationDataItem setTag:kTagLocation];
     [menuLocationDataItem setEnabled:NO];
+    
+    NSMenuItem *startAtLoginMenu = [[NSMenuItem alloc] initWithTitle:@"Start at login"
+                                                              action:@selector(toggleStartAtLogin:)
+                                                       keyEquivalent:@""];
+    [startAtLoginMenu setTag:kStartAtLogin];
+    startAtLoginMenu.target = self;
+    startAtLoginMenu.state = ([LLManager launchAtLogin]) ? NSOnState : NSOffState;
+
+    // preferences
+    NSMenu *preferencesSubmenu = [NSMenu alloc];
+    [preferencesSubmenu addItem:startAtLoginMenu];
+    NSMenuItem *preferencesItem = [[NSMenuItem alloc] initWithTitle:@"Preferences"
+                                                             action:nil
+                                                      keyEquivalent:@""];
+    [preferencesItem setSubmenu:preferencesSubmenu];
 
     NSMenu *statusBarMenu = [[NSMenu alloc] init];
     [statusBarMenu setDelegate:self];
@@ -97,14 +113,16 @@
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:menuWeatherDataItem];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
+
+    [statusBarMenu addItem:preferencesItem];
     [statusBarMenu addItemWithTitle:@"About" action:@selector(about:) keyEquivalent:@""];
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
     // create status bar and assign menu
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     statusItem.menu = statusBarMenu;
-    [statusItem setTitle:@"Amazing Weather"];
-    [statusItem setHighlightMode:YES];
+    [statusItem setTitle:@"AW"];
+    [statusItem setHighlightMode:NO];
 }
 
 - (void) updateDisplay {
@@ -208,7 +226,20 @@
 
 - (void)updateNow:(id)sender {
     [locationManager startUpdatingLocation];
-    //[updateTimer fire];
+}
+
+- (void)toggleStartAtLogin:(id)sender
+{
+    if ([LLManager launchAtLogin])
+    {
+        //[LLManager setLaunchAtLogin:NO];
+        [self.statusItem itemWithTag:kStartAtLogin].state = NSOffState;
+    }
+    else
+    {
+        //[LLManager setLaunchAtLogin:YES];
+        [self.statusItem.menu itemWithTag:kStartAtLogin].state = NSOnState;
+    }
 }
 
 @end

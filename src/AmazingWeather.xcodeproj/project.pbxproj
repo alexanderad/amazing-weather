@@ -15,11 +15,14 @@
 		9E4C9B5A189C217A00665BC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C9B59189C217A00665BC3 /* Images.xcassets */; };
 		9E4C9B61189C217A00665BC3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B60189C217A00665BC3 /* XCTest.framework */; };
 		9E4C9B62189C217A00665BC3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B41189C217A00665BC3 /* Cocoa.framework */; };
+		9E8C08B41BA5E8CA005A36D6 /* LaunchAtLoginHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9ED14E991BA5E40C00BB40B4 /* LaunchAtLoginHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9E921CA818BBF15400B38901 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E921CA718BBF15400B38901 /* About.xib */; };
 		9E97746518B377F1005EC2BD /* StringsFile.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E97746418B377F1005EC2BD /* StringsFile.strings */; };
 		9E9F5AA118C6588B00C77D5B /* WeatherDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9F5A9E18C6588B00C77D5B /* WeatherDriver.m */; };
 		9E9F5AA918C65BB000C77D5B /* WeatherDriverTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9F5AA818C65BB000C77D5B /* WeatherDriverTest.m */; };
 		9E9F5AAC18C6692200C77D5B /* WeatherDriver+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9F5AAB18C6692200C77D5B /* WeatherDriver+Helper.m */; };
+		9ED14E961BA5E40C00BB40B4 /* LLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED14E941BA5E40C00BB40B4 /* LLManager.m */; };
+		9ED14E9D1BA5E49E00BB40B4 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ED14E9C1BA5E49E00BB40B4 /* ServiceManagement.framework */; };
 		9EED94E018A2D763002BDEC2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 /* End PBXBuildFile section */
 
@@ -31,7 +34,34 @@
 			remoteGlobalIDString = 9E4C9B3D189C217A00665BC3;
 			remoteInfo = "Amazing Weather";
 		};
+		9E8C08B21BA5E8BA005A36D6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9ED14E901BA5E40C00BB40B4 /* LaunchAtLoginHelper.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 734C379315414CE200994189;
+			remoteInfo = LaunchAtLoginHelper;
+		};
+		9ED14E981BA5E40C00BB40B4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9ED14E901BA5E40C00BB40B4 /* LaunchAtLoginHelper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 734C379415414CE200994189;
+			remoteInfo = LaunchAtLoginHelper;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9ED14E9E1BA5E75D00BB40B4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				9E8C08B41BA5E8CA005A36D6 /* LaunchAtLoginHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9E04A0DD18B14720000B28D3 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
@@ -59,6 +89,11 @@
 		9E9F5AA818C65BB000C77D5B /* WeatherDriverTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherDriverTest.m; sourceTree = "<group>"; };
 		9E9F5AAA18C6692200C77D5B /* WeatherDriver+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "WeatherDriver+Helper.h"; sourceTree = "<group>"; };
 		9E9F5AAB18C6692200C77D5B /* WeatherDriver+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "WeatherDriver+Helper.m"; sourceTree = "<group>"; };
+		9ED14E901BA5E40C00BB40B4 /* LaunchAtLoginHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LaunchAtLoginHelper.xcodeproj; path = LaunchAtLoginHelper/LaunchAtLoginHelper.xcodeproj; sourceTree = "<group>"; };
+		9ED14E931BA5E40C00BB40B4 /* LLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLManager.h; path = LaunchAtLoginHelper/LLManager.h; sourceTree = "<group>"; };
+		9ED14E941BA5E40C00BB40B4 /* LLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLManager.m; path = LaunchAtLoginHelper/LLManager.m; sourceTree = "<group>"; };
+		9ED14E951BA5E40C00BB40B4 /* LLStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLStrings.h; path = LaunchAtLoginHelper/LLStrings.h; sourceTree = "<group>"; };
+		9ED14E9C1BA5E49E00BB40B4 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9EED94E318A96867002BDEC2 /* Amazing Weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Amazing Weather.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -68,6 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ED14E9D1BA5E49E00BB40B4 /* ServiceManagement.framework in Frameworks */,
 				9E4C9B42189C217A00665BC3 /* Cocoa.framework in Frameworks */,
 				9EED94E018A2D763002BDEC2 /* CoreLocation.framework in Frameworks */,
 			);
@@ -97,6 +133,10 @@
 		9E4C9B35189C217A00665BC3 = {
 			isa = PBXGroup;
 			children = (
+				9ED14E901BA5E40C00BB40B4 /* LaunchAtLoginHelper.xcodeproj */,
+				9ED14E931BA5E40C00BB40B4 /* LLManager.h */,
+				9ED14E941BA5E40C00BB40B4 /* LLManager.m */,
+				9ED14E951BA5E40C00BB40B4 /* LLStrings.h */,
 				9E4C9B47189C217A00665BC3 /* AmazingWeather */,
 				9E4C9B65189C217A00665BC3 /* AmazingWeatherTests */,
 				9E4C9B40189C217A00665BC3 /* Frameworks */,
@@ -116,6 +156,7 @@
 		9E4C9B40189C217A00665BC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9ED14E9C1BA5E49E00BB40B4 /* ServiceManagement.framework */,
 				9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */,
 				9E4C9B41189C217A00665BC3 /* Cocoa.framework */,
 				9E4C9B60189C217A00665BC3 /* XCTest.framework */,
@@ -198,6 +239,14 @@
 			path = Drivers;
 			sourceTree = "<group>";
 		};
+		9ED14E911BA5E40C00BB40B4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9ED14E991BA5E40C00BB40B4 /* LaunchAtLoginHelper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,10 +257,12 @@
 				9E4C9B3A189C217A00665BC3 /* Sources */,
 				9E4C9B3B189C217A00665BC3 /* Frameworks */,
 				9E4C9B3C189C217A00665BC3 /* Resources */,
+				9ED14E9E1BA5E75D00BB40B4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9E8C08B31BA5E8BA005A36D6 /* PBXTargetDependency */,
 			);
 			name = AmazingWeather;
 			productName = "Amazing Weather";
@@ -268,6 +319,12 @@
 			mainGroup = 9E4C9B35189C217A00665BC3;
 			productRefGroup = 9E4C9B3F189C217A00665BC3 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9ED14E911BA5E40C00BB40B4 /* Products */;
+					ProjectRef = 9ED14E901BA5E40C00BB40B4 /* LaunchAtLoginHelper.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9E4C9B3D189C217A00665BC3 /* AmazingWeather */,
@@ -275,6 +332,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9ED14E991BA5E40C00BB40B4 /* LaunchAtLoginHelper.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = LaunchAtLoginHelper.app;
+			remoteRef = 9ED14E981BA5E40C00BB40B4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9E4C9B3C189C217A00665BC3 /* Resources */ = {
@@ -304,6 +371,7 @@
 				9E4C9B55189C217A00665BC3 /* AppDelegate.m in Sources */,
 				9E9F5AA118C6588B00C77D5B /* WeatherDriver.m in Sources */,
 				9E4C9B4E189C217A00665BC3 /* main.m in Sources */,
+				9ED14E961BA5E40C00BB40B4 /* LLManager.m in Sources */,
 				9E04A0DF18B14720000B28D3 /* Preferences.m in Sources */,
 				9E9F5AAC18C6692200C77D5B /* WeatherDriver+Helper.m in Sources */,
 			);
@@ -325,6 +393,11 @@
 			isa = PBXTargetDependency;
 			target = 9E4C9B3D189C217A00665BC3 /* AmazingWeather */;
 			targetProxy = 9E4C9B63189C217A00665BC3 /* PBXContainerItemProxy */;
+		};
+		9E8C08B31BA5E8BA005A36D6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LaunchAtLoginHelper;
+			targetProxy = 9E8C08B21BA5E8BA005A36D6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -402,13 +475,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_ENTITLEMENTS = AmazingWeather/AmazingWeather.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
 				INFOPLIST_FILE = "AmazingWeather/AmazingWeather-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = AmazingWeather;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -421,12 +493,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = AmazingWeather/AmazingWeather.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
 				INFOPLIST_FILE = "AmazingWeather/AmazingWeather-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = AmazingWeather;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
@@ -517,13 +588,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_ENTITLEMENTS = AmazingWeather/AmazingWeather.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
 				INFOPLIST_FILE = "AmazingWeather/AmazingWeather-Info.plist";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_NAME = AmazingWeather;
 				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
