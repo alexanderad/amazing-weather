@@ -9,6 +9,10 @@
 #ifndef AmazingWeather_Icons_h
 #define AmazingWeather_Icons_h
 
+// misc icons
+#define kRefreshWeatherIcon [NSString stringWithFormat:@"\uf03e"]
+#define kDefaultWeatherIcon [NSString stringWithFormat:@"\uf041"]
+
 // plain codes
 #define kOWDWeatherCode200 [NSString stringWithFormat:@"\uf01e"]
 #define kOWDWeatherCode201 [NSString stringWithFormat:@"\uf01e"]
