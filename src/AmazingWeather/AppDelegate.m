@@ -33,7 +33,7 @@
 
     [self initLocationManager];
     [self subscribeToEvents];
-    
+
     // make update timer to tick at semi-random intervals
     updateTimer = [NSTimer scheduledTimerWithTimeInterval: UPDATE_INTERVAL
                                                    target: self
@@ -160,16 +160,16 @@
     NSLog(@"setWeather call: icon %@, data %@", icon, data);
     
     NSString *iconConstant = [[Icons getIconsDictionary] objectForKey:icon];
-    if(iconConstant == (id)[NSNull null]) {
-        iconConstant = kWeatherDefaultIcon;
-    }
+//    if(iconConstant == (id)[NSNull null]) {
+//        NSString *iconConstant = kWeatherDefaultIcon;
+//    }
 
-    NSMutableAttributedString *titleIcon = [self getWeatherIconFormatted:iconConstant];
-    if (data.length > 0) {
-        NSMutableAttributedString *titleData = [self getWeatherDataFormatted:data];
-        [titleIcon appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
-        [titleIcon appendAttributedString:titleData];
-    };
+    NSMutableAttributedString *titleIcon = [[NSMutableAttributedString alloc] initWithAttributedString:[self getWeatherIconFormatted:iconConstant]];
+//    if (data.length > 0) {
+//        NSMutableAttributedString *titleData = [self getWeatherDataFormatted:data];
+//        [titleIcon appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+//        [titleIcon appendAttributedString:titleData];
+//    };
     [statusItem setAttributedTitle:titleIcon];
 }
 
@@ -180,14 +180,14 @@
     
     NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:data];
     [title appendAttributedString:[[NSAttributedString alloc] initWithString:@"°"]];
-    NSFont *temperatureFont = [NSFont systemFontOfSize:[NSFont systemFontSize]];
-    [title addAttribute: NSFontAttributeName
-                  value: temperatureFont
-                  range: NSMakeRange(0, title.length)];
-    
+//    NSFont *temperatureFont = [NSFont systemFontOfSize:[NSFont systemFontSize]];
+//    [title addAttribute: NSFontAttributeName
+//                  value: temperatureFont
+//                  range: NSMakeRange(0, title.length)];
+
     // vertical offset for temperature value
     [title addAttribute: NSBaselineOffsetAttributeName
-                  value: @(3.0)
+                  value: @(13.0)
                   range: NSMakeRange(0, title.length)];
     return title;
 }
@@ -197,7 +197,7 @@
      * Prepare given weather icon to be displayed.
      */
     
-    NSFont *titleFont = [NSFont fontWithName:@"Weather Icons" size:15.0];
+    NSFont *titleFont = [NSFont fontWithName:@"Weather Icons" size:[NSFont systemFontSize]];
     NSDictionary *titleAttributes = [NSDictionary dictionaryWithObject: titleFont
                                                                 forKey: NSFontAttributeName];
     NSMutableAttributedString* title = [[NSMutableAttributedString alloc] initWithString: code
@@ -205,8 +205,8 @@
     
     // vertical offset for icon
     [title addAttribute: NSBaselineOffsetAttributeName
-                  value: @(1.0)
-                  range: NSMakeRange(0, code.length)];
+                  value: @(3.0)
+                  range: NSMakeRange(0, 1)];
     return title;
 }
 
@@ -221,15 +221,15 @@
     [self setWeather:[driver weatherCode] withData:[NSString stringWithFormat:@"%.0f", [driver temperatureCelsius]]];
         
     // format all the data to strings
-    NSString *temperature = [NSString stringWithFormat:@"Temperature: %.2f°C", [driver temperatureCelsius]];
+    NSString *temperature = [NSString stringWithFormat:@"Temperature %.2f°C", [driver temperatureCelsius]];
         
-    NSString *wind = [NSString stringWithFormat:@"Wind: %.0f m/s (%@)",
+    NSString *wind = [NSString stringWithFormat:@"Wind %.0f m/s (%@)",
                       [[driver windSpeed] floatValue],
                       [driver windDirection]];
         
-        NSString *humidity = [NSString stringWithFormat:@"Humidity: %@%%",
+        NSString *humidity = [NSString stringWithFormat:@"Humidity %@%%",
                               [driver humidity]];
-        NSString *pressure = [NSString stringWithFormat:@"Pressure: %.0f mm",
+        NSString *pressure = [NSString stringWithFormat:@"Pressure %.0f mm",
                               [[driver pressure] floatValue]];
 
         // ugly way to change colours
