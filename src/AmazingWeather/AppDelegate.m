@@ -312,7 +312,6 @@
 
 - (void)updateNowAndCheckLocation:(id)sender {
     [locationManager startUpdatingLocation];
-    [updateTimer fire];
 }
 
 - (void)updateNow:(id)sender {
