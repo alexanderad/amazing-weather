@@ -28,8 +28,8 @@
     [self initDriver];
     [self initDisplay];
 
-    [self initLocationManager];
-    [self subscribeToEvents];
+//    [self initLocationManager];
+  //  [self subscribeToEvents];
     
     // start update timer to tick
 //    updateTimer = [NSTimer scheduledTimerWithTimeInterval: UPDATE_INTERVAL
@@ -120,6 +120,7 @@
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
     // set up display properties for data in menu bar
+    /*
     NSFont *titleFont = [NSFont fontWithName:@"Weather Icons" size:15.0];
     NSDictionary *titleAttributes = [NSDictionary dictionaryWithObject: titleFont
                                                                 forKey: NSFontAttributeName];
@@ -141,24 +142,63 @@
     [title addAttribute: NSBaselineOffsetAttributeName
                   value: @(4.5)
                   range: NSMakeRange(1, title.length - 1)];
-    
+    */
+
     // create status bar finally and assign the menu
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     statusItem.menu = statusBarMenu;
-    [statusItem setAttributedTitle:title];
     [statusItem setHighlightMode:YES];
+    
+    [self setWeatherIconPending];
 }
 
 - (void) setWeatherIconPending {
     // set weather icon to "Getting weather data"
+    [self setWeather:kWeatherRefreshIcon withData:@""];
 }
 
-- (void) setWeatherIcon:(NSString *) code {
-    // update weather icon code
+- (void) setWeather:(NSString *)icon withData:(NSString *)data {
+    if (icon.length == 0) {
+        icon = kWeatherDefaultIcon;
+    }
+    NSMutableAttributedString *titleIcon = [self getWeatherIconFormatted:icon];
+    if (data.length > 0) {
+        NSMutableAttributedString *titleData = [self getWeatherDataFormatted:data];
+        [titleIcon appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        [titleIcon appendAttributedString:titleData];
+    };
+    [statusItem setAttributedTitle:titleIcon];
 }
 
-- (void) setWeatherData:(NSString *) data {
-    // update weather data
+- (NSMutableAttributedString*) getWeatherDataFormatted:(NSString *) data {
+    // Format data for display
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:data];
+    [title appendAttributedString:[[NSAttributedString alloc] initWithString:@"°"]];
+    NSFont *temperatureFont = [NSFont systemFontOfSize:[NSFont systemFontSize]];
+    [title addAttribute: NSFontAttributeName
+                  value: temperatureFont
+                  range: NSMakeRange(0, title.length)];
+    
+    // vertical offset for temperature
+    [title addAttribute: NSBaselineOffsetAttributeName
+                  value: @(3.0)
+                  range: NSMakeRange(0, title.length)];
+    return title;
+}
+
+- (NSMutableAttributedString*) getWeatherIconFormatted:(NSString *) code {
+    // format weather icon for display
+    NSFont *titleFont = [NSFont fontWithName:@"Weather Icons" size:15.0];
+    NSDictionary *titleAttributes = [NSDictionary dictionaryWithObject: titleFont
+                                                                forKey: NSFontAttributeName];
+    NSMutableAttributedString* title = [[NSMutableAttributedString alloc] initWithString: code
+                                                                              attributes: titleAttributes];
+    
+    // vertical offset for icon
+    [title addAttribute: NSBaselineOffsetAttributeName
+                  value: @(1.0)
+                  range: NSMakeRange(0, code.length)];
+    return title;
 }
 
 - (void) updateDisplay {

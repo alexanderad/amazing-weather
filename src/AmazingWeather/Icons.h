@@ -9,9 +9,13 @@
 #ifndef AmazingWeather_Icons_h
 #define AmazingWeather_Icons_h
 
+// font properties constants
+//#define kTitleFontSize 14
+//#define kTitleVerticalOffset
+
 // misc icons
-#define kRefreshWeatherIcon [NSString stringWithFormat:@"\uf03e"]
-#define kDefaultWeatherIcon [NSString stringWithFormat:@"\uf041"]
+#define kWeatherRefreshIcon [NSString stringWithFormat:@"\uf03e"]
+#define kWeatherDefaultIcon [NSString stringWithFormat:@"\uf041"]
 
 // plain codes
 #define kOWDWeatherCode200 [NSString stringWithFormat:@"\uf01e"]
