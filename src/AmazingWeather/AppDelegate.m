@@ -31,11 +31,11 @@
     [self subscribeToEvents];
     
     // start update timer to tick
-    updateTimer = [NSTimer scheduledTimerWithTimeInterval: UPDATE_INTERVAL
-                                                   target: self
-                                                 selector: @selector(onTick:)
-                                                 userInfo: nil
-                                                  repeats: YES];
+//    updateTimer = [NSTimer scheduledTimerWithTimeInterval: UPDATE_INTERVAL
+//                                                   target: self
+//                                                 selector: @selector(onTick:)
+//                                                 userInfo: nil
+//                                                  repeats: YES];
 }
 
 - (void) initLocationManager {
@@ -118,11 +118,46 @@
     [statusBarMenu addItemWithTitle:@"About" action:@selector(about:) keyEquivalent:@""];
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
-    // create status bar and assign menu
+    // set up display properties for data in menu bar
+    NSFont *titleFont = [NSFont fontWithName:@"Weather Icons" size:12.0];
+    NSDictionary *titleAttributes = [NSDictionary dictionaryWithObject: titleFont
+                                                                forKey: NSFontAttributeName];
+    NSMutableAttributedString* title = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"\u266F 21"]
+                                                                              attributes: titleAttributes];
+    
+    // vertical offset for icon
+    [title addAttribute: NSBaselineOffsetAttributeName
+                  value: @(4.0)
+                  range: NSMakeRange(0, 1)];
+    
+    // font for temperature
+    NSFont *temperatureFont = [NSFont systemFontOfSize:[NSFont systemFontSize]];
+    [title addAttribute: NSFontAttributeName
+                  value:temperatureFont
+                  range: NSMakeRange(1, title.length - 1)];
+
+    // vertical offset for temperature
+    [title addAttribute: NSBaselineOffsetAttributeName
+                  value: @(4.5)
+                  range: NSMakeRange(1, title.length - 1)];
+    
+    // create status bar finally and assign the menu
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     statusItem.menu = statusBarMenu;
-    [statusItem setTitle:@"AW"];
-    [statusItem setHighlightMode:NO];
+    [statusItem setAttributedTitle:title];
+    [statusItem setHighlightMode:YES];
+}
+
+- (void) setWeatherIconPending {
+    // set weather icon to "Getting weather data"
+}
+
+- (void) setWeatherIcon:(NSString *) code {
+    // update weather icon code
+}
+
+- (void) setWeatherData:(NSString *) data {
+    // update weather data
 }
 
 - (void) updateDisplay {
@@ -233,7 +268,7 @@
     if ([LLManager launchAtLogin])
     {
         //[LLManager setLaunchAtLogin:NO];
-        [self.statusItem itemWithTag:kStartAtLogin].state = NSOffState;
+        [self.statusItem.menu itemWithTag:kStartAtLogin].state = NSOffState;
     }
     else
     {
