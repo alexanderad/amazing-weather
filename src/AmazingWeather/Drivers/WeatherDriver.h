@@ -17,6 +17,7 @@
 
 @property (readonly) NSString *location;
 @property (readonly) NSString *weatherCode;
+@property (readonly) NSString *weatherDescription;
 
 @property (readonly) double temperatureCelsius;
 @property (readonly) double temperatureKelvin;

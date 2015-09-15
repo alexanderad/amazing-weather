@@ -15,7 +15,7 @@
 @implementation WeatherDriver
 
 @synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
-@synthesize location, weatherCode, windSpeed, windDirection;
+@synthesize location, weatherCode, weatherDescription, windSpeed, windDirection;
 @synthesize humidity, pressure;
 @synthesize sunrise, sunset;
 
@@ -45,7 +45,11 @@
     
     // weather code
     weatherCode = [[rawData valueAtIndex:0 inPropertyWithKey:@"weather"] valueForKey:@"id"];
-    
+
+    NSString *descriptionMain = [[rawData valueAtIndex:0 inPropertyWithKey:@"weather"] valueForKey:@"main"];
+    NSString *descriptionFull = [[rawData valueAtIndex:0 inPropertyWithKey:@"weather"] valueForKey:@"description"];
+    weatherDescription = [[NSString alloc] initWithFormat:@"%@: %@", descriptionMain, descriptionFull];
+
     // wind
     windSpeed = [[rawData valueForKey:@"wind"] valueForKey:@"speed"];
     double windDirectionDegrees = [[[rawData valueForKey:@"wind"] valueForKey:@"deg"] doubleValue];

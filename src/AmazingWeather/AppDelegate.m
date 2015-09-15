@@ -97,17 +97,19 @@
     [menuUpdatedAtItem setAction:@selector(updateNow:)];
     [menuUpdatedAtItem setEnabled:YES];
     
-    NSMenuItem *menuWeatherDataItem = [[NSMenuItem alloc] initWithTitle:@"..."
+    NSMenuItem *menuWeatherDataItem = [[NSMenuItem alloc] initWithTitle:@""
                                                                  action:nil
                                                           keyEquivalent:@""];
     [menuWeatherDataItem setTag:kTagWeatherData];
     [menuWeatherDataItem setEnabled:NO];
+    [menuWeatherDataItem setHidden:YES];
 
-    NSMenuItem *menuLocationDataItem = [[NSMenuItem alloc] initWithTitle:@"Locating you..."
+    NSMenuItem *menuLocationDataItem = [[NSMenuItem alloc] initWithTitle:@""
                                                                   action:nil
                                                            keyEquivalent:@""];
     [menuLocationDataItem setTag:kTagLocation];
     [menuLocationDataItem setEnabled:NO];
+    [menuLocationDataItem setHidden:YES];
     
     NSMenuItem *startAtLoginMenu = [[NSMenuItem alloc] initWithTitle:@"Start at login"
                                                               action:@selector(toggleStartAtLogin:)
@@ -127,12 +129,15 @@
     NSMenu *statusBarMenu = [[NSMenu alloc] init];
     [statusBarMenu setDelegate:self];
     [statusBarMenu addItem:menuUpdatedAtItem];
+
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:menuLocationDataItem];
     [statusBarMenu addItem:menuWeatherDataItem];
-    [statusBarMenu addItem:[NSMenuItem separatorItem]];
 
+    [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:preferencesItem];
+
+    [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItemWithTitle:@"About" action:@selector(about:) keyEquivalent:@""];
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
@@ -160,9 +165,9 @@
     NSLog(@"setWeather call: icon %@, data %@", icon, data);
     
     NSString *iconConstant = [[Icons getIconsDictionary] objectForKey:icon];
-//    if(iconConstant == (id)[NSNull null]) {
-//        NSString *iconConstant = kWeatherDefaultIcon;
-//    }
+    if(iconConstant == (id)[NSNull null]) {
+        NSString *iconConstant = kWeatherDefaultIcon;
+    }
 
     NSMutableAttributedString *titleIcon = [[NSMutableAttributedString alloc] initWithAttributedString:[self getWeatherIconFormatted:iconConstant]];
 //    if (data.length > 0) {
@@ -240,9 +245,8 @@
                                            NSFontAttributeName, nil];
         
         NSArray *weatherDataArray = [NSArray arrayWithObjects:
-                                     temperature, wind,
-                                     humidity, pressure,
-                                     nil];
+                                     temperature, [driver weatherDescription],
+                                     wind, humidity, pressure, nil];
 
         // dumb filtering of null values in rendered strings...
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT(SELF contains[c] '(null)')"];
@@ -253,12 +257,14 @@
                                                            initWithString:joined
                                                            attributes:weatherAttributes];
         [self.statusItem.menu itemWithTag:kTagWeatherData].attributedTitle = weatherDataAString;
+        [self.statusItem.menu itemWithTag:kTagWeatherData].hidden = NO;
 
         // location
         NSAttributedString *location = [[NSAttributedString alloc]
                                         initWithString:[driver location]
                                         attributes:weatherAttributes];
         [self.statusItem.menu itemWithTag:kTagLocation].attributedTitle = location;
+        [self.statusItem.menu itemWithTag:kTagLocation].hidden = NO;
 
         // updated at
         NSString *dateString = [NSString stringWithFormat:@"Updated at %@",
@@ -310,7 +316,7 @@
 }
 
 - (void)updateNow:(id)sender {
-    [locationManager startUpdatingLocation];
+    [updateTimer fire];
 }
 
 - (void)toggleStartAtLogin:(id)sender

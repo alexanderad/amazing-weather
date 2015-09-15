@@ -161,9 +161,7 @@
 			children = (
 				9E4C9B47189C217A00665BC3 /* AmazingWeather */,
 				9ED14E901BA5E40C00BB40B4 /* LaunchAtLoginHelper.xcodeproj */,
-				9ED14E931BA5E40C00BB40B4 /* LLManager.h */,
-				9ED14E941BA5E40C00BB40B4 /* LLManager.m */,
-				9ED14E951BA5E40C00BB40B4 /* LLStrings.h */,
+				9EBEED411BA8A9530035E8B8 /* LLManager */,
 				9E4C9B65189C217A00665BC3 /* AmazingWeatherTests */,
 				9E4C9B40189C217A00665BC3 /* Frameworks */,
 				9E4C9B3F189C217A00665BC3 /* Products */,
@@ -273,6 +271,16 @@
 				9EBEED3E1BA8A8540035E8B8 /* weathericons-regular-webfont.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9EBEED411BA8A9530035E8B8 /* LLManager */ = {
+			isa = PBXGroup;
+			children = (
+				9ED14E931BA5E40C00BB40B4 /* LLManager.h */,
+				9ED14E941BA5E40C00BB40B4 /* LLManager.m */,
+				9ED14E951BA5E40C00BB40B4 /* LLStrings.h */,
+			);
+			name = LLManager;
 			sourceTree = "<group>";
 		};
 		9ED14E911BA5E40C00BB40B4 /* Products */ = {
