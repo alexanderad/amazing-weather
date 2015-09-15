@@ -200,4 +200,8 @@
 #define kOWDNightWeatherCodeCode906 [NSString stringWithFormat:@"\uf024"]
 #define kOWDNightWeatherCodeCode957 [NSString stringWithFormat:@"\uf050"]
 
+@interface Icons : NSObject
+    +(NSDictionary*)getIconsDictionary;
+@end
+
 #endif

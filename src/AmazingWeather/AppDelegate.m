@@ -148,8 +148,8 @@
     /*
      * Set weather icon to "Getting weather data".
      */
-    
-    [self setWeather:kWeatherRefreshIcon withData:@""];
+    NSMutableAttributedString *titleIcon = [self getWeatherIconFormatted:kWeatherRefreshIcon];
+    [statusItem setAttributedTitle:titleIcon];
 }
 
 - (void) setWeather:(NSString *)icon withData:(NSString *)data {
@@ -157,12 +157,14 @@
      * Sets weather with given icon and data.
      */
     
-    if (icon.length == 0) {
-        // fallback to default icon if none
-        icon = kWeatherDefaultIcon;
+    NSLog(@"setWeather call: icon %@, data %@", icon, data);
+    
+    NSString *iconConstant = [[Icons getIconsDictionary] objectForKey:icon];
+    if(iconConstant == (id)[NSNull null]) {
+        iconConstant = kWeatherDefaultIcon;
     }
 
-    NSMutableAttributedString *titleIcon = [self getWeatherIconFormatted:icon];
+    NSMutableAttributedString *titleIcon = [self getWeatherIconFormatted:iconConstant];
     if (data.length > 0) {
         NSMutableAttributedString *titleData = [self getWeatherDataFormatted:data];
         [titleIcon appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
@@ -216,7 +218,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"HH:mm"];
     
-    [self setWeather:@"" withData:[NSString stringWithFormat:@"%.0f", [driver temperatureCelsius]]];
+    [self setWeather:[driver weatherCode] withData:[NSString stringWithFormat:@"%.0f", [driver temperatureCelsius]]];
         
     // format all the data to strings
     NSString *temperature = [NSString stringWithFormat:@"Temperature: %.2f°C", [driver temperatureCelsius]];
