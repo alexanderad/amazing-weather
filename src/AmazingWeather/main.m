@@ -17,7 +17,7 @@ int main(int argc, const char * argv[]) {
         // allocate our delegate and run all that shi
         AppDelegate *appDelegate = [[AppDelegate alloc] init];
         [NSApp setDelegate:appDelegate];
-        
+
         // run main loop
         [NSApp run];
     }
