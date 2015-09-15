@@ -96,6 +96,7 @@
 		9ED14E9C1BA5E49E00BB40B4 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9EED94E318A96867002BDEC2 /* Amazing Weather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Amazing Weather.entitlements"; sourceTree = "<group>"; };
+		9EFCA3421BA84057009A2ED4 /* Icons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Icons.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +179,7 @@
 		9E4C9B47189C217A00665BC3 /* AmazingWeather */ = {
 			isa = PBXGroup;
 			children = (
+				9EFCA3411BA8403C009A2ED4 /* WeatherIcons */,
 				9E9F5A9C18C6588B00C77D5B /* Drivers */,
 				9E4F7A4C18C3D1670038D097 /* AmazingWeather.entitlements */,
 				9E921CA618BBF15400B38901 /* Windows */,
@@ -245,6 +247,14 @@
 				9ED14E991BA5E40C00BB40B4 /* LaunchAtLoginHelper.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		9EFCA3411BA8403C009A2ED4 /* WeatherIcons */ = {
+			isa = PBXGroup;
+			children = (
+				9EFCA3421BA84057009A2ED4 /* Icons.h */,
+			);
+			name = WeatherIcons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

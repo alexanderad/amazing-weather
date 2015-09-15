@@ -12,6 +12,7 @@
 #import "WeatherDriver.h"
 #import "Preferences.h"
 #import "LLManager.h"
+#import "Icons.h"
 
 #define UPDATE_INTERVAL (60 * 10) + arc4random_uniform(25)
 
@@ -119,10 +120,10 @@
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
     // set up display properties for data in menu bar
-    NSFont *titleFont = [NSFont fontWithName:@"Weather Icons" size:12.0];
+    NSFont *titleFont = [NSFont fontWithName:@"Weather Icons" size:15.0];
     NSDictionary *titleAttributes = [NSDictionary dictionaryWithObject: titleFont
                                                                 forKey: NSFontAttributeName];
-    NSMutableAttributedString* title = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"\u266F 21"]
+    NSMutableAttributedString* title = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"\uf03e 21"]
                                                                               attributes: titleAttributes];
     
     // vertical offset for icon
