@@ -2,7 +2,7 @@
 //  Icons.h
 //  AmazingWeather
 //
-//  Created by Darednaxella on 9/15/15.
+//  Created by Alexander Shchapov on 9/15/15.
 //
 //
 
@@ -69,8 +69,7 @@
 #define kOWDWeatherCode800 [NSString stringWithFormat:@"\uf00d"]
 #define kOWDWeatherCode801 [NSString stringWithFormat:@"\uf011"]
 #define kOWDWeatherCode802 [NSString stringWithFormat:@"\uf011"]
-#define kOWDWeatherCode803 [NSString stringWithFormat:@"\uf011"] // 803 redefinition?
-#define kOWDWeatherCode803 [NSString stringWithFormat:@"\uf012"]
+#define kOWDWeatherCode803 [NSString stringWithFormat:@"\uf011"]
 #define kOWDWeatherCode804 [NSString stringWithFormat:@"\uf013"]
 #define kOWDWeatherCode900 [NSString stringWithFormat:@"\uf056"]
 #define kOWDWeatherCode901 [NSString stringWithFormat:@"\uf01d"]

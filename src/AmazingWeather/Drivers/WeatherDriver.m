@@ -9,14 +9,15 @@
 #import "WeatherDriver.h"
 #import "WeatherDriver+Helper.h"
 
-#define API_KEY @"fcuxufej65rppfg299cnhy4q"
-#define API_URL @"http://api.worldweatheronline.com/free/v1/weather.ashx"
+#define API_KEY @"1fb7c021c52aef899d2b8f4f498ebeef"
+#define API_URL @"http://api.openweathermap.org/data/2.5/weather"
 
 @implementation WeatherDriver
 
 @synthesize temperatureKelvin, temperatureCelsius, temperatureFarenheit;
 @synthesize location, windSpeed, windDirection;
 @synthesize humidity, pressure;
+@synthesize sunrise, sunset;
 
 -(void) setCurrentCoordinates:(CLLocationCoordinate2D)coordinates {
     currentCoordinates = coordinates;
@@ -28,51 +29,44 @@
 }
 
 -(void) parseData {
-    NSDictionary *data = [rawData valueForKey:@"data"];
-    NSDictionary *current = [data valueForKey:@"current_condition"];
-
     // temperatures
-    temperatureCelsius = [[[current valueForKey:@"temp_C"] objectAtIndex:0] doubleValue];
-    temperatureKelvin = [self convertDegrees:temperatureCelsius
-                                    fromUnit:@"Celsius"
-                                      toUnit:@"Kelvin"];
+    temperatureKelvin = [[[rawData valueForKey:@"main"] valueForKey:@"temp"] doubleValue];
+    temperatureCelsius = [self convertDegrees:temperatureKelvin
+                                     fromUnit:@"Kelvin"
+                                       toUnit:@"Celsius"];
     temperatureFarenheit = [self convertDegrees:temperatureKelvin
                                        fromUnit:@"Kelvin"
                                          toUnit:@"Farenheit"];
-
+    
     // location reported
-    NSString *areaName = [[[[[data valueForKey:@"nearest_area"]
-                              valueForKey:@"areaName"]
-                              valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
-    NSString *region = [[[[[data valueForKey:@"nearest_area"]
-                            valueForKey:@"region"]
-                            valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
-    //NSString *region = @"";
-    NSString *country = [[[[[data valueForKey:@"nearest_area"]
-                            valueForKey:@"country"]
-                           valueForKey:@"value"] objectAtIndex:0] objectAtIndex:0];
-    location = [NSString stringWithFormat:@"%@\n%@\n%@", areaName, region, country];
-
+    location = [NSString stringWithFormat:@"%@ (%@)",
+                [rawData valueForKey:@"name"],
+                [[rawData valueForKey:@"sys"] valueForKey:@"country"]];
+    
     // wind
-    double windKmph = [[[current valueForKey:@"windspeedKmph"] objectAtIndex:0] doubleValue];
-    double windMps = windKmph * 0.277777778;
-    windSpeed = [NSNumber numberWithDouble:windMps];
-    windDirection = [[current valueForKey:@"winddir16Point"] objectAtIndex:0];
-
+    windSpeed = [[rawData valueForKey:@"wind"] valueForKey:@"speed"];
+    double windDirectionDegrees = [[[rawData valueForKey:@"wind"] valueForKey:@"deg"] doubleValue];
+    windDirection = [self getWindDirectionDisplay:windDirectionDegrees];
+    
     // humidity & pressure
-    humidity = [[current valueForKey:@"humidity"] objectAtIndex:0];
-    double pressureMb = [[[current valueForKey:@"pressure"] objectAtIndex:0] doubleValue];
-    double pressureMm = pressureMb * 0.75218;
-    pressure = [NSNumber numberWithDouble:pressureMm];
+    humidity = [[rawData valueForKey:@"main"] valueForKey:@"humidity"];
+    pressure = [[rawData valueForKey:@"main"] valueForKey:@"pressure"];
+    
+    // sunrise & sunset
+    NSTimeInterval interval;
+    interval = [[[rawData valueForKey:@"sys"] valueForKey:@"sunrise"] doubleValue];
+    sunrise = [NSDate dateWithTimeIntervalSince1970:interval];
+    interval = [[[rawData valueForKey:@"sys"] valueForKey:@"sunset"] doubleValue];
+    sunset = [NSDate dateWithTimeIntervalSince1970:interval];
 
     [[NSNotificationCenter defaultCenter] postNotificationName:@"weatherDataReady" object:nil];
 }
 
--(void) fetchData {
+-(void) fetchData
+{
     NSLog(@"fetchData: %f lat, %f lon", currentCoordinates.latitude, currentCoordinates.longitude);
-    NSString *url =
-        [NSString stringWithFormat:@"%@?q=%f,%f&format=json&fx=no&includelocation=yes&key=%@",
-         API_URL, currentCoordinates.latitude, currentCoordinates.longitude, API_KEY];
+    NSString *url = [NSString stringWithFormat:@"%@?lat=%f&lon=%f&lang=en&APPID=%@",
+                     API_URL, currentCoordinates.latitude, currentCoordinates.longitude, API_KEY];
     NSLog(@"%@", url);
     [self getJSONFromServer:url];
 }

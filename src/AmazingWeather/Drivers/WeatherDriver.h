@@ -24,6 +24,9 @@
 @property (readonly) NSNumber *humidity;
 @property (readonly) NSNumber *pressure;
 
+@property (readonly) NSDate *sunrise;
+@property (readonly) NSDate *sunset;
+
 @property (readonly) NSNumber *windSpeed;
 @property (readonly) NSString *windDirection;
 

@@ -23,23 +23,30 @@
 
 @synthesize statusItem, locationManager, updateTimer;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    /*
+     * Let The Show begin!
+     */
+    
     [self initDriver];
     [self initDisplay];
 
-//    [self initLocationManager];
-  //  [self subscribeToEvents];
+    [self initLocationManager];
+    [self subscribeToEvents];
     
-    // start update timer to tick
-//    updateTimer = [NSTimer scheduledTimerWithTimeInterval: UPDATE_INTERVAL
-//                                                   target: self
-//                                                 selector: @selector(onTick:)
-//                                                 userInfo: nil
-//                                                  repeats: YES];
+    // make update timer to tick at semi-random intervals
+    updateTimer = [NSTimer scheduledTimerWithTimeInterval: UPDATE_INTERVAL
+                                                   target: self
+                                                 selector: @selector(onTick:)
+                                                 userInfo: nil
+                                                  repeats: YES];
 }
 
 - (void) initLocationManager {
+    /*
+     * Init a location manager to get location updates.
+     */
+    
     if (nil == locationManager) {
         locationManager = [[CLLocationManager alloc] init];
     }
@@ -49,6 +56,10 @@
 }
 
 - (void) subscribeToEvents {
+    /*
+     * Subscribe to some of system events we may use to manage weather updates.
+     */
+    
     // we're interested in lid opened/closed to keep the data updated
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver: self
                                                            selector: @selector(receiveWakeNote:)
@@ -67,11 +78,18 @@
 }
 
 - (void) initDriver {
+    /* 
+     * Initialize weather driver.
+     */
+    
     driver = [[WeatherDriver alloc] init];
 }
 
 - (void) initDisplay {
-    // create a menu, set initial values
+    /*
+     * Initialize display (menu, title, etc).
+     */
+    
     NSMenuItem *menuUpdatedAtItem = [[NSMenuItem alloc] initWithTitle:@"Updating data..."
                                                                action:nil
                                                         keyEquivalent:@""];
@@ -111,7 +129,6 @@
     [statusBarMenu addItem:menuUpdatedAtItem];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:menuLocationDataItem];
-    [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItem:menuWeatherDataItem];
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
 
@@ -119,31 +136,6 @@
     [statusBarMenu addItemWithTitle:@"About" action:@selector(about:) keyEquivalent:@""];
     [statusBarMenu addItemWithTitle:@"Quit" action:@selector(terminate:) keyEquivalent:@"q"];
     
-    // set up display properties for data in menu bar
-    /*
-    NSFont *titleFont = [NSFont fontWithName:@"Weather Icons" size:15.0];
-    NSDictionary *titleAttributes = [NSDictionary dictionaryWithObject: titleFont
-                                                                forKey: NSFontAttributeName];
-    NSMutableAttributedString* title = [[NSMutableAttributedString alloc] initWithString: [NSString stringWithFormat:@"\uf03e 21"]
-                                                                              attributes: titleAttributes];
-    
-    // vertical offset for icon
-    [title addAttribute: NSBaselineOffsetAttributeName
-                  value: @(4.0)
-                  range: NSMakeRange(0, 1)];
-    
-    // font for temperature
-    NSFont *temperatureFont = [NSFont systemFontOfSize:[NSFont systemFontSize]];
-    [title addAttribute: NSFontAttributeName
-                  value:temperatureFont
-                  range: NSMakeRange(1, title.length - 1)];
-
-    // vertical offset for temperature
-    [title addAttribute: NSBaselineOffsetAttributeName
-                  value: @(4.5)
-                  range: NSMakeRange(1, title.length - 1)];
-    */
-
     // create status bar finally and assign the menu
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     statusItem.menu = statusBarMenu;
@@ -153,14 +145,23 @@
 }
 
 - (void) setWeatherIconPending {
-    // set weather icon to "Getting weather data"
+    /*
+     * Set weather icon to "Getting weather data".
+     */
+    
     [self setWeather:kWeatherRefreshIcon withData:@""];
 }
 
 - (void) setWeather:(NSString *)icon withData:(NSString *)data {
+    /*
+     * Sets weather with given icon and data.
+     */
+    
     if (icon.length == 0) {
+        // fallback to default icon if none
         icon = kWeatherDefaultIcon;
     }
+
     NSMutableAttributedString *titleIcon = [self getWeatherIconFormatted:icon];
     if (data.length > 0) {
         NSMutableAttributedString *titleData = [self getWeatherDataFormatted:data];
@@ -171,7 +172,10 @@
 }
 
 - (NSMutableAttributedString*) getWeatherDataFormatted:(NSString *) data {
-    // Format data for display
+    /*
+     * Prepare weather data (actual temperature value) to be displayed.
+     */
+    
     NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:data];
     [title appendAttributedString:[[NSAttributedString alloc] initWithString:@"°"]];
     NSFont *temperatureFont = [NSFont systemFontOfSize:[NSFont systemFontSize]];
@@ -179,7 +183,7 @@
                   value: temperatureFont
                   range: NSMakeRange(0, title.length)];
     
-    // vertical offset for temperature
+    // vertical offset for temperature value
     [title addAttribute: NSBaselineOffsetAttributeName
                   value: @(3.0)
                   range: NSMakeRange(0, title.length)];
@@ -187,7 +191,10 @@
 }
 
 - (NSMutableAttributedString*) getWeatherIconFormatted:(NSString *) code {
-    // format weather icon for display
+    /*
+     * Prepare given weather icon to be displayed.
+     */
+    
     NSFont *titleFont = [NSFont fontWithName:@"Weather Icons" size:15.0];
     NSDictionary *titleAttributes = [NSDictionary dictionaryWithObject: titleFont
                                                                 forKey: NSFontAttributeName];
@@ -202,20 +209,21 @@
 }
 
 - (void) updateDisplay {
-    {
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
-        [dateFormatter setDateFormat:@"HH:mm"];
+    /*
+     * Process weather update event.
+     */
+     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    
+    [self setWeather:@"" withData:[NSString stringWithFormat:@"%.0f", [driver temperatureCelsius]]];
         
-        // we round it now, allowing user to change that behavior later
-        [statusItem setTitle:[NSString stringWithFormat:@"%.0f°C", [driver temperatureCelsius]]];
+    // format all the data to strings
+    NSString *temperature = [NSString stringWithFormat:@"Temperature: %.2f°C", [driver temperatureCelsius]];
         
-        // format all the data to strings
-        NSString *temperature = [NSString stringWithFormat:@"Temperature: %.2f°C",
-                                 [driver temperatureCelsius]];
-        
-        NSString *wind = [NSString stringWithFormat:@"Wind: %.0f m/s (%@)",
-                          [[driver windSpeed] floatValue],
-                          [driver windDirection]];
+    NSString *wind = [NSString stringWithFormat:@"Wind: %.0f m/s (%@)",
+                      [[driver windSpeed] floatValue],
+                      [driver windDirection]];
         
         NSString *humidity = [NSString stringWithFormat:@"Humidity: %@%%",
                               [driver humidity]];
@@ -254,7 +262,6 @@
         NSString *dateString = [NSString stringWithFormat:@"Updated at %@",
                                 [dateFormatter stringFromDate:[NSDate date]]];
         [self.statusItem.menu itemWithTag:kTagUpdatedAt].title = dateString;
-    }
 }
 
 // subscribe to location change event and get city from CoreLocation
