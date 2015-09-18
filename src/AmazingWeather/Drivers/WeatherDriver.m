@@ -10,7 +10,7 @@
 #import "WeatherDriver+Helper.h"
 
 #define API_KEY @"1fb7c021c52aef899d2b8f4f498ebeef"
-#define API_URL @"http://api.openweathermap.org/data/2.5/weather"
+#define API_URL @"https://2gi75o6eaa.execute-api.eu-west-1.amazonaws.com/prod/weather"
 
 @implementation WeatherDriver
 
@@ -39,16 +39,12 @@
                                          toUnit:@"Farenheit"];
     
     // location reported
-    location = [NSString stringWithFormat:@"%@ (%@)",
-                [rawData valueForKey:@"name"],
-                [[rawData valueForKey:@"sys"] valueForKey:@"country"]];
+    location = [rawData valueForKey:@"name"];
     
     // weather code
     weatherCode = [[rawData valueAtIndex:0 inPropertyWithKey:@"weather"] valueForKey:@"id"];
 
-    NSString *descriptionMain = [[rawData valueAtIndex:0 inPropertyWithKey:@"weather"] valueForKey:@"main"];
-    NSString *descriptionFull = [[rawData valueAtIndex:0 inPropertyWithKey:@"weather"] valueForKey:@"description"];
-    weatherDescription = [[NSString alloc] initWithFormat:@"%@: %@", descriptionMain, descriptionFull];
+    weatherDescription = [[rawData valueAtIndex:0 inPropertyWithKey:@"weather"] valueForKey:@"description"];
 
     // wind
     windSpeed = [[rawData valueForKey:@"wind"] valueForKey:@"speed"];
@@ -72,8 +68,8 @@
 -(void) fetchData
 {
     NSLog(@"fetchData: %f lat, %f lon", currentCoordinates.latitude, currentCoordinates.longitude);
-    NSString *url = [NSString stringWithFormat:@"%@?lat=%f&lon=%f&lang=en&APPID=%@",
-                     API_URL, currentCoordinates.latitude, currentCoordinates.longitude, API_KEY];
+    NSString *url = [NSString stringWithFormat:@"%@?lat=%f&lon=%f",
+                     API_URL, currentCoordinates.latitude, currentCoordinates.longitude];
     NSLog(@"%@", url);
     [self getJSONFromServer:url];
 }

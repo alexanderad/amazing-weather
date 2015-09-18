@@ -1,0 +1,37 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "DA6C50312CA20343CCDD182677B4B3EF7F2BECE8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "DA6C50312CA20343CCDD182677B4B3EF7F2BECE8" : 0,
+    "F527D69A01ED9F9A0C05856FD07E4C52CB07D3C0" : 0,
+    "3B60CB1A-8E4D-4332-AFF3-7ED3378A2FDD" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "0EC0A524-EDC6-476F-84C7-BDE129139AE8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "DA6C50312CA20343CCDD182677B4B3EF7F2BECE8" : "Amazing%20Weather",
+    "F527D69A01ED9F9A0C05856FD07E4C52CB07D3C0" : "Amazing%20Weather\/src\/LaunchAtLoginHelper",
+    "3B60CB1A-8E4D-4332-AFF3-7ED3378A2FDD" : "Amazing Weather"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AmazingWeather",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "src\/AmazingWeather.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "ssh:\/\/github.com\/alexanderad\/amazing-weather.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3B60CB1A-8E4D-4332-AFF3-7ED3378A2FDD"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:alexanderad\/amazing-weather.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "DA6C50312CA20343CCDD182677B4B3EF7F2BECE8"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/kgn\/LaunchAtLoginHelper.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F527D69A01ED9F9A0C05856FD07E4C52CB07D3C0"
+    }
+  ]
+}

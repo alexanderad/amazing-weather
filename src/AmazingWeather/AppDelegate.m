@@ -170,11 +170,11 @@
     }
 
     NSMutableAttributedString *titleIcon = [[NSMutableAttributedString alloc] initWithAttributedString:[self getWeatherIconFormatted:iconConstant]];
-//    if (data.length > 0) {
-//        NSMutableAttributedString *titleData = [self getWeatherDataFormatted:data];
-//        [titleIcon appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
-//        [titleIcon appendAttributedString:titleData];
-//    };
+    if (data.length > 0) {
+        NSMutableAttributedString *titleData = [self getWeatherDataFormatted:data];
+        [titleIcon appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
+        [titleIcon appendAttributedString:titleData];
+    };
     [statusItem setAttributedTitle:titleIcon];
 }
 
@@ -191,9 +191,9 @@
 //                  range: NSMakeRange(0, title.length)];
 
     // vertical offset for temperature value
-    [title addAttribute: NSBaselineOffsetAttributeName
-                  value: @(13.0)
-                  range: NSMakeRange(0, title.length)];
+//    [title addAttribute: NSBaselineOffsetAttributeName
+//                  value: @(13.0)
+//                  range: NSMakeRange(0, title.length)];
     return title;
 }
 
@@ -226,16 +226,14 @@
     [self setWeather:[driver weatherCode] withData:[NSString stringWithFormat:@"%.0f", [driver temperatureCelsius]]];
         
     // format all the data to strings
-    NSString *temperature = [NSString stringWithFormat:@"Temperature %.2f°C", [driver temperatureCelsius]];
+    NSString *temperature = [NSString stringWithFormat:@"Temperature is %.2f°C", [driver temperatureCelsius]];
         
-    NSString *wind = [NSString stringWithFormat:@"Wind %.0f m/s (%@)",
+    NSString *wind = [NSString stringWithFormat:@"Wind is at %.0f m/s to %@",
                       [[driver windSpeed] floatValue],
                       [driver windDirection]];
         
         NSString *humidity = [NSString stringWithFormat:@"Humidity %@%%",
                               [driver humidity]];
-        NSString *pressure = [NSString stringWithFormat:@"Pressure %.0f mm",
-                              [[driver pressure] floatValue]];
 
         // ugly way to change colours
         NSDictionary *weatherAttributes = [NSDictionary
@@ -245,8 +243,7 @@
                                            NSFontAttributeName, nil];
         
         NSArray *weatherDataArray = [NSArray arrayWithObjects:
-                                     temperature, [driver weatherDescription],
-                                     wind, humidity, pressure, nil];
+                                     temperature, wind, humidity, nil];
 
         // dumb filtering of null values in rendered strings...
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"NOT(SELF contains[c] '(null)')"];
@@ -259,9 +256,10 @@
         [self.statusItem.menu itemWithTag:kTagWeatherData].attributedTitle = weatherDataAString;
         [self.statusItem.menu itemWithTag:kTagWeatherData].hidden = NO;
 
-        // location
+        // statement
+        NSString *statement = [NSString stringWithFormat:@"%@ in %@", [driver weatherDescription], [driver location]];
         NSAttributedString *location = [[NSAttributedString alloc]
-                                        initWithString:[driver location]
+                                        initWithString:statement
                                         attributes:weatherAttributes];
         [self.statusItem.menu itemWithTag:kTagLocation].attributedTitle = location;
         [self.statusItem.menu itemWithTag:kTagLocation].hidden = NO;
