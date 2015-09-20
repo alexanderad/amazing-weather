@@ -16,6 +16,7 @@
 		9E4C9B5A189C217A00665BC3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E4C9B59189C217A00665BC3 /* Images.xcassets */; };
 		9E4C9B61189C217A00665BC3 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B60189C217A00665BC3 /* XCTest.framework */; };
 		9E4C9B62189C217A00665BC3 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E4C9B41189C217A00665BC3 /* Cocoa.framework */; };
+		9E516EE31BAF1CCA00346F8F /* NSString+Addons.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E516EE21BAF1CCA00346F8F /* NSString+Addons.m */; settings = {ASSET_TAGS = (); }; };
 		9E8C08B41BA5E8CA005A36D6 /* LaunchAtLoginHelper.app in Copy Files */ = {isa = PBXBuildFile; fileRef = 9ED14E991BA5E40C00BB40B4 /* LaunchAtLoginHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9E921CA818BBF15400B38901 /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E921CA718BBF15400B38901 /* About.xib */; };
 		9E97746518B377F1005EC2BD /* StringsFile.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E97746418B377F1005EC2BD /* StringsFile.strings */; };
@@ -98,6 +99,8 @@
 		9E4C9B60189C217A00665BC3 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9E4C9B67189C217A00665BC3 /* AmazingWeatherTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AmazingWeatherTests-Info.plist"; sourceTree = "<group>"; };
 		9E4F7A4C18C3D1670038D097 /* AmazingWeather.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = AmazingWeather.entitlements; sourceTree = "<group>"; };
+		9E516EE11BAF1CCA00346F8F /* NSString+Addons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Addons.h"; sourceTree = "<group>"; };
+		9E516EE21BAF1CCA00346F8F /* NSString+Addons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Addons.m"; sourceTree = "<group>"; };
 		9E921CA718BBF15400B38901 /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 		9E97746418B377F1005EC2BD /* StringsFile.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = StringsFile.strings; sourceTree = "<group>"; };
 		9E9F5A9D18C6588B00C77D5B /* WeatherDriver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherDriver.h; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 			children = (
 				9E04A0DD18B14720000B28D3 /* Preferences.h */,
 				9E04A0DE18B14720000B28D3 /* Preferences.m */,
+				9E516EE11BAF1CCA00346F8F /* NSString+Addons.h */,
+				9E516EE21BAF1CCA00346F8F /* NSString+Addons.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E516EE31BAF1CCA00346F8F /* NSString+Addons.m in Sources */,
 				9E44DD2C1BA8A370002A1B68 /* Icons.m in Sources */,
 				9E4C9B55189C217A00665BC3 /* AppDelegate.m in Sources */,
 				9E9F5AA118C6588B00C77D5B /* WeatherDriver.m in Sources */,

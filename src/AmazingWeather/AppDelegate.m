@@ -10,6 +10,7 @@
 #import <stdlib.h>
 #import <CoreLocation/CoreLocation.h>
 #import "WeatherDriver.h"
+#import "NSString+Addons.h"
 #import "Preferences.h"
 #import "LLManager.h"
 #import "Icons.h"
