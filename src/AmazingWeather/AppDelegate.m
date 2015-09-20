@@ -31,15 +31,15 @@
     [self initDriver];
     [self initDisplay];
 
-    [self initLocationManager];
-    [self subscribeToEvents];
+//    [self initLocationManager];
+//    [self subscribeToEvents];
 
     // make update timer to tick at semi-random intervals
-    updateTimer = [NSTimer scheduledTimerWithTimeInterval: UPDATE_INTERVAL
-                                                   target: self
-                                                 selector: @selector(onTick:)
-                                                 userInfo: nil
-                                                  repeats: YES];
+//    updateTimer = [NSTimer scheduledTimerWithTimeInterval: UPDATE_INTERVAL
+//                                                   target: self
+//                                                 selector: @selector(onTick:)
+//                                                 userInfo: nil
+//                                                  repeats: YES];
 }
 
 - (void) initLocationManager {
@@ -145,8 +145,20 @@
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     statusItem.menu = statusBarMenu;
     [statusItem setHighlightMode:YES];
-    
-    [self setWeatherIconPending];
+
+    NSFont *titleFont = [NSFont fontWithName:@"Weather Icons" size:[NSFont systemFontSize]];
+
+    NSMutableAttributedString* title = [[NSMutableAttributedString alloc] initWithString: @"\uf00d 12\uf045"];
+    [title addAttribute: NSFontAttributeName
+                  value: titleFont
+                  range: NSMakeRange(0, title.length)];
+    [title addAttribute: NSBaselineOffsetAttributeName
+                  value: @(10.0)
+                  range: NSMakeRange(0, title.length)];
+
+    [statusItem setAttributedTitle:title];
+
+    //[self setWeatherIconPending];
 }
 
 - (void) setWeatherIconPending {
