@@ -31,15 +31,15 @@
     [self initDriver];
     [self initDisplay];
 
-//    [self initLocationManager];
-//    [self subscribeToEvents];
+    [self initLocationManager];
+    [self subscribeToEvents];
 
     // make update timer to tick at semi-random intervals
-//    updateTimer = [NSTimer scheduledTimerWithTimeInterval: UPDATE_INTERVAL
-//                                                   target: self
-//                                                 selector: @selector(onTick:)
-//                                                 userInfo: nil
-//                                                  repeats: YES];
+    updateTimer = [NSTimer scheduledTimerWithTimeInterval: UPDATE_INTERVAL
+                                                   target: self
+                                                 selector: @selector(onTick:)
+                                                 userInfo: nil
+                                                  repeats: YES];
 }
 
 - (void) initLocationManager {
@@ -114,9 +114,10 @@
     NSMenuItem *startAtLoginMenu = [[NSMenuItem alloc] initWithTitle:@"Start at login"
                                                               action:@selector(toggleStartAtLogin:)
                                                        keyEquivalent:@""];
+    [startAtLoginMenu setTarget:self];
     [startAtLoginMenu setTag:kStartAtLogin];
-    startAtLoginMenu.target = self;
-    startAtLoginMenu.state = ([LLManager launchAtLogin]) ? NSOnState : NSOffState;
+
+    [startAtLoginMenu setState:([LLManager launchAtLogin]) ? NSOnState : NSOffState];
 
     // preferences
     NSMenu *preferencesSubmenu = [NSMenu alloc];
@@ -144,29 +145,20 @@
     // create status bar finally and assign the menu
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
     statusItem.menu = statusBarMenu;
-    [statusItem setHighlightMode:YES];
+    [statusItem setHighlightMode:NO];
 
-    NSFont *titleFont = [NSFont fontWithName:@"Weather Icons" size:[NSFont systemFontSize]];
-
-    NSMutableAttributedString* title = [[NSMutableAttributedString alloc] initWithString: @"\uf00d 12\uf045"];
-    [title addAttribute: NSFontAttributeName
-                  value: titleFont
-                  range: NSMakeRange(0, title.length)];
-    [title addAttribute: NSBaselineOffsetAttributeName
-                  value: @(10.0)
-                  range: NSMakeRange(0, title.length)];
-
-    [statusItem setAttributedTitle:title];
-
-    //[self setWeatherIconPending];
+    [self setWeatherIconPending];
 }
 
 - (void) setWeatherIconPending {
     /*
      * Set weather icon to "Getting weather data".
      */
-    NSMutableAttributedString *titleIcon = [self getWeatherIconFormatted:kWeatherRefreshIcon];
-    [statusItem setAttributedTitle:titleIcon];
+    NSMutableAttributedString *title = [self getWeatherIconFormatted:kWeatherRefreshIcon];
+    [title addAttribute: NSBaselineOffsetAttributeName
+                      value: @(3.0)
+                      range: NSMakeRange(0, title.length)];
+    [statusItem setAttributedTitle:title];
 }
 
 - (void) setWeather:(NSString *)icon withData:(NSString *)data {
@@ -178,7 +170,7 @@
     
     NSString *iconConstant = [[Icons getIconsDictionary] objectForKey:icon];
     if(iconConstant == (id)[NSNull null]) {
-        NSString *iconConstant = kWeatherDefaultIcon;
+        iconConstant = kWeatherDefaultIcon;
     }
 
     NSMutableAttributedString *titleIcon = [[NSMutableAttributedString alloc] initWithAttributedString:[self getWeatherIconFormatted:iconConstant]];
@@ -187,6 +179,11 @@
         [titleIcon appendAttributedString:[[NSAttributedString alloc] initWithString:@" "]];
         [titleIcon appendAttributedString:titleData];
     };
+
+    [titleIcon addAttribute: NSBaselineOffsetAttributeName
+                  value: @(10.0)
+                  range: NSMakeRange(0, titleIcon.length)];
+
     [statusItem setAttributedTitle:titleIcon];
 }
 
@@ -197,15 +194,7 @@
     
     NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:data];
     [title appendAttributedString:[[NSAttributedString alloc] initWithString:@"°"]];
-//    NSFont *temperatureFont = [NSFont systemFontOfSize:[NSFont systemFontSize]];
-//    [title addAttribute: NSFontAttributeName
-//                  value: temperatureFont
-//                  range: NSMakeRange(0, title.length)];
 
-    // vertical offset for temperature value
-//    [title addAttribute: NSBaselineOffsetAttributeName
-//                  value: @(13.0)
-//                  range: NSMakeRange(0, title.length)];
     return title;
 }
 
@@ -219,11 +208,6 @@
                                                                 forKey: NSFontAttributeName];
     NSMutableAttributedString* title = [[NSMutableAttributedString alloc] initWithString: code
                                                                               attributes: titleAttributes];
-    
-    // vertical offset for icon
-    [title addAttribute: NSBaselineOffsetAttributeName
-                  value: @(3.0)
-                  range: NSMakeRange(0, 1)];
     return title;
 }
 
@@ -330,15 +314,13 @@
 
 - (void)toggleStartAtLogin:(id)sender
 {
-    if ([LLManager launchAtLogin])
-    {
-        //[LLManager setLaunchAtLogin:NO];
-        [self.statusItem.menu itemWithTag:kStartAtLogin].state = NSOffState;
+    if ([LLManager launchAtLogin] == YES) {
+        [LLManager setLaunchAtLogin:NO];
+        [[self.statusItem.menu itemWithTag:kStartAtLogin] setState:NSOffState];
     }
-    else
-    {
-        //[LLManager setLaunchAtLogin:YES];
-        [self.statusItem.menu itemWithTag:kStartAtLogin].state = NSOnState;
+    else {
+        [LLManager setLaunchAtLogin:YES];
+        [[self.statusItem.menu itemWithTag:kStartAtLogin] setState:NSOnState];
     }
 }
 
