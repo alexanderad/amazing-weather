@@ -10,8 +10,7 @@
 #import "WeatherDriver+Helper.h"
 #import "NSString+Addons.h"
 
-#define API_KEY @"1fb7c021c52aef899d2b8f4f498ebeef"
-#define API_URL @"https://2gi75o6eaa.execute-api.eu-west-1.amazonaws.com/prod/weather"
+#define API_URL @"http://amazing-weather.cloud.tyk.io/weather-v1/"
 
 @implementation WeatherDriver
 
