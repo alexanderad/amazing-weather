@@ -18,7 +18,8 @@
 -(void)getJSONFromServer: (NSString *)urlString
 {
     NSURL *url = [[NSURL alloc] initWithString:urlString];
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url]
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    [NSURLConnection sendAsynchronousRequest:request
                                        queue:[[NSOperationQueue alloc] init]
                            completionHandler:^(NSURLResponse *response,
                                                NSData *data,
