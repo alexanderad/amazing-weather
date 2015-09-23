@@ -12,7 +12,7 @@
 #import "WeatherDriver.h"
 #import "NSString+Addons.h"
 #import "Preferences.h"
-#import "LLManager.h"
+//#import "LLManager.h"
 #import "Icons.h"
 
 #define UPDATE_INTERVAL (60 * 10) + arc4random_uniform(25)
@@ -118,7 +118,7 @@
     [startAtLoginMenu setTarget:self];
     [startAtLoginMenu setTag:kStartAtLogin];
 
-    [startAtLoginMenu setState:([LLManager launchAtLogin]) ? NSOnState : NSOffState];
+    //[startAtLoginMenu setState:([LLManager launchAtLogin]) ? NSOnState : NSOffState];
 
     // preferences
     NSMenu *preferencesSubmenu = [NSMenu alloc];
@@ -315,14 +315,14 @@
 
 - (void)toggleStartAtLogin:(id)sender
 {
-    if ([LLManager launchAtLogin] == YES) {
-        [LLManager setLaunchAtLogin:NO];
-        [[self.statusItem.menu itemWithTag:kStartAtLogin] setState:NSOffState];
-    }
-    else {
-        [LLManager setLaunchAtLogin:YES];
-        [[self.statusItem.menu itemWithTag:kStartAtLogin] setState:NSOnState];
-    }
+//    if ([LLManager launchAtLogin] == YES) {
+//        [LLManager setLaunchAtLogin:NO];
+//        [[self.statusItem.menu itemWithTag:kStartAtLogin] setState:NSOffState];
+//    }
+//    else {
+//        [LLManager setLaunchAtLogin:YES];
+//        [[self.statusItem.menu itemWithTag:kStartAtLogin] setState:NSOnState];
+//    }
 }
 
 @end
