@@ -17,5 +17,7 @@ DerivedData
 *.hmap
 *.xccheckout
 
+update-channel/dsa_priv.pem
+
 #CocoaPods
 Pods

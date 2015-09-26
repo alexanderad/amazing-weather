@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import <stdlib.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Sparkle/Sparkle.h>
 #import "WeatherDriver.h"
 #import "NSString+Addons.h"
 #import "Preferences.h"
@@ -28,6 +29,7 @@
     /*
      * Let The Show begin!
      */
+    [SUUpdater sharedUpdater];
     
     [self initDriver];
     [self initDisplay];

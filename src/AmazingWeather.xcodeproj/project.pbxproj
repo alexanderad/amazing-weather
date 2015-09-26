@@ -27,6 +27,9 @@
 		9ED14E961BA5E40C00BB40B4 /* LLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ED14E941BA5E40C00BB40B4 /* LLManager.m */; };
 		9ED14E9D1BA5E49E00BB40B4 /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9ED14E9C1BA5E49E00BB40B4 /* ServiceManagement.framework */; };
 		9EED94E018A2D763002BDEC2 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		9EEE37AA1BB6FBCA00A57AED /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EEE37A91BB6FBCA00A57AED /* Sparkle.framework */; settings = {ASSET_TAGS = (); }; };
+		9EEE37AC1BB6FBE500A57AED /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9EEE37A91BB6FBCA00A57AED /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		9EEE37B11BB6FDD600A57AED /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 9EEE37B01BB6FDD600A57AED /* dsa_pub.pem */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,16 @@
 			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9EEE37AB1BB6FBDD00A57AED /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9EEE37AC1BB6FBE500A57AED /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +126,8 @@
 		9ED14E951BA5E40C00BB40B4 /* LLStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLStrings.h; path = LaunchAtLoginHelper/LLStrings.h; sourceTree = "<group>"; };
 		9ED14E9C1BA5E49E00BB40B4 /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		9EEE37A91BB6FBCA00A57AED /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		9EEE37B01BB6FDD600A57AED /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +138,7 @@
 				9ED14E9D1BA5E49E00BB40B4 /* ServiceManagement.framework in Frameworks */,
 				9E4C9B42189C217A00665BC3 /* Cocoa.framework in Frameworks */,
 				9EED94E018A2D763002BDEC2 /* CoreLocation.framework in Frameworks */,
+				9EEE37AA1BB6FBCA00A57AED /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +197,7 @@
 		9E4C9B40189C217A00665BC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9EEE37A91BB6FBCA00A57AED /* Sparkle.framework */,
 				9ED14E9C1BA5E49E00BB40B4 /* ServiceManagement.framework */,
 				9EED94DF18A2D763002BDEC2 /* CoreLocation.framework */,
 				9E4C9B41189C217A00665BC3 /* Cocoa.framework */,
@@ -202,6 +219,7 @@
 		9E4C9B47189C217A00665BC3 /* AmazingWeather */ = {
 			isa = PBXGroup;
 			children = (
+				9EEE37AF1BB6FD9600A57AED /* Resources */,
 				9EBEED3D1BA8A8540035E8B8 /* Fonts */,
 				9E44DD291BA8A370002A1B68 /* Icons */,
 				9E9F5A9C18C6588B00C77D5B /* Drivers */,
@@ -290,6 +308,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		9EEE37AF1BB6FD9600A57AED /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9EEE37B01BB6FDD600A57AED /* dsa_pub.pem */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -302,6 +328,7 @@
 				9E4C9B3C189C217A00665BC3 /* Resources */,
 				9ED14E9E1BA5E75D00BB40B4 /* Copy Files */,
 				9E44DD301BA8A690002A1B68 /* CopyFiles */,
+				9EEE37AB1BB6FBDD00A57AED /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -392,6 +419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9EEE37B11BB6FDD600A57AED /* dsa_pub.pem in Resources */,
 				9E921CA818BBF15400B38901 /* About.xib in Resources */,
 				9E4C9B5A189C217A00665BC3 /* Images.xcassets in Resources */,
 				9EBEED3F1BA8A8540035E8B8 /* weathericons-regular-webfont.ttf in Resources */,
@@ -524,10 +552,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
 				INFOPLIST_FILE = "AmazingWeather/AmazingWeather-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "name.darednaxella.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = AmazingWeather;
 				SDKROOT = macosx;
@@ -541,10 +574,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
 				INFOPLIST_FILE = "AmazingWeather/AmazingWeather-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "name.darednaxella.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = AmazingWeather;
 				SDKROOT = macosx;
@@ -639,10 +677,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AmazingWeather/AmazingWeather-Prefix.pch";
 				INFOPLIST_FILE = "AmazingWeather/AmazingWeather-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-Wl,-rpath,@loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "name.darednaxella.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = AmazingWeather;
 				SDKROOT = macosx;
