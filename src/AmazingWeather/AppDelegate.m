@@ -120,13 +120,13 @@
 
     //[startAtLoginMenu setState:([LLManager launchAtLogin]) ? NSOnState : NSOffState];
 
-    // preferences
-    NSMenu *preferencesSubmenu = [NSMenu alloc];
-    [preferencesSubmenu addItem:startAtLoginMenu];
-    NSMenuItem *preferencesItem = [[NSMenuItem alloc] initWithTitle:@"Preferences"
-                                                             action:nil
-                                                      keyEquivalent:@""];
-    [preferencesItem setSubmenu:preferencesSubmenu];
+//    // preferences
+//    NSMenu *preferencesSubmenu = [NSMenu alloc];
+//    [preferencesSubmenu addItem:startAtLoginMenu];
+//    NSMenuItem *preferencesItem = [[NSMenuItem alloc] initWithTitle:@"Preferences"
+//                                                             action:nil
+//                                                      keyEquivalent:@""];
+//    [preferencesItem setSubmenu:preferencesSubmenu];
 
     NSMenu *statusBarMenu = [[NSMenu alloc] init];
     [statusBarMenu setDelegate:self];
@@ -136,8 +136,8 @@
     [statusBarMenu addItem:menuLocationDataItem];
     [statusBarMenu addItem:menuWeatherDataItem];
 
-    [statusBarMenu addItem:[NSMenuItem separatorItem]];
-    [statusBarMenu addItem:preferencesItem];
+//    [statusBarMenu addItem:[NSMenuItem separatorItem]];
+//    [statusBarMenu addItem:preferencesItem];
 
     [statusBarMenu addItem:[NSMenuItem separatorItem]];
     [statusBarMenu addItemWithTitle:@"About" action:@selector(about:) keyEquivalent:@""];
