@@ -29,8 +29,6 @@
     /*
      * Let The Show begin!
      */
-    [SUUpdater sharedUpdater];
-    
     [self initDriver];
     [self initDisplay];
 
@@ -43,6 +41,8 @@
                                                  selector: @selector(onTick:)
                                                  userInfo: nil
                                                   repeats: YES];
+
+    [SUUpdater sharedUpdater];
 }
 
 - (void) initLocationManager {
