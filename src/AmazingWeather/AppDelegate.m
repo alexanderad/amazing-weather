@@ -43,7 +43,6 @@
                                                   repeats: YES];
 
     SUUpdater *sharedUpdater = [SUUpdater sharedUpdater];
-    [sharedUpdater setUpdateCheckInterval:3600];
 }
 
 - (void) initLocationManager {

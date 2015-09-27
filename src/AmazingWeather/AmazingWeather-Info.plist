@@ -50,6 +50,6 @@
 	<key>SUShowReleaseNotes</key>
 	<string>YES</string>
 	<key>SUFeedURL</key>
-	<string>https://amazing-weather.cloud.tyk.io/weather-updates/appcast.xml</string>
+	<string>https://raw.githubusercontent.com/alexanderad/amazing-weather/master/update-channel/appcast.xml</string>
 </dict>
 </plist>

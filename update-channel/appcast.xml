@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
         <title>Amazing weather Changelog</title>
-        <link>https://amazing-weather.cloud.tyk.io/weather-updates/appcast.xml</link>
+        <link>https://raw.githubusercontent.com/alexanderad/amazing-weather/master/update-channel/appcast.xml</link>
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-            <title>Version 0.6</title>
+            <title>Version 1.0</title>
             <sparkle:releaseNotesLink>
-                https://amazing-weather.cloud.tyk.io/weather-updates/release-notes.html
+                https://raw.githubusercontent.com/alexanderad/amazing-weather/master/update-channel/release-notes.html
             </sparkle:releaseNotesLink>
-            <pubDate>Wed, 27 Sep 2015 10:00:00 +0400</pubDate>
+            <pubDate>Wed, 25 Sep 2015 10:00:00 +0400</pubDate>
             <enclosure 
                 url="https://dl.dropboxusercontent.com/u/506749/AmazingWeather/AmazingWeather.zip" 
-                sparkle:version="0.6" 
+                sparkle:version="1.0" 
                 length="1505884" 
                 type="application/octet-stream" 
                 sparkle:dsaSignature="MCwCFDG1HXKMyZleCZdBn2wZgZgZs0xJAhQivzF11BzLQ+LAEF7R6DiOTtWFSA==" />
