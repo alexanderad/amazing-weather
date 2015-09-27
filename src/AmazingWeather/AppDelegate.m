@@ -42,7 +42,8 @@
                                                  userInfo: nil
                                                   repeats: YES];
 
-    [SUUpdater sharedUpdater];
+    SUUpdater *sharedUpdater = [SUUpdater sharedUpdater];
+    [sharedUpdater setUpdateCheckInterval:3600];
 }
 
 - (void) initLocationManager {
